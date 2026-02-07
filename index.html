@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Claude Code Works &mdash; A Visual Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   MONOCLE-INSPIRED EDITORIAL DESIGN
+   Warm, typographic, print-magazine aesthetic
+   Mobile-first responsive
+   ════════════════════════════════════════════════ */
+
+:root {
+  --cream: #F5F1EB;
+  --paper: #FAF8F4;
+  --white: #FFFFFF;
+  --ink: #1A1A1A;
+  --ink-medium: #3D3D3D;
+  --ink-light: #6B6B6B;
+  --ink-faint: #9A9A9A;
+  --rule: #D4D0C8;
+  --rule-light: #E8E4DC;
+  --red: #D4213D;
+  --red-light: #F2E6E8;
+  --red-faint: rgba(212, 33, 61, 0.06);
+  --warm-gray: #B8B3AA;
+  --code-bg: #2C2C2C;
+  --code-fg: #E8E4DC;
+
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+
+  --page-max: 680px;
+  --page-px: 20px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 19px;
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Paper texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ════════════════════════════════════════════════
+   PAGE CONTAINER
+   ════════════════════════════════════════════════ */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-px);
+}
+
+/* ════════════════════════════════════════════════
+   HORIZONTAL RULES — THE MONOCLE SIGNATURE
+   ════════════════════════════════════════════════ */
+.rule {
+  border: none;
+  height: 1px;
+  background: var(--rule);
+  margin: 0;
+}
+
+.rule-thick {
+  height: 3px;
+  background: var(--ink);
+}
+
+.rule-red {
+  height: 2px;
+  background: var(--red);
+}
+
+.rule-double {
+  height: 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-top: 3px;
+  background: transparent;
+}
+
+/* ════════════════════════════════════════════════
+   MASTHEAD / HERO
+   ════════════════════════════════════════════════ */
+.masthead {
+  padding: 40px 0 0;
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+}
+
+.masthead-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-light);
+}
+
+.masthead-issue {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+.masthead-title {
+  padding: 32px 0 28px;
+}
+
+.masthead-title h1 {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 11vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.masthead-title h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--red);
+}
+
+.masthead-deck {
+  padding: 20px 0 32px;
+}
+
+.masthead-deck p {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--ink-medium);
+  font-style: italic;
+  max-width: 580px;
+}
+
+.masthead-meta {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  padding: 14px 0;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+.meta-item strong {
+  color: var(--ink-medium);
+  font-weight: 600;
+}
+
+/* Terminal block */
+.terminal {
+  background: var(--code-bg);
+  border-radius: 8px;
+  margin: 32px 0 0;
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot:nth-child(1) { background: #ff5f57; }
+.terminal-dot:nth-child(2) { background: #febc2e; }
+.terminal-dot:nth-child(3) { background: #28c840; }
+
+.terminal-body {
+  padding: 18px 20px;
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--code-fg);
+}
+
+.terminal-body .prompt { color: #8BE9FD; }
+.terminal-body .cmd { color: #F8F8F2; font-weight: 500; }
+.terminal-body .output { color: #9A9A9A; }
+.terminal-body .hl { color: #50FA7B; }
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 15px;
+  background: #F8F8F2;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ════════════════════════════════════════════════
+   SECTION PATTERN
+   ════════════════════════════════════════════════ */
+.section {
+  padding: 48px 0 0;
+}
+
+.section-num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 0 10px;
+}
+
+.section-num {
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--red);
+}
+
+.section-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-light);
+  padding-top: 8px;
+}
+
+.section-headline {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 8px 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.section-intro {
+  font-size: 1.15rem;
+  line-height: 1.72;
+  color: var(--ink-medium);
+  margin-bottom: 32px;
+  max-width: 580px;
+}
+
+/* ════════════════════════════════════════════════
+   AGENTIC LOOP — NUMBERED STEPS
+   ════════════════════════════════════════════════ */
+.loop-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.loop-step {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule-light);
+  align-items: start;
+}
+
+.loop-step:last-child {
+  border-bottom: none;
+}
+
+.step-marker {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-marker.step-active {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+.step-body h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.12rem;
+  margin-bottom: 5px;
+  color: var(--ink);
+}
+
+.step-body p {
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--ink-light);
+}
+
+.step-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.step-tag {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 4px 11px;
+  background: var(--red-faint);
+  color: var(--red);
+  border-radius: 3px;
+}
+
+.loop-return {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+}
+
+.loop-return-line {
+  flex: 1;
+  height: 1px;
+  background: var(--red);
+  opacity: 0.3;
+}
+
+/* ════════════════════════════════════════════════
+   TOOL BELT — COMPACT EDITORIAL GRID
+   ════════════════════════════════════════════════ */
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tool-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule-light);
+  gap: 6px;
+}
+
+.tool-row:last-child {
+  border-bottom: none;
+}
+
+.tool-row-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tool-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.tool-cmds {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tool-desc {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.68;
+}
+
+@media (min-width: 480px) {
+  .tool-row {
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .tool-row-header {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   PERMISSIONS — EDITORIAL TABLE
+   ════════════════════════════════════════════════ */
+.perm-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.perm-table th {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  text-align: left;
+  padding: 12px 0 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.perm-table td {
+  padding: 16px 14px 16px 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+.perm-table tr:last-child td {
+  border-bottom: 1px solid var(--rule);
+}
+
+.perm-table .tier-label {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.perm-table .tier-tools {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink-light);
+}
+
+.perm-table .tier-approval {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.approval-auto { color: #2D7D46; }
+.approval-once { color: #B8860B; }
+.approval-each { color: var(--red); }
+
+/* Modes sidebar */
+.modes-box {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  margin-top: 4px;
+}
+
+.modes-box-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mode-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.mode-row:last-child {
+  border-bottom: none;
+}
+
+.mode-key {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-medium);
+  min-width: 78px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.mode-desc {
+  font-size: 1rem;
+  color: var(--ink-light);
+}
+
+.mode-desc strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════════
+   CONTEXT — STACKED LAYERS LIST
+   ════════════════════════════════════════════════ */
+.context-list {
+  counter-reset: ctx;
+}
+
+.ctx-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule-light);
+  gap: 4px;
+}
+
+.ctx-item:last-child {
+  border-bottom: none;
+}
+
+.ctx-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.ctx-marker {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  counter-increment: ctx;
+}
+
+.ctx-marker::before {
+  content: counter(ctx, upper-alpha) ".";
+  margin-right: 4px;
+}
+
+.ctx-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.ctx-desc {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.68;
+  padding-left: 0;
+}
+
+.ctx-desc code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: rgba(0,0,0,0.05);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ink-medium);
+}
+
+@media (min-width: 480px) {
+  .ctx-item {
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   WORKFLOW — BIG NUMBERED BLOCKS
+   ════════════════════════════════════════════════ */
+.workflow-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.wf-step {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule-light);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.wf-step:last-child {
+  border-bottom: none;
+}
+
+.wf-num {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--rule);
+  margin-top: -4px;
+}
+
+.wf-step:nth-child(1) .wf-num,
+.wf-step:nth-child(3) .wf-num { color: var(--red); }
+
+.wf-content h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.wf-content p {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.68;
+}
+
+@media (min-width: 540px) {
+  .workflow-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+  }
+
+  .wf-step:nth-child(3),
+  .wf-step:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   EXTENSIBILITY — THREE COLUMNS
+   ════════════════════════════════════════════════ */
+.extend-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.ext-card {
+  border-top: 2px solid var(--ink);
+  padding-top: 20px;
+}
+
+.ext-card-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.ext-card h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.ext-card p {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.68;
+  margin-bottom: 16px;
+}
+
+.ext-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ext-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--ink-medium);
+}
+
+.ext-item::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.ext-item code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .extend-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   INTEGRATIONS — HORIZONTAL SCROLL ON MOBILE
+   ════════════════════════════════════════════════ */
+.integrations-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.int-chip {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink-medium);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════
+   PULL QUOTE
+   ════════════════════════════════════════════════ */
+.pull-quote {
+  padding: 32px 0;
+  margin: 8px 0;
+}
+
+.pull-quote blockquote {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 4vw, 1.65rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  border-left: 3px solid var(--red);
+  padding-left: 20px;
+  margin: 0;
+}
+
+.pull-quote cite {
+  display: block;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-top: 12px;
+  padding-left: 23px;
+}
+
+/* ════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════ */
+.footer {
+  padding: 32px 0 48px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.footer-brand em {
+  color: var(--red);
+  font-style: normal;
+}
+
+.footer-note {
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+.footer-install {
+  width: 100%;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--ink-light);
+  padding: 16px 0 0;
+  margin-top: 4px;
+  border-top: 1px solid var(--rule-light);
+}
+
+/* ════════════════════════════════════════════════
+   SCROLL ANIMATIONS (subtle for editorial)
+   ════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-d1 { transition-delay: 0.05s; }
+.reveal-d2 { transition-delay: 0.1s; }
+.reveal-d3 { transition-delay: 0.15s; }
+.reveal-d4 { transition-delay: 0.2s; }
+.reveal-d5 { transition-delay: 0.25s; }
+
+/* ════════════════════════════════════════════════
+   DESKTOP REFINEMENTS
+   ════════════════════════════════════════════════ */
+@media (min-width: 720px) {
+  :root {
+    --page-px: 32px;
+  }
+
+  body {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════
+       MASTHEAD
+       ══════════════════════════════════════════ -->
+  <header class="masthead">
+    <hr class="rule rule-double">
+    <div class="masthead-top">
+      <span class="masthead-label">The Visual Guide</span>
+      <span class="masthead-issue">No. 01 &mdash; 2026</span>
+    </div>
+    <hr class="rule">
+
+    <div class="masthead-title reveal">
+      <h1>How Claude Code<br><em>actually works</em></h1>
+    </div>
+    <hr class="rule rule-red">
+
+    <div class="masthead-deck reveal">
+      <p>An agentic AI coding tool that lives in your terminal. It reads your codebase, edits your files, runs your commands, and ships your code&nbsp;&mdash; with you in&nbsp;control.</p>
+    </div>
+
+    <div class="masthead-meta reveal">
+      <span class="meta-item"><strong>By</strong> Anthropic</span>
+      <span class="meta-item"><strong>Subject</strong> Developer Tools</span>
+      <span class="meta-item"><strong>Reading</strong> 6 min</span>
+    </div>
+    <hr class="rule">
+
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+      </div>
+      <div class="terminal-body">
+        <span class="prompt">$</span> <span class="cmd">claude</span><br>
+        <span class="output"><span class="hl">Claude Code</span> v1.x &mdash; Anthropic</span><br>
+        <span class="output">What would you like to work on?</span><span class="terminal-cursor"></span>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════
+       01 — THE AGENTIC LOOP
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">01</span>
+      <span class="section-label">The Agentic Loop</span>
+    </div>
+    <h2 class="section-headline reveal">Think. Act. Verify. Repeat.</h2>
+    <p class="section-intro reveal">Claude Code operates in a continuous cycle. It gathers context, takes action with tools, verifies the results, and iterates until the task is complete. You can interrupt and steer at any point.</p>
+
+    <div class="loop-steps">
+      <div class="loop-step reveal">
+        <div class="step-marker step-active">1</div>
+        <div class="step-body">
+          <h3>You prompt</h3>
+          <p>Describe what you want in natural language. Fix a bug, add a feature, refactor a module, explain some code. As specific or open-ended as you like.</p>
+          <div class="step-tags">
+            <span class="step-tag">"Fix the login timeout bug"</span>
+          </div>
+        </div>
+      </div>
+      <div class="loop-step reveal reveal-d1">
+        <div class="step-marker">2</div>
+        <div class="step-body">
+          <h3>Claude reasons</h3>
+          <p>Extended thinking activates. Claude breaks down the problem, plans its approach, and decides which tools to use. Reasoning scales from quick to deep analysis depending on complexity.</p>
+          <div class="step-tags">
+            <span class="step-tag">Extended Thinking</span>
+            <span class="step-tag">Plan Decomposition</span>
+          </div>
+        </div>
+      </div>
+      <div class="loop-step reveal reveal-d2">
+        <div class="step-marker">3</div>
+        <div class="step-body">
+          <h3>Tools execute</h3>
+          <p>Claude calls the right tools&nbsp;&mdash; reading files, searching code, editing source, running commands, fetching documentation. Multiple tools can fire in parallel for speed.</p>
+          <div class="step-tags">
+            <span class="step-tag">Read</span>
+            <span class="step-tag">Edit</span>
+            <span class="step-tag">Bash</span>
+            <span class="step-tag">Grep</span>
+            <span class="step-tag">WebSearch</span>
+          </div>
+        </div>
+      </div>
+      <div class="loop-step reveal reveal-d3">
+        <div class="step-marker">4</div>
+        <div class="step-body">
+          <h3>Verify results</h3>
+          <p>Run tests, check outputs, review diffs. Claude confirms the changes work before moving on&nbsp;&mdash; or identifies what went wrong.</p>
+          <div class="step-tags">
+            <span class="step-tag">npm test</span>
+            <span class="step-tag">Diff Review</span>
+          </div>
+        </div>
+      </div>
+      <div class="loop-step reveal reveal-d4">
+        <div class="step-marker">5</div>
+        <div class="step-body">
+          <h3>Iterate or complete</h3>
+          <p>If the task isn't done, loop back. Fix failing tests, refine the approach, handle edge cases. Continue until everything passes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop-return reveal">
+      <span class="loop-return-line"></span>
+      <span>Loops until complete</span>
+      <span class="loop-return-line"></span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       02 — TOOL BELT
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">02</span>
+      <span class="section-label">Tool Belt</span>
+    </div>
+    <h2 class="section-headline reveal">Built-in capabilities</h2>
+    <p class="section-intro reveal">Six categories of tools give Claude direct agency over your codebase and development workflow. Each tool is purpose-built for its task.</p>
+
+    <hr class="rule reveal">
+    <div class="tools-list">
+      <div class="tool-row reveal">
+        <div class="tool-row-header">
+          <span class="tool-name">File Operations</span>
+          <span class="tool-cmds">Read &middot; Edit &middot; Write</span>
+        </div>
+        <span class="tool-desc">Read, edit, and write files directly. Surgical line-level edits, not full rewrites. Supports images, PDFs, and Jupyter notebooks.</span>
+      </div>
+      <div class="tool-row reveal reveal-d1">
+        <div class="tool-row-header">
+          <span class="tool-name">Code Search</span>
+          <span class="tool-cmds">Glob &middot; Grep</span>
+        </div>
+        <span class="tool-desc">Find files by pattern, search contents with regex. Powered by ripgrep for instant results across any codebase size.</span>
+      </div>
+      <div class="tool-row reveal reveal-d2">
+        <div class="tool-row-header">
+          <span class="tool-name">Shell Execution</span>
+          <span class="tool-cmds">Bash</span>
+        </div>
+        <span class="tool-desc">Run any shell command&nbsp;&mdash; tests, builds, linters, scripts. Persistent working directory across calls. Optional OS-level sandboxing.</span>
+      </div>
+      <div class="tool-row reveal reveal-d3">
+        <div class="tool-row-header">
+          <span class="tool-name">Web Access</span>
+          <span class="tool-cmds">WebSearch &middot; WebFetch</span>
+        </div>
+        <span class="tool-desc">Search the web for current information and fetch documentation. Keeps Claude up-to-date beyond its training data cutoff.</span>
+      </div>
+      <div class="tool-row reveal reveal-d4">
+        <div class="tool-row-header">
+          <span class="tool-name">Subagents</span>
+          <span class="tool-cmds">Task &middot; Explore &middot; Plan</span>
+        </div>
+        <span class="tool-desc">Spawn isolated workers with their own context window. Run research in background, parallelize tasks, protect the main conversation.</span>
+      </div>
+      <div class="tool-row reveal reveal-d5">
+        <div class="tool-row-header">
+          <span class="tool-name">Git &amp; GitHub</span>
+          <span class="tool-cmds">git &middot; gh CLI</span>
+        </div>
+        <span class="tool-desc">Create commits, manage branches, open pull requests, review diffs. Full git workflow from staging to push, with safety guardrails.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       03 — PERMISSION MODEL
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">03</span>
+      <span class="section-label">Permission Model</span>
+    </div>
+    <h2 class="section-headline reveal">You stay in control</h2>
+    <p class="section-intro reveal">A tiered system ensures Claude asks before taking risky actions. Reading is free. Edits and commands need your say-so.</p>
+
+    <table class="perm-table reveal">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Tools</th>
+          <th>Approval</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier-label">Read-only</td>
+          <td class="tier-tools">Read, Grep, Glob, WebSearch</td>
+          <td class="tier-approval approval-auto">Auto-allowed</td>
+        </tr>
+        <tr>
+          <td class="tier-label">File edits</td>
+          <td class="tier-tools">Edit, Write, NotebookEdit</td>
+          <td class="tier-approval approval-once">Ask once per session</td>
+        </tr>
+        <tr>
+          <td class="tier-label">Shell</td>
+          <td class="tier-tools">Bash execution</td>
+          <td class="tier-approval approval-each">Ask each time</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="modes-box reveal">
+      <div class="modes-box-title">Shift+Tab &mdash; Permission Modes</div>
+      <div class="mode-row">
+        <span class="mode-key">Default</span>
+        <span class="mode-desc"><strong>Normal.</strong> Ask before edits and commands.</span>
+      </div>
+      <div class="mode-row">
+        <span class="mode-key">Auto-Edit</span>
+        <span class="mode-desc"><strong>Auto-accept edits.</strong> Still asks for shell commands.</span>
+      </div>
+      <div class="mode-row">
+        <span class="mode-key">Plan</span>
+        <span class="mode-desc"><strong>Read-only analysis.</strong> No modifications allowed.</span>
+      </div>
+      <div class="mode-row">
+        <span class="mode-key">Bypass</span>
+        <span class="mode-desc"><strong>Full autonomy.</strong> Skip all prompts. Sandboxed use only.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       PULL QUOTE
+       ══════════════════════════════════════════ -->
+  <div class="pull-quote reveal">
+    <hr class="rule">
+    <blockquote>Claude Code meets you where you work&nbsp;&mdash; terminal, IDE, browser, CI pipeline. One tool, every surface.</blockquote>
+    <cite>Anthropic Developer Documentation</cite>
+    <hr class="rule" style="margin-top: 32px;">
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       04 — CONTEXT MANAGEMENT
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">04</span>
+      <span class="section-label">Context Management</span>
+    </div>
+    <h2 class="section-headline reveal">Memory that persists</h2>
+    <p class="section-intro reveal">Five layers of context ensure Claude always knows your project conventions, team rules, and personal preferences&nbsp;&mdash; across every session.</p>
+
+    <hr class="rule reveal">
+    <div class="context-list">
+      <div class="ctx-item reveal">
+        <div class="ctx-header">
+          <span class="ctx-marker"></span>
+          <span class="ctx-name">CLAUDE.md</span>
+        </div>
+        <span class="ctx-desc">Loaded every session. Define coding standards, architecture rules, and team conventions. Supports file imports with <code>@filename</code>.</span>
+      </div>
+      <div class="ctx-item reveal reveal-d1">
+        <div class="ctx-header">
+          <span class="ctx-marker"></span>
+          <span class="ctx-name">Modular Rules</span>
+        </div>
+        <span class="ctx-desc">The <code>.claude/rules/</code> directory holds organised, path-specific instructions. Rules with frontmatter only load when matching files are touched.</span>
+      </div>
+      <div class="ctx-item reveal reveal-d2">
+        <div class="ctx-header">
+          <span class="ctx-marker"></span>
+          <span class="ctx-name">Auto Memory</span>
+        </div>
+        <span class="ctx-desc">Claude maintains its own notes at <code>~/.claude/projects/</code>. Patterns, debugging insights, and lessons learned persist across sessions automatically.</span>
+      </div>
+      <div class="ctx-item reveal reveal-d3">
+        <div class="ctx-header">
+          <span class="ctx-marker"></span>
+          <span class="ctx-name">Compaction</span>
+        </div>
+        <span class="ctx-desc">As context approaches limits, older messages are automatically summarised. Conversations are never limited by the context window.</span>
+      </div>
+      <div class="ctx-item reveal reveal-d4">
+        <div class="ctx-header">
+          <span class="ctx-marker"></span>
+          <span class="ctx-name">Layered Settings</span>
+        </div>
+        <span class="ctx-desc">Configuration cascades: Managed (org) &rarr; CLI flags &rarr; Project local &rarr; Project shared &rarr; User. Deny rules always win.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       05 — WORKFLOW
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">05</span>
+      <span class="section-label">Workflow</span>
+    </div>
+    <h2 class="section-headline reveal">From idea to shipped code</h2>
+    <p class="section-intro reveal">A typical session flows through four phases. Jump in at any point or skip phases entirely.</p>
+
+    <hr class="rule reveal">
+    <div class="workflow-grid">
+      <div class="wf-step reveal">
+        <div class="wf-num">01</div>
+        <div class="wf-content">
+          <h3>Plan</h3>
+          <p>Enable Plan Mode for read-only exploration. Claude researches your codebase, proposes an approach, and you iterate before any code changes.</p>
+        </div>
+      </div>
+      <div class="wf-step reveal reveal-d1">
+        <div class="wf-num">02</div>
+        <div class="wf-content">
+          <h3>Implement</h3>
+          <p>Switch to normal mode. Claude edits files, creates new ones, and runs builds. Multiple subagents can work in parallel on independent tasks.</p>
+        </div>
+      </div>
+      <div class="wf-step reveal reveal-d2">
+        <div class="wf-num">03</div>
+        <div class="wf-content">
+          <h3>Test</h3>
+          <p>Claude runs your test suite, catches failures, and fixes them in a loop. Edge cases get handled. Linting and type-checking pass cleanly.</p>
+        </div>
+      </div>
+      <div class="wf-step reveal reveal-d3">
+        <div class="wf-num">04</div>
+        <div class="wf-content">
+          <h3>Ship</h3>
+          <p>Create a well-crafted commit, open a pull request with a proper description, and push. Claude follows your git conventions automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       06 — EXTENSIBILITY
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">06</span>
+      <span class="section-label">Extensibility</span>
+    </div>
+    <h2 class="section-headline reveal">Extend anything</h2>
+    <p class="section-intro reveal">Three primitives let you customise Claude Code for your exact workflow.</p>
+
+    <div class="extend-cards">
+      <div class="ext-card reveal">
+        <div class="ext-card-label">Protocol</div>
+        <h3>MCP Servers</h3>
+        <p>Connect to external services via the Model Context Protocol. Databases, APIs, design tools&nbsp;&mdash; all become native Claude tools.</p>
+        <div class="ext-items">
+          <div class="ext-item"><code>GitHub</code> &mdash; PRs, issues, repos</div>
+          <div class="ext-item"><code>PostgreSQL</code> &mdash; query databases</div>
+          <div class="ext-item"><code>Sentry</code> &mdash; error monitoring</div>
+          <div class="ext-item"><code>Slack</code> &mdash; team messaging</div>
+        </div>
+      </div>
+      <div class="ext-card reveal reveal-d1">
+        <div class="ext-card-label">Automation</div>
+        <h3>Hooks</h3>
+        <p>Deterministic automation at lifecycle events. Run scripts before and after tool calls, block actions, auto-format code, enforce policies.</p>
+        <div class="ext-items">
+          <div class="ext-item"><code>PreToolUse</code> &mdash; guard files</div>
+          <div class="ext-item"><code>PostToolUse</code> &mdash; auto-format</div>
+          <div class="ext-item"><code>Stop</code> &mdash; run tests when done</div>
+          <div class="ext-item"><code>SessionStart</code> &mdash; setup env</div>
+        </div>
+      </div>
+      <div class="ext-card reveal reveal-d2">
+        <div class="ext-card-label">Knowledge</div>
+        <h3>Skills &amp; Plugins</h3>
+        <p>Package reusable knowledge and workflows. Skills load on demand. Plugins bundle skills, hooks, agents, and MCP configurations together.</p>
+        <div class="ext-items">
+          <div class="ext-item"><code>/deploy</code> &mdash; custom workflows</div>
+          <div class="ext-item"><code>/review</code> &mdash; code review</div>
+          <div class="ext-item"><code>/commit</code> &mdash; smart commits</div>
+          <div class="ext-item">Marketplace &mdash; share &amp; install</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       07 — RUNS EVERYWHERE
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <hr class="rule rule-thick reveal">
+    <div class="section-num-row reveal">
+      <span class="section-num">07</span>
+      <span class="section-label">Integrations</span>
+    </div>
+    <h2 class="section-headline reveal">One tool, every surface</h2>
+
+    <div class="integrations-row reveal">
+      <span class="int-chip">Terminal</span>
+      <span class="int-chip">VS Code</span>
+      <span class="int-chip">JetBrains</span>
+      <span class="int-chip">claude.ai/code</span>
+      <span class="int-chip">Desktop App</span>
+      <span class="int-chip">Slack</span>
+      <span class="int-chip">GitHub Actions</span>
+      <span class="int-chip">Chrome</span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <hr class="rule rule-double">
+    <div class="footer-inner">
+      <span class="footer-brand">Claude <em>Code</em></span>
+      <span class="footer-note">Built by Anthropic &mdash; AI that works with you, not for you.</span>
+    </div>
+    <div class="footer-install">npm install -g @anthropic-ai/claude-code</div>
+  </footer>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
