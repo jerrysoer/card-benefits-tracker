@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const repoName = process.env.REPO_NAME || "claude-code-infographic";
+const repoName = process.env.REPO_NAME || "CardBenefitsTracker";
 
 const nextConfig: NextConfig = {
   output: "export",
