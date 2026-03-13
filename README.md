@@ -1,26 +1,85 @@
-# How Claude Code Works — A Visual Guide
+# CardClock — Your Benefits Are Ticking
 
-A Monocle-inspired editorial infographic explaining how Claude Code works, from the agentic loop to extensibility.
+**Free, open-source credit card benefit deadline tracker.** Never waste another statement credit.
 
-**Live site:** [jerrysoer.github.io/claude-code-infographic](https://jerrysoer.github.io/claude-code-infographic/)
+The average premium cardholder wastes **$624/year** in unused credits. CardClock tracks every benefit deadline across all your cards — green when safe, amber when soon, red when urgent.
 
-## What's Covered
+## Features
 
-1. **The Agentic Loop** — Prompt → Reason → Execute → Verify → Iterate
-2. **Tool Belt** — File ops, code search, shell execution, web access, subagents, git
-3. **Permission Model** — Tiered approval system and permission modes
-4. **Context Management** — CLAUDE.md, modular rules, auto memory, compaction, layered settings
-5. **Workflow** — Plan → Implement → Test → Ship
-6. **Extensibility** — MCP servers, hooks, skills & plugins
-7. **Integrations** — Terminal, VS Code, JetBrains, Slack, GitHub Actions, and more
+- **Benefit Timeline** — Every benefit as a countdown, sorted by urgency
+- **30+ Premium Cards** — Pre-loaded benefits for Amex, Chase, Citi, Capital One, Bilt, and more
+- **Mark as Used** — Full or partial tracking with auto-reset on period rollover
+- **ROI Calculator** — Per-card gauge showing if your annual fee is worth it
+- **No Bank Login** — Zero account linking. Your data stays yours.
+- **Open Source** — Self-host in 10 minutes or use the hosted version free
 
-## Design
+## Quick Start
 
-- Monocle magazine editorial aesthetic — warm cream paper, strong typography, red accent
-- Playfair Display (serif) + Source Sans 3 (sans) + IBM Plex Mono
-- Mobile-first responsive layout (single-column, 680px max)
-- Self-contained HTML — no build step, no dependencies beyond Google Fonts
+```bash
+# Clone the repo
+git clone https://github.com/jerrysoer/cardclock.git
+cd cardclock
 
-## Run Locally
+# Install dependencies
+npm install
 
-Open `index.html` in any browser. That's it.
+# Run in demo mode (no Supabase required)
+npm run dev
+```
+
+Visit `http://localhost:3000` — the app runs in demo mode with sample data when Supabase isn't configured.
+
+## Deploy Your Own
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/jerrysoer/cardclock)
+
+See [SELF_DEPLOY.md](./SELF_DEPLOY.md) for the full self-hosting guide.
+
+## Tech Stack
+
+| Layer     | Choice                    |
+|-----------|---------------------------|
+| Framework | Next.js 16 (App Router)   |
+| Language  | TypeScript                |
+| Styling   | Tailwind CSS v4           |
+| Database  | Supabase (PostgreSQL)     |
+| Auth      | Supabase Auth             |
+| Deploy    | Vercel                    |
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | For production | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | For production | Supabase anon key (client-safe) |
+| `SUPABASE_SERVICE_ROLE_KEY` | For seeding | Service role key (server-only) |
+
+Without Supabase credentials, the app runs in **demo mode** with sample data.
+
+## Supported Cards
+
+**American Express:** Platinum, Gold, Business Platinum, Business Gold, Green, Hilton Aspire, Hilton Surpass, Marriott Bonvoy Brilliant, Delta Reserve, Delta Platinum
+
+**Chase:** Sapphire Reserve, Sapphire Preferred, Freedom Flex, Ink Business Preferred, United Club Infinite, United Quest, IHG Premier, World of Hyatt, Southwest Priority, Marriott Bonvoy Boundless
+
+**Capital One:** Venture X, SavorOne
+
+**Citi:** Strata Premier, AAdvantage Executive
+
+**Other:** Bilt Mastercard, Barclays JetBlue Plus, US Bank Altitude Reserve
+
+## Contributing
+
+Card benefit data lives in `data/cards.json`. To add or update a card:
+
+1. Fork the repo
+2. Edit `data/cards.json`
+3. Submit a PR
+
+## License
+
+MIT
+
+---
+
+Built by [jerrysoer](https://github.com/jerrysoer) × Claude

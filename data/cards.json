@@ -1,0 +1,808 @@
+{
+  "cards": [
+    {
+      "slug": "amex-platinum",
+      "name": "American Express Platinum Card",
+      "issuer": "amex",
+      "annual_fee": 895,
+      "benefits": [
+        {
+          "name": "Uber Cash",
+          "value": 15,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $15/mo ($35 in Dec). Must add card to Uber account. Credits appear as Uber Cash.",
+          "activation_required": false
+        },
+        {
+          "name": "Resy Restaurant Credit",
+          "value": 100,
+          "period": "quarterly",
+          "period_count": 4,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100/quarter at Resy restaurants when booking through Resy and paying with Platinum.",
+          "activation_required": false
+        },
+        {
+          "name": "Saks Fifth Avenue Credit",
+          "value": 50,
+          "period": "semi_annual",
+          "period_count": 2,
+          "category": "shopping",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $50 semi-annually at Saks Fifth Avenue. Jan-Jun and Jul-Dec periods. Enroll via Amex Offers.",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Offers before making purchase."
+        },
+        {
+          "name": "Airline Fee Credit",
+          "value": 200,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $200/year for incidental fees (baggage, seat upgrades, etc.) on one selected airline. Must select airline in dashboard.",
+          "activation_required": true,
+          "activation_notes": "Select a qualifying airline in your Amex online account each calendar year."
+        },
+        {
+          "name": "Hotel Collection Credit",
+          "value": 200,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $200 statement credit on prepaid bookings of 2+ nights through The Hotel Collection or Fine Hotels + Resorts.",
+          "activation_required": false
+        },
+        {
+          "name": "Digital Entertainment Credit",
+          "value": 20,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "streaming",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $20/mo for eligible streaming subscriptions: Disney+, Hulu, ESPN+, The New York Times, Audible, Peacock, SiriusXM.",
+          "activation_required": true,
+          "activation_notes": "Enroll each subscription through Amex Offers."
+        },
+        {
+          "name": "Walmart+ Membership Credit",
+          "value": 12.95,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "shopping",
+          "reset_type": "calendar",
+          "merchant_notes": "Statement credit covers Walmart+ monthly membership ($12.95/mo or $98/yr equivalent). Enroll through Amex.",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Benefits or Walmart+ signup flow."
+        },
+        {
+          "name": "Equinox Credit",
+          "value": 25,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "wellness",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $25/mo toward an Equinox gym membership or Equinox+ digital subscription.",
+          "activation_required": false
+        },
+        {
+          "name": "CLEAR Plus Credit",
+          "value": 189,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Statement credit covering CLEAR Plus membership ($189/yr). Pay with Platinum card.",
+          "activation_required": false
+        },
+        {
+          "name": "Global Entry / TSA PreCheck Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 every 4 years for Global Entry ($120) or TSA PreCheck ($78). Modeled as annual but resets every 4+ years.",
+          "activation_required": false
+        },
+        {
+          "name": "FHR / THC Prepaid Hotel Credit",
+          "value": 200,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "calendar",
+          "merchant_notes": "$200 Fine Hotels + Resorts or The Hotel Collection prepaid credit on 2+ night stays booked via Amex Travel.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-gold",
+      "name": "American Express Gold Card",
+      "issuer": "amex",
+      "annual_fee": 325,
+      "benefits": [
+        {
+          "name": "Uber Cash",
+          "value": 10,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $10/mo in Uber Cash. Must add Gold card to Uber account. Use for rides or Uber Eats.",
+          "activation_required": false
+        },
+        {
+          "name": "Resy Restaurant Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "$100/year dining credit at Resy restaurants when booking through Resy and paying with Gold Card.",
+          "activation_required": false
+        },
+        {
+          "name": "Dunkin' Credit",
+          "value": 7,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $7/mo statement credit at Dunkin' Donuts locations.",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Offers."
+        }
+      ]
+    },
+    {
+      "slug": "amex-business-platinum",
+      "name": "American Express Business Platinum Card",
+      "issuer": "amex",
+      "annual_fee": 895,
+      "benefits": [
+        {
+          "name": "Dell Technologies Credit",
+          "value": 100,
+          "period": "semi_annual",
+          "period_count": 2,
+          "category": "shopping",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 semi-annually at Dell Technologies. Jan-Jun and Jul-Dec periods. Enroll through Amex Offers.",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Offers before purchasing from Dell."
+        },
+        {
+          "name": "Indeed Credit",
+          "value": 360,
+          "period": "annual",
+          "period_count": 1,
+          "category": "other",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $360/year ($30/mo equivalent) for Indeed job posting credits.",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Offers."
+        },
+        {
+          "name": "Adobe Credit",
+          "value": 150,
+          "period": "annual",
+          "period_count": 1,
+          "category": "other",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $150/year statement credit for Adobe products and subscriptions (Creative Cloud, etc.).",
+          "activation_required": true,
+          "activation_notes": "Enroll through Amex Offers."
+        },
+        {
+          "name": "Wireless Telephone Credit",
+          "value": 10,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "other",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $10/mo for wireless telephone purchases made directly from US service providers.",
+          "activation_required": false
+        },
+        {
+          "name": "CLEAR Plus Credit",
+          "value": 189,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Statement credit covering CLEAR Plus membership ($189/yr). Pay with Business Platinum.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-business-gold",
+      "name": "American Express Business Gold Card",
+      "issuer": "amex",
+      "annual_fee": 375,
+      "benefits": []
+    },
+    {
+      "slug": "amex-hilton-aspire",
+      "name": "Hilton Honors American Express Aspire Card",
+      "issuer": "amex",
+      "annual_fee": 550,
+      "benefits": [
+        {
+          "name": "Hilton Resort Credit",
+          "value": 400,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "Up to $400/year statement credit for purchases at Hilton resort properties.",
+          "activation_required": false
+        },
+        {
+          "name": "Airline Fee Credit",
+          "value": 250,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $250/year for incidental airline fees on one selected airline.",
+          "activation_required": true,
+          "activation_notes": "Select a qualifying airline in your Amex online account each calendar year."
+        },
+        {
+          "name": "Free Night Award",
+          "value": 200,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night reward upon card anniversary (up to 150K Hilton points value, estimated at ~$200).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-hilton-surpass",
+      "name": "Hilton Honors American Express Surpass Card",
+      "issuer": "amex",
+      "annual_fee": 150,
+      "benefits": [
+        {
+          "name": "Free Night Award",
+          "value": 150,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night reward upon card anniversary after spending $15K in a calendar year (estimated ~$150 value).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-marriott-bonvoy-brilliant",
+      "name": "Marriott Bonvoy Brilliant American Express Card",
+      "issuer": "amex",
+      "annual_fee": 650,
+      "benefits": [
+        {
+          "name": "Marriott Statement Credit",
+          "value": 25,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "hotel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $25/mo in statement credits for purchases at Marriott Bonvoy hotels.",
+          "activation_required": false
+        },
+        {
+          "name": "Free Night Award",
+          "value": 250,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night award annually (up to 85K Marriott points, estimated ~$250 value). Awarded on card anniversary.",
+          "activation_required": false
+        },
+        {
+          "name": "Marriott Bonvoy Dining Credit",
+          "value": 25,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $25/mo in statement credits for dining at restaurants worldwide.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-delta-reserve",
+      "name": "Delta SkyMiles Reserve American Express Card",
+      "issuer": "amex",
+      "annual_fee": 650,
+      "benefits": [
+        {
+          "name": "Delta Companion Certificate",
+          "value": 500,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "Annual Domestic First Class or Delta One Companion Certificate after $60K spend. Estimated value ~$500.",
+          "activation_required": false
+        },
+        {
+          "name": "Delta Stay Credit",
+          "value": 200,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $200/year in statement credits for Delta Stays hotel bookings.",
+          "activation_required": false
+        },
+        {
+          "name": "Rideshare Credit",
+          "value": 10,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $10/mo in rideshare credits for Uber and Lyft rides.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-sapphire-reserve",
+      "name": "Chase Sapphire Reserve",
+      "issuer": "chase",
+      "annual_fee": 550,
+      "benefits": [
+        {
+          "name": "Travel Credit",
+          "value": 300,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "$300/year automatic statement credit for travel purchases (airlines, hotels, car rentals, trains, taxis, etc.).",
+          "activation_required": false
+        },
+        {
+          "name": "DoorDash DashPass + Credits",
+          "value": 60,
+          "period": "annual",
+          "period_count": 1,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "Complimentary DashPass membership (valued ~$96/yr) plus statement credits. Estimated annual value $60.",
+          "activation_required": true,
+          "activation_notes": "Activate DashPass through DoorDash app with Chase Sapphire Reserve."
+        },
+        {
+          "name": "Lyft Pink Membership",
+          "value": 50,
+          "period": "annual",
+          "period_count": 1,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Complimentary Lyft Pink All Access membership (valued ~$50/yr). Provides ride discounts and perks.",
+          "activation_required": true,
+          "activation_notes": "Link Chase Sapphire Reserve in the Lyft app to activate."
+        },
+        {
+          "name": "Instacart+ Membership",
+          "value": 60,
+          "period": "annual",
+          "period_count": 1,
+          "category": "shopping",
+          "reset_type": "calendar",
+          "merchant_notes": "Complimentary Instacart+ membership (valued ~$99/yr, benefit value ~$60). Free delivery on orders $35+.",
+          "activation_required": true,
+          "activation_notes": "Link Chase Sapphire Reserve to Instacart account."
+        },
+        {
+          "name": "Peloton Credit",
+          "value": 60,
+          "period": "annual",
+          "period_count": 1,
+          "category": "wellness",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $60/year in Peloton membership statement credits ($5/mo equivalent).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-sapphire-preferred",
+      "name": "Chase Sapphire Preferred",
+      "issuer": "chase",
+      "annual_fee": 95,
+      "benefits": [
+        {
+          "name": "Hotel Credit",
+          "value": 50,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "$50 annual hotel credit for stays booked through Chase Travel portal.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-freedom-flex",
+      "name": "Chase Freedom Flex",
+      "issuer": "chase",
+      "annual_fee": 0,
+      "benefits": [
+        {
+          "name": "Quarterly Bonus Category Activation",
+          "value": 0,
+          "period": "quarterly",
+          "period_count": 4,
+          "category": "other",
+          "reset_type": "calendar",
+          "merchant_notes": "Activate 5% cash back bonus categories each quarter (up to $1,500 in combined purchases). No statement credit — reminder only.",
+          "activation_required": true,
+          "activation_notes": "Activate each quarter at chase.com/freedom or Chase app before making purchases."
+        }
+      ]
+    },
+    {
+      "slug": "chase-ink-business-preferred",
+      "name": "Chase Ink Business Preferred",
+      "issuer": "chase",
+      "annual_fee": 95,
+      "benefits": []
+    },
+    {
+      "slug": "chase-united-club-infinite",
+      "name": "Chase United Club Infinite Card",
+      "issuer": "chase",
+      "annual_fee": 650,
+      "benefits": [
+        {
+          "name": "United Travel Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100/year in statement credits for United Airlines purchases.",
+          "activation_required": false
+        },
+        {
+          "name": "Global Entry / TSA PreCheck Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "capital-one-venture-x",
+      "name": "Capital One Venture X Rewards Credit Card",
+      "issuer": "capital_one",
+      "annual_fee": 395,
+      "benefits": [
+        {
+          "name": "Travel Credit",
+          "value": 300,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "$300/year statement credit for bookings made through Capital One Travel portal.",
+          "activation_required": false
+        },
+        {
+          "name": "Anniversary Bonus Miles",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "10,000 bonus miles on card anniversary (estimated ~$100 value at 1 cpp redemption through Capital One Travel).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "citi-strata-premier",
+      "name": "Citi Strata Premier Card",
+      "issuer": "citi",
+      "annual_fee": 295,
+      "benefits": [
+        {
+          "name": "Hotel Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "calendar",
+          "merchant_notes": "$100/year statement credit for hotel stays booked through thankyou.com or Citi Travel.",
+          "activation_required": false
+        },
+        {
+          "name": "Citi Lifestyle Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "entertainment",
+          "reset_type": "calendar",
+          "merchant_notes": "$100/year credit for eligible lifestyle or entertainment purchases.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "bilt-mastercard",
+      "name": "Bilt Mastercard",
+      "issuer": "bilt",
+      "annual_fee": 0,
+      "benefits": [
+        {
+          "name": "Lyft Credits",
+          "value": 5,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $5/mo in Lyft ride credits on Rent Day (1st of month).",
+          "activation_required": false
+        },
+        {
+          "name": "DoorDash Credits",
+          "value": 5,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $5/mo in DoorDash credits on Rent Day (1st of month).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-green",
+      "name": "American Express Green Card",
+      "issuer": "amex",
+      "annual_fee": 150,
+      "benefits": [
+        {
+          "name": "CLEAR Plus Credit",
+          "value": 189,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Statement credit covering CLEAR Plus membership ($189/yr). Pay with Green Card.",
+          "activation_required": false
+        },
+        {
+          "name": "LoungeBuddy Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100/year in airport lounge access via LoungeBuddy (now AMEX lounge access via app).",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "amex-delta-platinum",
+      "name": "Delta SkyMiles Platinum American Express Card",
+      "issuer": "amex",
+      "annual_fee": 350,
+      "benefits": [
+        {
+          "name": "Delta Companion Certificate",
+          "value": 300,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "Annual Domestic Main Cabin round-trip Companion Certificate. Estimated value ~$300.",
+          "activation_required": false
+        },
+        {
+          "name": "Rideshare Credit",
+          "value": 10,
+          "period": "monthly",
+          "period_count": 12,
+          "category": "rideshare",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $10/mo in rideshare credits for Uber and Lyft rides.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-ihg-premier",
+      "name": "IHG One Rewards Premier Credit Card",
+      "issuer": "chase",
+      "annual_fee": 99,
+      "benefits": [
+        {
+          "name": "IHG Free Night Award",
+          "value": 150,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night award annually (up to 40K IHG points, estimated ~$150 value). Awarded on card anniversary.",
+          "activation_required": false
+        },
+        {
+          "name": "Global Entry / TSA PreCheck Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-world-of-hyatt",
+      "name": "World of Hyatt Credit Card",
+      "issuer": "chase",
+      "annual_fee": 95,
+      "benefits": [
+        {
+          "name": "Free Night Award",
+          "value": 150,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night award annually at any Category 1-4 Hyatt hotel (estimated ~$150 value). Awarded on card anniversary.",
+          "activation_required": false
+        },
+        {
+          "name": "Hyatt Dining Credit",
+          "value": 50,
+          "period": "annual",
+          "period_count": 1,
+          "category": "dining",
+          "reset_type": "calendar",
+          "merchant_notes": "$50/year statement credit for Hyatt dining and drinking purchases.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-southwest-priority",
+      "name": "Southwest Rapid Rewards Priority Credit Card",
+      "issuer": "chase",
+      "annual_fee": 149,
+      "benefits": [
+        {
+          "name": "Southwest Travel Credit",
+          "value": 75,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "$75/year credit for Southwest Airlines purchases.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-united-quest",
+      "name": "United Quest Card",
+      "issuer": "chase",
+      "annual_fee": 250,
+      "benefits": [
+        {
+          "name": "United Travel Credit",
+          "value": 125,
+          "period": "annual",
+          "period_count": 1,
+          "category": "airline",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $125/year in statement credits for United Airlines purchases.",
+          "activation_required": false
+        },
+        {
+          "name": "Global Entry / TSA PreCheck Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "chase-marriott-bonvoy-boundless",
+      "name": "Marriott Bonvoy Boundless Credit Card",
+      "issuer": "chase",
+      "annual_fee": 95,
+      "benefits": [
+        {
+          "name": "Free Night Award",
+          "value": 150,
+          "period": "annual",
+          "period_count": 1,
+          "category": "hotel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "One free night award annually (up to 35K Marriott points, estimated ~$150 value). Awarded on card anniversary.",
+          "activation_required": false
+        }
+      ]
+    },
+    {
+      "slug": "capital-one-savor-one",
+      "name": "Capital One SavorOne Cash Rewards Credit Card",
+      "issuer": "capital_one",
+      "annual_fee": 0,
+      "benefits": []
+    },
+    {
+      "slug": "barclays-jetblue-plus",
+      "name": "JetBlue Plus Card",
+      "issuer": "barclays",
+      "annual_fee": 99,
+      "benefits": []
+    },
+    {
+      "slug": "citi-aadvantage-executive",
+      "name": "Citi AAdvantage Executive World Elite Mastercard",
+      "issuer": "citi",
+      "annual_fee": 595,
+      "benefits": []
+    },
+    {
+      "slug": "us-bank-altitude-reserve",
+      "name": "U.S. Bank Altitude Reserve Visa Infinite Card",
+      "issuer": "us_bank",
+      "annual_fee": 400,
+      "benefits": [
+        {
+          "name": "Travel Credit",
+          "value": 325,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "cardmember_anniversary",
+          "merchant_notes": "$325/year automatic statement credit for travel and dining purchases.",
+          "activation_required": false
+        },
+        {
+          "name": "Global Entry / TSA PreCheck Credit",
+          "value": 100,
+          "period": "annual",
+          "period_count": 1,
+          "category": "travel",
+          "reset_type": "calendar",
+          "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
+          "activation_required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0C0F14;
+  --color-bg-card: #141820;
+  --color-bg-elevated: #1C2230;
+  --color-border: #2A3040;
+  --color-text-primary: #E8ECF4;
+  --color-text-secondary: #8B95A8;
+  --color-text-muted: #525C6E;
+  --color-green: #34D399;
+  --color-green-bg: rgba(52, 211, 153, 0.08);
+  --color-amber: #FBBF24;
+  --color-amber-bg: rgba(251, 191, 36, 0.08);
+  --color-red: #F87171;
+  --color-red-bg: rgba(248, 113, 113, 0.08);
+  --color-accent: #60A5FA;
+  --color-gold: #F59E0B;
+  --color-gray-used: #525C6E;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: "DM Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}
+
+/* JetBrains Mono for financial data */
+.font-mono-data {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Urgency state backgrounds */
+.urgency-green {
+  background-color: var(--color-green-bg);
+  border-left: 3px solid var(--color-green);
+}
+
+.urgency-amber {
+  background-color: var(--color-amber-bg);
+  border-left: 3px solid var(--color-amber);
+}
+
+.urgency-red {
+  background-color: var(--color-red-bg);
+  border-left: 3px solid var(--color-red);
+}
+
+.urgency-used {
+  background-color: transparent;
+  border-left: 3px solid var(--color-gray-used);
+  opacity: 0.6;
+}
+
+/* Staggered entrance animation */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+/* Countdown ring animation */
+@keyframes countdown-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.countdown-pulse {
+  animation: countdown-pulse 2s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
