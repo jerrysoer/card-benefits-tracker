@@ -63,7 +63,7 @@ export default function BurnRate() {
               setFormProgram(activePrograms[0].code);
             }
           }}
-          className="text-xs text-neon-blue transition-opacity hover:opacity-80"
+          className="text-xs text-text-secondary transition-opacity hover:opacity-80"
         >
           {showForm ? "CANCEL" : "LOG REDEMPTION"}
         </button>
@@ -71,12 +71,12 @@ export default function BurnRate() {
 
       {/* Redemption form */}
       {showForm && (
-        <div className="mb-4 rounded-lg border-2 border-neon-blue bg-[#1A1A1A] p-4">
+        <div className="mb-4 rounded-lg border border-[#E5E7EB] bg-white p-4 shadow-card">
           <div className="flex flex-wrap gap-3">
             <select
               value={formProgram}
               onChange={(e) => setFormProgram(e.target.value)}
-              className="rounded border border-[#2A3040] bg-[#252525] px-3 py-2 text-xs text-text-primary focus:border-neon-blue focus:outline-none"
+              className="rounded border border-[#E5E7EB] bg-[#F9FAFB] px-3 py-2 text-xs text-text-primary focus:border-[#111] focus:outline-none"
             >
               {activePrograms.map((p) => (
                 <option key={p.code} value={p.code}>
@@ -89,18 +89,18 @@ export default function BurnRate() {
               placeholder="Points"
               value={formAmount}
               onChange={(e) => setFormAmount(e.target.value)}
-              className="w-24 rounded border border-[#2A3040] bg-[#252525] px-3 py-2 text-xs text-text-primary focus:border-neon-blue focus:outline-none"
+              className="w-24 rounded border border-[#E5E7EB] bg-[#F9FAFB] px-3 py-2 text-xs text-text-primary focus:border-[#111] focus:outline-none"
             />
             <input
               type="text"
               placeholder="Note (optional)"
               value={formNote}
               onChange={(e) => setFormNote(e.target.value)}
-              className="flex-1 rounded border border-[#2A3040] bg-[#252525] px-3 py-2 text-xs text-text-primary focus:border-neon-blue focus:outline-none"
+              className="flex-1 rounded border border-[#E5E7EB] bg-[#F9FAFB] px-3 py-2 text-xs text-text-primary focus:border-[#111] focus:outline-none"
             />
             <button
               onClick={handleLogRedemption}
-              className="rounded bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
+              className="rounded-full bg-[#111] px-4 py-2 text-xs font-bold text-white transition-opacity hover:opacity-80"
             >
               Log
             </button>
@@ -126,7 +126,7 @@ export default function BurnRate() {
           return (
             <div
               key={program.code}
-              className="rounded-lg border-2 border-[#2A3040] bg-[#1A1A1A] p-3"
+              className="rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-card"
             >
               <div className="mb-2 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export default function BurnRate() {
               </div>
 
               {/* Bar */}
-              <div className="h-2 w-full overflow-hidden rounded-full bg-[#252525]">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{

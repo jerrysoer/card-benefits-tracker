@@ -37,7 +37,7 @@ export default function ROIGauge({ roi }: ROIGaugeProps) {
           cy={center}
           r={radius}
           fill="none"
-          stroke="#2A3040"
+          stroke="#E5E7EB"
           strokeWidth={strokeWidth}
         />
         {/* Progress ring */}
@@ -60,7 +60,7 @@ export default function ROIGauge({ roi }: ROIGaugeProps) {
           y={center}
           textAnchor="middle"
           dominantBaseline="central"
-          fill="#E8ECF4"
+          fill="#111111"
           fontSize={20}
           fontFamily="JetBrains Mono, monospace"
           fontWeight={700}

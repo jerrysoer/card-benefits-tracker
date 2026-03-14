@@ -78,7 +78,7 @@ export default function Sparkline({
           cx={p.x}
           cy={p.y}
           r={highlightMax && i === maxIndex ? 5 : 3}
-          fill={highlightMax && i === maxIndex ? color : "#0A0A0A"}
+          fill={highlightMax && i === maxIndex ? color : "#FFFFFF"}
           stroke={color}
           strokeWidth={highlightMax && i === maxIndex ? 2 : 1.5}
         />

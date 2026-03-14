@@ -109,7 +109,7 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
               <span className="font-display text-xs text-text-muted">
                 {monthLabel}
               </span>
-              <div className="h-px flex-1 bg-[#2A3040]" />
+              <div className="h-px flex-1 bg-[#E5E7EB]" />
             </div>
 
             <div className="space-y-3">
@@ -127,10 +127,10 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                     style={{
                       borderColor: isUrgent
                         ? daysUntilRenewal <= 30
-                          ? "#FF3131"
-                          : "#FFE600"
-                        : "#2A3040",
-                      backgroundColor: "#1A1A1A",
+                          ? "#EF4444"
+                          : "#F59E0B"
+                        : "#E5E7EB",
+                      backgroundColor: "#FFFFFF",
                     }}
                   >
                     <div className="flex items-start justify-between">
@@ -176,7 +176,7 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                           setEditingSlug(card.cc_card_slug);
                           setEditDate("");
                         }}
-                        className="mt-2 text-xs text-neon-blue transition-opacity hover:opacity-80"
+                        className="mt-2 text-xs text-text-secondary transition-opacity hover:opacity-80"
                       >
                         Set card open date
                       </button>
@@ -188,12 +188,12 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                           type="date"
                           value={editDate}
                           onChange={(e) => setEditDate(e.target.value)}
-                          className="rounded border border-[#2A3040] bg-[#252525] px-2 py-1 text-xs text-text-primary focus:border-neon-blue focus:outline-none"
+                          className="rounded border border-[#E5E7EB] bg-[#F9FAFB] px-2 py-1 text-xs text-text-primary focus:border-[#111] focus:outline-none"
                           autoFocus
                         />
                         <button
                           onClick={() => handleSaveDate(card.cc_card_slug)}
-                          className="rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black"
+                          className="rounded-full bg-[#111] px-2 py-1 text-xs font-bold text-white"
                         >
                           Save
                         </button>
@@ -214,8 +214,8 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
       </div>
 
       {decisionsIn90 > 0 && (
-        <div className="mt-4 rounded-lg border-2 border-neon-yellow bg-bg-card-neo px-4 py-3">
-          <span className="font-mono-data text-sm font-bold text-neon-yellow">
+        <div className="mt-4 rounded-lg border border-[#F59E0B] bg-[#FEF3C7] px-4 py-3">
+          <span className="font-mono-data text-sm font-bold text-[#F59E0B]">
             📍 {decisionsIn90} decision{decisionsIn90 !== 1 ? "s" : ""} in the next 90 days
           </span>
         </div>

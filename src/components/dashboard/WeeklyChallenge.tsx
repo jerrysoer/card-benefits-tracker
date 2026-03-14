@@ -57,14 +57,14 @@ export default function WeeklyChallenge({
 
   return (
     <div
-      className="rounded-lg p-4"
+      className="rounded-lg p-4 shadow-card"
       style={{
         border: isActive
-          ? "3px solid #00D4FF"
+          ? "2px solid #10B981"
           : isCompleted
-            ? "3px solid #39FF14"
-            : "2px dashed #525C6E",
-        backgroundColor: "#1A1A1A",
+            ? "2px solid #10B981"
+            : "1px solid #E5E7EB",
+        backgroundColor: "#FFFFFF",
       }}
     >
       <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ export default function WeeklyChallenge({
             WEEKLY CHALLENGE
           </h3>
           {isActive && (
-            <div className="animate-challenge-pulse h-2 w-2 rounded-full bg-neon-blue" />
+            <div className="animate-challenge-pulse h-2 w-2 rounded-full bg-[#10B981]" />
           )}
         </div>
         {totalThisMonth > 0 && (
@@ -89,7 +89,7 @@ export default function WeeklyChallenge({
           <div className="mt-2 flex items-center gap-2 text-xs text-text-muted">
             <span>{challenge.cardName}</span>
             <span>&middot;</span>
-            <span className="font-mono-data font-bold text-neon-gold">
+            <span className="font-mono-data font-bold text-text-primary">
               {formatCurrency(challenge.benefitValue)}
             </span>
           </div>
@@ -97,20 +97,20 @@ export default function WeeklyChallenge({
           {isActive && (
             <button
               onClick={handleComplete}
-              className="mt-3 rounded-lg bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
+              className="mt-3 rounded-full bg-[#111] px-4 py-2 text-xs font-bold text-white transition-opacity hover:opacity-80"
             >
               MARK COMPLETE
             </button>
           )}
 
           {justCompleted && (
-            <div className="mt-2 text-xs font-bold text-neon-green">
+            <div className="mt-2 text-xs font-bold text-[#10B981]">
               ✅ challenge complete! +2 wallet score boost
             </div>
           )}
 
           {isCompleted && !justCompleted && (
-            <div className="mt-2 text-xs text-neon-green">
+            <div className="mt-2 text-xs text-[#10B981]">
               ✅ completed
             </div>
           )}

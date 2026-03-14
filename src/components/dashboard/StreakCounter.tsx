@@ -87,7 +87,7 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
 
   if (streakCount === 0) {
     return (
-      <div className="rounded-lg border-2 border-[#2A3040] bg-bg-card-neo px-5 py-4">
+      <div className="rounded-lg border border-[#E5E7EB] bg-white px-5 py-4 shadow-card">
         <span className="text-sm text-text-muted">
           No streak yet. Use your monthly benefits to start one.
         </span>
@@ -96,10 +96,10 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
   }
 
   return (
-    <div className="flex items-center gap-4 rounded-lg border-2 border-[#2A3040] bg-bg-card-neo px-5 py-4">
+    <div className="flex items-center gap-4 rounded-lg border border-[#E5E7EB] bg-white px-5 py-4 shadow-card">
       <span className="text-2xl">{fires}</span>
       <div>
-        <span className="animate-streak-pulse inline-block font-mono-data text-2xl font-bold text-neon-green">
+        <span className="animate-streak-pulse inline-block font-mono-data text-2xl font-bold text-[#10B981]">
           {streakCount}
         </span>
         <span className="ml-2 text-sm text-text-secondary">

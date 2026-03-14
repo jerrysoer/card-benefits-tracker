@@ -54,7 +54,7 @@ export default function BucketBreakdown({
                 {val.toLocaleString()}
               </span>
             </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-[#252525]">
+            <div className="h-3 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
               <div
                 className="h-full rounded-full transition-all duration-700 ease-out"
                 style={{

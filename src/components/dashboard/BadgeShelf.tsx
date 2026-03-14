@@ -64,7 +64,7 @@ export default function BadgeShelf({ badgeState, newlyUnlocked }: BadgeShelfProp
 
               {/* Tooltip */}
               {tooltip === badge.id && (
-                <div className="absolute -top-20 left-1/2 z-50 w-48 -translate-x-1/2 rounded-lg border border-[#2A3040] bg-[#1A1A1A] p-3 shadow-lg">
+                <div className="absolute -top-20 left-1/2 z-50 w-48 -translate-x-1/2 rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-lg">
                   <div className="text-xs font-bold text-text-primary">
                     {badge.icon} {badge.name}
                   </div>

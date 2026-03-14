@@ -41,7 +41,7 @@ export default function RoastModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="relative mx-4 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-[#2A3040] bg-[#0A0A0A] p-6">
+      <div className="relative mx-4 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-lg">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-text-muted hover:text-text-primary"
@@ -51,7 +51,7 @@ export default function RoastModal({
 
         <h2
           className="mb-6 text-center font-display text-lg"
-          style={{ color: "#FF3131" }}
+          style={{ color: "#EF4444" }}
         >
           🔥 ROAST MY WALLET 🔥
         </h2>
@@ -63,7 +63,7 @@ export default function RoastModal({
             </p>
             <button
               onClick={handleRoast}
-              className="rounded-lg border-3 border-neon-red px-6 py-3 font-display text-sm text-neon-red transition-opacity hover:opacity-80"
+              className="rounded-lg border-3 border-[#EF4444] px-6 py-3 font-display text-sm text-[#EF4444] transition-opacity hover:opacity-80"
             >
               ROAST ME
             </button>
@@ -82,7 +82,7 @@ export default function RoastModal({
         {roastText && (
           <div className="animate-roast-reveal space-y-4">
             {/* Roast text display */}
-            <div className="rounded-lg border-2 border-neon-red bg-[#1A1A1A] p-4">
+            <div className="rounded-lg border border-[#EF4444] bg-[#FEE2E2] p-4">
               <p className="text-sm italic text-text-primary">&ldquo;{roastText}&rdquo;</p>
             </div>
 
@@ -91,7 +91,7 @@ export default function RoastModal({
               <button
                 onClick={handleRoast}
                 disabled={limited}
-                className="rounded-lg border-3 border-neon-red px-4 py-2 font-display text-xs text-neon-red transition-opacity hover:opacity-80 disabled:opacity-40"
+                className="rounded-lg border-3 border-[#EF4444] px-4 py-2 font-display text-xs text-[#EF4444] transition-opacity hover:opacity-80 disabled:opacity-40"
               >
                 {limited ? "LIMIT REACHED" : "ROAST AGAIN"}
               </button>
@@ -104,10 +104,8 @@ export default function RoastModal({
             )}
 
             {/* Shareable card */}
-            <div className="border-t border-[#2A3040] pt-4">
-              <h3 className="mb-3 font-display text-xs text-text-secondary">
-                SHARE YOUR ROAST
-              </h3>
+            <div className="border-t border-[#E5E7EB] pt-4">
+              <h3 className="mb-3 font-display text-xs text-text-secondary">SHARE YOUR ROAST</h3>
               <ShareActions
                 cardRef={cardRef}
                 filename="cardclock-roast"
