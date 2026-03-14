@@ -6,6 +6,7 @@ export type ShareableVariant =
   | "default"
   | "roast"
   | "wrapped"
+  | "yearinreview"
   | "collection"
   | "fullwallet";
 
@@ -22,6 +23,7 @@ const VARIANT_BORDER: Record<ShareableVariant, string> = {
   default: "#FAFAFA",
   roast: "#FF3131",
   wrapped: "#BF5AF2",
+  yearinreview: "#FFD700",
   collection: "#FFD700",
   fullwallet: "#39FF14",
 };

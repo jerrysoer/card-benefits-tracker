@@ -27,6 +27,7 @@ import BurnRate from "@/components/dashboard/BurnRate";
 import RecommendationList from "@/components/dashboard/RecommendationList";
 import WeeklyChallenge from "@/components/dashboard/WeeklyChallenge";
 import RoastModal from "@/components/dashboard/RoastModal";
+import WrappedBanner from "@/components/wrapped/WrappedBanner";
 
 export default function DashboardPage() {
   const [benefits, setBenefits] = useState<BenefitWithCard[]>([]);
@@ -307,6 +308,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-8">
+      {/* Wrapped Banner */}
+      <WrappedBanner />
+
       {/* Hero: Points Portfolio */}
       <PointsPortfolio cardROIs={cardROIs} benefits={benefits} />
 
