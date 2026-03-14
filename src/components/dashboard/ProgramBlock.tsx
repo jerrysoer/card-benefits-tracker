@@ -55,8 +55,8 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
   if (editing) {
     return (
       <div
-        className="flex w-44 shrink-0 flex-col gap-2 rounded-lg border-3 p-4"
-        style={{ borderColor: program.color, backgroundColor: "#1A1A1A" }}
+        className="flex w-44 shrink-0 flex-col gap-2 rounded-lg border-2 p-4"
+        style={{ borderColor: program.color, backgroundColor: "#FFFFFF" }}
       >
         <span className="font-display text-xs" style={{ color: program.color }}>
           {program.short_name}
@@ -67,7 +67,7 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
             type="number"
             value={editBalance}
             onChange={(e) => setEditBalance(e.target.value)}
-            className="mt-1 w-full rounded border border-[#2A3040] bg-[#252525] px-2 py-1 font-mono-data text-sm text-text-primary focus:border-neon-blue focus:outline-none"
+            className="mt-1 w-full rounded border border-[#E5E7EB] bg-[#F9FAFB] px-2 py-1 font-mono-data text-sm text-text-primary focus:border-[#111] focus:outline-none"
             autoFocus
           />
         </div>
@@ -78,19 +78,19 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
             step="0.1"
             value={editCpp}
             onChange={(e) => setEditCpp(e.target.value)}
-            className="mt-1 w-full rounded border border-[#2A3040] bg-[#252525] px-2 py-1 font-mono-data text-sm text-text-primary focus:border-neon-blue focus:outline-none"
+            className="mt-1 w-full rounded border border-[#E5E7EB] bg-[#F9FAFB] px-2 py-1 font-mono-data text-sm text-text-primary focus:border-[#111] focus:outline-none"
           />
         </div>
         <div className="flex gap-2">
           <button
             onClick={handleSave}
-            className="flex-1 rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black transition-opacity hover:opacity-80"
+            className="flex-1 rounded bg-[#111] px-2 py-1 text-xs font-bold text-white transition-opacity hover:opacity-80"
           >
             Save
           </button>
           <button
             onClick={() => setEditing(false)}
-            className="flex-1 rounded border border-[#2A3040] px-2 py-1 text-xs text-text-muted transition-colors hover:text-text-primary"
+            className="flex-1 rounded border border-[#E5E7EB] px-2 py-1 text-xs text-text-muted transition-colors hover:text-text-primary"
           >
             Cancel
           </button>
@@ -106,10 +106,10 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
         setEditCpp(String(valuation));
         setEditing(true);
       }}
-      className={`flex w-36 shrink-0 flex-col rounded-lg border-3 p-4 text-left transition-colors hover:bg-bg-card-hover-neo ${
+      className={`flex w-36 shrink-0 flex-col rounded-lg border-2 p-4 text-left transition-colors hover:bg-[#F9FAFB] ${
         isDimmed ? "opacity-40" : ""
       }`}
-      style={{ borderColor: program.color, backgroundColor: "#1A1A1A" }}
+      style={{ borderColor: program.color, backgroundColor: "#FFFFFF" }}
     >
       <span className="font-display text-xs" style={{ color: program.color }}>
         {program.short_name}
@@ -117,7 +117,7 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
       <span className="mt-2 font-mono-data text-xl font-bold text-text-primary">
         {displayBalance.toLocaleString()}
       </span>
-      <span className="font-mono-data text-sm font-bold" style={{ color: "#FFD700" }}>
+      <span className="font-mono-data text-sm font-bold text-[#10B981]">
         {formatCurrency(dollarValue)}
       </span>
       <span className="mt-1 font-mono-data text-xs text-text-muted">
