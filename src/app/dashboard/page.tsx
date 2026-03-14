@@ -14,6 +14,13 @@ import { captureMonthlySnapshot, getCurrentMonthKey } from "@/lib/storage/snapsh
 import { checkAllBadges, getBadgeState, type BadgeState, type BadgeDefinition } from "@/lib/badges";
 import { getChallengeState } from "@/lib/challenges";
 import { getLastRoast, hasEverRoasted } from "@/lib/roast";
+import {
+  getSubscriptions,
+  getLatestNetWorth,
+  getSavingsEntries,
+  getIncomeData,
+} from "@/lib/fullwallet/storage";
+import { calculateSubscriptionStats, calculateAverageMonthlySavings } from "@/lib/fullwallet/calculations";
 import BenefitTimeline from "@/components/dashboard/BenefitTimeline";
 import PortfolioSummaryBar from "@/components/dashboard/PortfolioSummary";
 import PointsPortfolio from "@/components/dashboard/PointsPortfolio";
@@ -158,6 +165,16 @@ export default function DashboardPage() {
       const challengeState = await getChallengeState();
       const everRoasted = await hasEverRoasted();
 
+      // Gather Phase 5 data for snapshot
+      const [fwSubs, fwNW, fwSavings, fwIncome] = await Promise.all([
+        getSubscriptions(),
+        getLatestNetWorth(),
+        getSavingsEntries(),
+        getIncomeData(),
+      ]);
+      const fwSubStats = calculateSubscriptionStats(fwSubs);
+      const fwAvgSavings = calculateAverageMonthlySavings(fwSavings);
+
       captureMonthlySnapshot({
         month: monthKey,
         capturedAt: new Date().toISOString(),
@@ -174,6 +191,11 @@ export default function DashboardPage() {
         streakCount: streakData.current,
         badgesUnlocked: Object.keys(existingBadges).length,
         challengesCompleted: challengeState.completedThisMonth,
+        // Phase 5 fields
+        subscriptionMonthlyBurn: fwSubs.length > 0 ? fwSubStats.monthlyTotal : undefined,
+        netWorth: fwNW?.netWorth,
+        savingsBalance: fwSavings.length > 0 ? fwAvgSavings : undefined,
+        monthlyIncome: fwIncome ? fwIncome.annualIncome / 12 : undefined,
       });
 
       // Check badges
