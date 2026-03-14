@@ -10,6 +10,18 @@ import { calculateWalletScore, calculateDiversityScore } from "@/lib/scoring";
 import { calculatePointsValue, calculateWalletValue, loadPointsPrograms } from "@/lib/points";
 import { getPointsBalances, getCustomValuations, getPersistedUsage, getStreak } from "@/lib/storage";
 import FlexCardModal from "@/components/dashboard/FlexCardModal";
+import {
+  getSubscriptions,
+  getLatestNetWorth,
+  getSavingsEntries,
+} from "@/lib/fullwallet/storage";
+import {
+  calculateSubscriptionStats,
+  calculateAverageMonthlySavings,
+} from "@/lib/fullwallet/calculations";
+import { computeFinancialScore } from "@/lib/fullwallet/score";
+import type { FinancialScoreResult } from "@/lib/fullwallet/types";
+import FullWalletFlexCard from "@/components/fullwallet/FullWalletFlexCard";
 
 export default function FlexPage() {
   const [cardROIs, setCardROIs] = useState<CardROI[]>([]);
@@ -18,6 +30,11 @@ export default function FlexPage() {
   const [walletValue, setWalletValue] = useState(0);
   const [streak, setStreakCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [variant, setVariant] = useState<"wallet" | "fullwallet">("wallet");
+  const [financialScore, setFinancialScore] = useState<FinancialScoreResult | null>(null);
+  const [netWorth, setNetWorth] = useState<number | null>(null);
+  const [subBurn, setSubBurn] = useState(0);
+  const [avgSavings, setAvgSavings] = useState(0);
 
   useEffect(() => {
     if (!isDemoMode()) return;
@@ -79,6 +96,26 @@ export default function FlexPage() {
 
       const score = calculateWalletScore(captureRate, feeROI, diversity, streakData.current);
       setWalletScore(score);
+
+      // Load Full Wallet data
+      const [subs, nwSnapshot, savingsEntries] = await Promise.all([
+        getSubscriptions(),
+        getLatestNetWorth(),
+        getSavingsEntries(),
+      ]);
+      const subStats = calculateSubscriptionStats(subs);
+      const avgMonthlySavings = calculateAverageMonthlySavings(savingsEntries);
+      setSubBurn(subStats.monthlyTotal);
+      setAvgSavings(avgMonthlySavings);
+      setNetWorth(nwSnapshot?.netWorth ?? null);
+
+      const fs = computeFinancialScore(score, {
+        usedSubCount: subStats.usedCount,
+        totalSubCount: subStats.count,
+        netWorthSnapshots: undefined, // Skip for flex card simplicity
+      });
+      setFinancialScore(fs);
+
       setLoading(false);
     }
     loadData();
@@ -93,13 +130,53 @@ export default function FlexPage() {
   }
 
   return (
-    <FlexCardModal
-      isOpen={true}
-      onClose={() => window.history.back()}
-      walletScore={walletScore}
-      cardROIs={cardROIs}
-      streak={streak}
-      walletValue={walletValue}
-    />
+    <div>
+      {/* Variant Toggle */}
+      <div className="mb-4 flex items-center justify-center gap-2">
+        <button
+          onClick={() => setVariant("wallet")}
+          className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+            variant === "wallet"
+              ? "bg-bg-elevated text-neon-purple"
+              : "text-text-muted hover:text-text-secondary"
+          }`}
+        >
+          Wallet
+        </button>
+        <button
+          onClick={() => setVariant("fullwallet")}
+          className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+            variant === "fullwallet"
+              ? "bg-bg-elevated"
+              : "text-text-muted hover:text-text-secondary"
+          }`}
+          style={variant === "fullwallet" ? { color: "#39FF14" } : undefined}
+        >
+          Full Wallet
+        </button>
+      </div>
+
+      {variant === "wallet" ? (
+        <FlexCardModal
+          isOpen={true}
+          onClose={() => window.history.back()}
+          walletScore={walletScore}
+          cardROIs={cardROIs}
+          streak={streak}
+          walletValue={walletValue}
+        />
+      ) : financialScore ? (
+        <div className="flex justify-center">
+          <FullWalletFlexCard
+            walletScore={walletScore}
+            financialScore={financialScore}
+            netWorth={netWorth}
+            subscriptionBurn={subBurn}
+            savingsRate={avgSavings}
+            aspectRatio="portrait"
+          />
+        </div>
+      ) : null}
+    </div>
   );
 }

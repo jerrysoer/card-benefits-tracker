@@ -70,6 +70,25 @@ export interface MonthlyWrappedData {
   // Wallet Score
   walletScore: number;
   walletScoreLabel: string;
+
+  // Phase 5: Full Wallet (optional)
+  subscriptionMonthlyBurn?: number;
+  subscriptionCount?: number;
+  unusedSubscriptionCount?: number;
+  topUnusedSub?: { name: string; cost: number };
+  netWorth?: number;
+  netWorthDelta?: number;
+  savingsThisMonth?: number;
+  monthlyIncome?: number;
+  financialScore?: number;
+  financialScoreLabel?: string;
+  financialScoreColor?: string;
+  moneyRatios?: {
+    feesOverIncome: number;
+    capturedOverIncome: number;
+    subsOverIncome: number;
+    savingsOverIncome: number;
+  };
 }
 
 export interface YearInReviewData {
@@ -162,6 +181,14 @@ export interface YearInReviewData {
   // Projections (mid-year only)
   projectedCaptured?: number;
   projectedCaptureRate?: number;
+
+  // Phase 5: Full Wallet (optional)
+  averageSubscriptionBurn?: number;
+  netWorthStart?: number;
+  netWorthEnd?: number;
+  netWorthDelta?: number;
+  totalSavings?: number;
+  averageFinancialScore?: number;
 }
 
 // --- Wrapped Viewed Tracking ---
@@ -489,6 +516,63 @@ export async function buildMonthlyWrapped(
   // Wallet Score
   const scoreLabel = getScoreLabel(snapshot.walletScore);
 
+  // Phase 5 fields (read from snapshot if available)
+  const phase5: Partial<MonthlyWrappedData> = {};
+  if (snapshot.subscriptionMonthlyBurn !== undefined) {
+    phase5.subscriptionMonthlyBurn = snapshot.subscriptionMonthlyBurn;
+    // Read subscription details from storage for richer slide data
+    try {
+      const { getSubscriptions } = await import("@/lib/fullwallet/storage");
+      const { calculateSubscriptionStats } = await import("@/lib/fullwallet/calculations");
+      const subs = await getSubscriptions();
+      const subStats = calculateSubscriptionStats(subs);
+      phase5.subscriptionCount = subStats.count;
+      phase5.unusedSubscriptionCount = subStats.unusedSubs.length;
+      if (subStats.unusedSubs.length > 0) {
+        const topUnused = subStats.unusedSubs.sort((a, b) => b.monthlyCost - a.monthlyCost)[0];
+        phase5.topUnusedSub = { name: topUnused.name, cost: topUnused.monthlyCost };
+      }
+    } catch {
+      phase5.subscriptionCount = 0;
+      phase5.unusedSubscriptionCount = 0;
+    }
+  }
+  if (snapshot.netWorth !== undefined) {
+    phase5.netWorth = snapshot.netWorth;
+    if (prevSnapshot?.netWorth !== undefined) {
+      phase5.netWorthDelta = snapshot.netWorth - prevSnapshot.netWorth;
+    }
+  }
+  if (snapshot.savingsBalance !== undefined) {
+    phase5.savingsThisMonth = snapshot.savingsBalance;
+  }
+  if (snapshot.monthlyIncome !== undefined && snapshot.monthlyIncome > 0) {
+    phase5.monthlyIncome = snapshot.monthlyIncome;
+    try {
+      const { computeFinancialScore } = await import("@/lib/fullwallet/score");
+      const fs = computeFinancialScore(snapshot.walletScore, {});
+      phase5.financialScore = fs.total;
+      phase5.financialScoreLabel = fs.label;
+      phase5.financialScoreColor = fs.color;
+
+      const annualIncome = snapshot.monthlyIncome * 12;
+      const annualFees = snapshot.totalAnnualFees;
+      const annualCaptured = snapshot.totalBenefitsCaptured;
+      const annualSubBurn = (snapshot.subscriptionMonthlyBurn ?? 0) * 12;
+      const annualSavings = (snapshot.savingsBalance ?? 0) * 12;
+      if (annualIncome > 0) {
+        phase5.moneyRatios = {
+          feesOverIncome: (annualFees / annualIncome) * 100,
+          capturedOverIncome: (annualCaptured / annualIncome) * 100,
+          subsOverIncome: (annualSubBurn / annualIncome) * 100,
+          savingsOverIncome: (annualSavings / annualIncome) * 100,
+        };
+      }
+    } catch {
+      // Financial score not available
+    }
+  }
+
   return {
     month: monthKey,
     monthLabel: getMonthLabel(monthKey),
@@ -513,6 +597,7 @@ export async function buildMonthlyWrapped(
     totalWastedYear,
     walletScore: snapshot.walletScore,
     walletScoreLabel: scoreLabel.label,
+    ...phase5,
   };
 }
 
@@ -752,6 +837,26 @@ export async function buildYearInReview(
     ? Math.round(averageCaptureRate)
     : undefined;
 
+  // Phase 5 year-level aggregations
+  const yearPhase5: Partial<YearInReviewData> = {};
+  const snapsWithSubs = yearSnapshots.filter((s) => s.subscriptionMonthlyBurn !== undefined);
+  if (snapsWithSubs.length > 0) {
+    yearPhase5.averageSubscriptionBurn =
+      snapsWithSubs.reduce((sum, s) => sum + (s.subscriptionMonthlyBurn ?? 0), 0) / snapsWithSubs.length;
+  }
+  const snapsWithNW = yearSnapshots.filter((s) => s.netWorth !== undefined);
+  if (snapsWithNW.length >= 2) {
+    yearPhase5.netWorthStart = snapsWithNW[0].netWorth;
+    yearPhase5.netWorthEnd = snapsWithNW[snapsWithNW.length - 1].netWorth;
+    yearPhase5.netWorthDelta = (yearPhase5.netWorthEnd ?? 0) - (yearPhase5.netWorthStart ?? 0);
+  }
+  const snapsWithSavings = yearSnapshots.filter((s) => s.savingsBalance !== undefined);
+  if (snapsWithSavings.length > 0) {
+    yearPhase5.totalSavings = snapsWithSavings.reduce(
+      (sum, s) => sum + (s.savingsBalance ?? 0), 0
+    );
+  }
+
   return {
     year,
     isPartialYear,
@@ -790,6 +895,7 @@ export async function buildYearInReview(
     heroVerdict,
     projectedCaptured,
     projectedCaptureRate,
+    ...yearPhase5,
   };
 }
 

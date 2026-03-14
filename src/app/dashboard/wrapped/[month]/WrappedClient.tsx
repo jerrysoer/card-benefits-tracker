@@ -10,6 +10,10 @@ import WorstCardSlide from "@/components/wrapped/slides/WorstCardSlide";
 import MilestonesSlide from "@/components/wrapped/slides/MilestonesSlide";
 import BiggestMissSlide from "@/components/wrapped/slides/BiggestMissSlide";
 import SummaryCardSlide from "@/components/wrapped/slides/SummaryCardSlide";
+import SubscriptionSlide from "@/components/wrapped/slides/SubscriptionSlide";
+import NetWorthSlide from "@/components/wrapped/slides/NetWorthSlide";
+import SavingsSlide from "@/components/wrapped/slides/SavingsSlide";
+import MoneyRatiosSlide from "@/components/wrapped/slides/MoneyRatiosSlide";
 import {
   buildMonthlyWrapped,
   markWrappedMonthViewed,
@@ -164,6 +168,53 @@ export default function WrappedClient({ month }: WrappedClientProps) {
         />
       ),
       shouldShow: hasBiggestMiss,
+    },
+    {
+      id: "subscriptions",
+      component: (
+        <SubscriptionSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow:
+        data.subscriptionMonthlyBurn !== undefined &&
+        data.subscriptionMonthlyBurn > 0,
+    },
+    {
+      id: "net-worth",
+      component: (
+        <NetWorthSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow: data.netWorth !== undefined,
+    },
+    {
+      id: "savings",
+      component: (
+        <SavingsSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow: data.savingsThisMonth !== undefined,
+    },
+    {
+      id: "money-ratios",
+      component: (
+        <MoneyRatiosSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow:
+        data.monthlyIncome !== undefined && data.monthlyIncome > 0,
     },
     {
       id: "summary",

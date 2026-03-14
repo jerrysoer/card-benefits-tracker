@@ -13,6 +13,8 @@ import PointsPortfolioSlide from "@/components/wrapped/slides/PointsPortfolioSli
 import YearMilestonesSlide from "@/components/wrapped/slides/YearMilestonesSlide";
 import MoneySavedSlide from "@/components/wrapped/slides/MoneySavedSlide";
 import YearSummaryCardSlide from "@/components/wrapped/slides/YearSummaryCardSlide";
+import YearSubscriptionsSlide from "@/components/wrapped/slides/YearSubscriptionsSlide";
+import YearNetWorthSlide from "@/components/wrapped/slides/YearNetWorthSlide";
 import {
   buildYearInReview,
   getAvailableYears,
@@ -234,6 +236,28 @@ export default function YearInReviewPage() {
         />
       ),
       shouldShow: hasMilestones,
+    },
+    {
+      id: "year-subscriptions",
+      component: (
+        <YearSubscriptionsSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow: data.averageSubscriptionBurn !== undefined && data.averageSubscriptionBurn > 0,
+    },
+    {
+      id: "year-net-worth",
+      component: (
+        <YearNetWorthSlide
+          data={data}
+          accentColor={ACCENT_COLOR}
+          animate={true}
+        />
+      ),
+      shouldShow: data.netWorthStart !== undefined && data.netWorthEnd !== undefined,
     },
     {
       id: "money-saved",

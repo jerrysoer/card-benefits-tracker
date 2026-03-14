@@ -46,6 +46,13 @@ export default function DashboardLayout({
                 Cards
               </Link>
               <Link
+                href="/dashboard/wallet"
+                className="rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-bg-elevated hover:opacity-80"
+                style={{ color: "#39FF14" }}
+              >
+                Full Wallet
+              </Link>
+              <Link
                 href="/dashboard/flex"
                 className="rounded-md px-3 py-1.5 text-sm font-medium text-neon-purple transition-colors hover:bg-bg-elevated hover:opacity-80"
               >
