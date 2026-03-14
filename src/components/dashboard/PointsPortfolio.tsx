@@ -80,9 +80,9 @@ export default function PointsPortfolio({ cardROIs, benefits }: PointsPortfolioP
         <span className="font-display text-xs text-text-muted">
           YOUR WALLET IS WORTH
         </span>
-        <div className="mt-1 flex items-baseline gap-4">
+        <div className="mt-1 flex flex-wrap items-baseline gap-3 sm:gap-4">
           <span
-            className="font-mono-data text-5xl font-bold"
+            className="font-mono-data text-3xl font-bold sm:text-5xl"
             style={{ color: isPositive ? "#39FF14" : "#FF3131" }}
           >
             {isPositive ? "" : "-"}${Math.abs(displayValue).toLocaleString()}
