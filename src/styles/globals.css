@@ -207,6 +207,34 @@
   animation: roast-reveal 0.5s ease-out forwards;
 }
 
+/* Phase 4: Wrapped slide entrance */
+@keyframes wrapped-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-wrapped-enter {
+  animation: wrapped-enter 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+/* Phase 4: Gold grain overlay for Year in Review */
+.yir-gold-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background: linear-gradient(135deg, #FFD700 0%, transparent 50%, #FFD700 100%);
+  mix-blend-mode: overlay;
+}
+
 /* Phase 3: Badge tier glow classes */
 .badge-bronze {
   border-color: #CD7F32;

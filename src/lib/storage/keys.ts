@@ -18,9 +18,10 @@ export const STORAGE_KEYS = {
   previousGrades: "cardclock_previous_grades",
   monthlySnapshots: "cardclock_monthly_snapshots",
 
-  // Phase 4 (reserved)
+  // Phase 4
   monthlyWrapped: "cardclock_monthly_wrapped",
   yearInReview: "cardclock_year_in_review",
+  wrappedViewed: "cardclock_wrapped_viewed",
 
   // Phase 5 (reserved)
   subscriptions: "cardclock_subscriptions",
