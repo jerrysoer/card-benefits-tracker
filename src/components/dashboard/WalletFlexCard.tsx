@@ -4,6 +4,8 @@ import { forwardRef } from "react";
 import type { CardROI } from "@/lib/supabase/types";
 import { calculateGrade, getScoreLabel } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
+import type { BadgeDefinition, BadgeState } from "@/lib/badges";
+import { BADGE_DEFINITIONS, TIER_COLORS, getBadgesByTier } from "@/lib/badges";
 
 interface WalletFlexCardProps {
   walletScore: number;
@@ -11,10 +13,28 @@ interface WalletFlexCardProps {
   streak: number;
   walletValue: number;
   aspectRatio: "portrait" | "square";
+  // Phase 3 additions
+  badgeState?: BadgeState;
+  runwayMonths?: number | null;
+  challengeStats?: { completed: number; total: number };
+  roastExcerpt?: string | null;
 }
 
 const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
-  function WalletFlexCard({ walletScore, cardROIs, streak, walletValue, aspectRatio }, ref) {
+  function WalletFlexCard(
+    {
+      walletScore,
+      cardROIs,
+      streak,
+      walletValue,
+      aspectRatio,
+      badgeState = {},
+      runwayMonths,
+      challengeStats,
+      roastExcerpt,
+    },
+    ref
+  ) {
     const scoreInfo = getScoreLabel(walletScore);
     const totalFees = cardROIs.reduce((sum, r) => sum + r.annualFee, 0);
     const totalCaptured = cardROIs.reduce((sum, r) => sum + r.totalCaptured, 0);
@@ -26,6 +46,11 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
 
     const now = new Date();
     const monthLabel = now.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+    // Badge display
+    const unlockedCount = Object.keys(badgeState).length;
+    const unlockedBadges = BADGE_DEFINITIONS.filter((b) => badgeState[b.id]);
+    const topBadges = getBadgesByTier(unlockedBadges).slice(0, 6);
 
     return (
       <div
@@ -50,7 +75,6 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             color: "#FAFAFA",
           }}
         >
-          {/* Inner card with border */}
           <div
             style={{
               border: "4px solid #FAFAFA",
@@ -77,7 +101,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             </div>
 
             {/* Score section */}
-            <div style={{ textAlign: "center", margin: "40px 0" }}>
+            <div style={{ textAlign: "center", margin: "24px 0" }}>
               <div
                 style={{
                   fontFamily: "'Space Mono', monospace",
@@ -102,13 +126,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
               >
                 {walletScore}
               </div>
-              <div
-                style={{
-                  fontSize: "18px",
-                  color: "#666666",
-                  marginTop: "8px",
-                }}
-              >
+              <div style={{ fontSize: "18px", color: "#666666", marginTop: "8px" }}>
                 out of 100
               </div>
               <div
@@ -133,14 +151,14 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                 gap: "12px",
                 justifyContent: "center",
                 flexWrap: "wrap" as const,
-                margin: "20px 0",
+                margin: "12px 0",
               }}
             >
-              {cardROIs.map((roi) => {
-                const grade = calculateGrade(roi.totalCaptured, roi.annualFee);
+              {cardROIs.map((r) => {
+                const grade = calculateGrade(r.totalCaptured, r.annualFee);
                 return (
                   <div
-                    key={roi.card.id}
+                    key={r.card.id}
                     style={{
                       width: "100px",
                       height: "70px",
@@ -163,7 +181,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                         letterSpacing: "0.05em",
                       }}
                     >
-                      {roi.card.cc_card_name.split(" ").slice(0, 2).join(" ").substring(0, 10)}
+                      {r.card.cc_card_name.split(" ").slice(0, 2).join(" ").substring(0, 10)}
                     </div>
                     <div
                       style={{
@@ -186,92 +204,107 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                 display: "flex",
                 justifyContent: "space-around",
                 textAlign: "center",
-                margin: "24px 0",
+                margin: "16px 0",
               }}
             >
               <div>
-                <div
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700,
-                    fontSize: "28px",
-                    color: "#FAFAFA",
-                  }}
-                >
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FAFAFA" }}>
                   {cardROIs.length}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>
-                  CARDS
-                </div>
+                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>CARDS</div>
               </div>
               <div>
-                <div
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700,
-                    fontSize: "28px",
-                    color: "#FAFAFA",
-                  }}
-                >
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FAFAFA" }}>
                   {formatCurrency(totalFees)}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>
-                  FEES PAID
-                </div>
+                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>FEES PAID</div>
               </div>
               <div>
-                <div
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700,
-                    fontSize: "28px",
-                    color: "#FFD700",
-                  }}
-                >
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FFD700" }}>
                   {formatCurrency(totalCaptured)}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>
-                  CAPTURED
-                </div>
+                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>CAPTURED</div>
               </div>
             </div>
 
-            {/* ROI + Streak */}
+            {/* ROI + Streak + Phase 3 data */}
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                gap: "32px",
-                fontSize: "18px",
-                margin: "16px 0",
+                gap: "24px",
+                fontSize: "16px",
+                margin: "12px 0",
+                flexWrap: "wrap" as const,
               }}
             >
               <span>
-                <span
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700,
-                    color: roi >= 100 ? "#39FF14" : "#FF3131",
-                  }}
-                >
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: roi >= 100 ? "#39FF14" : "#FF3131" }}>
                   {roi}% ROI
                 </span>
               </span>
               {streak > 0 && (
                 <span>
-                  \uD83D\uDD25{" "}
-                  <span
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontWeight: 700,
-                      color: "#39FF14",
-                    }}
-                  >
+                  🔥 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#39FF14" }}>
                     {streak} mo streak
                   </span>
                 </span>
               )}
+              {runwayMonths !== undefined && (
+                <span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#00D4FF" }}>
+                    {runwayMonths === null ? "∞" : `${runwayMonths}mo`} runway
+                  </span>
+                </span>
+              )}
+              {challengeStats && challengeStats.total > 0 && (
+                <span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#FFE600" }}>
+                    {challengeStats.completed}/{challengeStats.total} challenges
+                  </span>
+                </span>
+              )}
             </div>
+
+            {/* Badge row */}
+            {topBadges.length > 0 && (
+              <div style={{ display: "flex", justifyContent: "center", gap: "12px", margin: "12px 0", alignItems: "center" }}>
+                {topBadges.map((badge) => (
+                  <span
+                    key={badge.id}
+                    style={{
+                      fontSize: "24px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                      border: `2px solid ${TIER_COLORS[badge.tier].border}`,
+                    }}
+                  >
+                    {badge.icon}
+                  </span>
+                ))}
+                {unlockedCount > 6 && (
+                  <span style={{ fontSize: "14px", color: "#888", fontFamily: "'JetBrains Mono', monospace" }}>
+                    +{unlockedCount - 6}
+                  </span>
+                )}
+                <span style={{ fontSize: "12px", color: "#666", marginLeft: "8px" }}>
+                  {unlockedCount}/{BADGE_DEFINITIONS.length} unlocked
+                </span>
+              </div>
+            )}
+
+            {/* Roast excerpt */}
+            {roastExcerpt && (
+              <div style={{ textAlign: "center", margin: "8px 0", padding: "0 24px" }}>
+                <p style={{ fontSize: "13px", fontStyle: "italic", color: "#888", lineHeight: 1.4 }}>
+                  &ldquo;{roastExcerpt.split(".")[0]}.&rdquo;
+                </p>
+              </div>
+            )}
 
             {/* Watermark */}
             <div
@@ -284,13 +317,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                 color: "#666666",
               }}
             >
-              <span
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
-                }}
-              >
+              <span style={{ fontFamily: "'Space Mono', monospace", fontWeight: 700, letterSpacing: "0.05em" }}>
                 cardclock.dev
               </span>
               <span>{monthLabel}</span>

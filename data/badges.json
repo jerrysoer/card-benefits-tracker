@@ -1,0 +1,124 @@
+{
+  "badges": [
+    {
+      "id": "first_blood",
+      "name": "First Blood",
+      "icon": "🎯",
+      "description": "Mark 1 benefit as used",
+      "hint": "Mark any benefit as used to unlock",
+      "tier": "bronze"
+    },
+    {
+      "id": "break_even",
+      "name": "Break Even",
+      "icon": "⚖️",
+      "description": "Any card hits B grade (100% ROI)",
+      "hint": "Get any card to break even on its annual fee",
+      "tier": "silver"
+    },
+    {
+      "id": "money_printer",
+      "name": "Money Printer",
+      "icon": "🤑",
+      "description": "Any card hits A+ grade (200%+ ROI)",
+      "hint": "Capture 2x a card's annual fee in benefits",
+      "tier": "gold"
+    },
+    {
+      "id": "diversified",
+      "name": "Diversified",
+      "icon": "🎰",
+      "description": "Cards from 3+ issuers",
+      "hint": "Add cards from at least 3 different issuers",
+      "tier": "silver"
+    },
+    {
+      "id": "point_millionaire",
+      "name": "Point Millionaire",
+      "icon": "💎",
+      "description": "100K+ total points across all programs",
+      "hint": "Accumulate 100,000 total points",
+      "tier": "gold"
+    },
+    {
+      "id": "streak_starter",
+      "name": "Streak Starter",
+      "icon": "🔥",
+      "description": "3-month benefit usage streak",
+      "hint": "Use 80%+ of monthly benefits for 3 consecutive months",
+      "tier": "bronze"
+    },
+    {
+      "id": "streak_lord",
+      "name": "Streak Lord",
+      "icon": "👑",
+      "description": "6-month benefit usage streak",
+      "hint": "Use 80%+ of monthly benefits for 6 consecutive months",
+      "tier": "gold"
+    },
+    {
+      "id": "full_send",
+      "name": "Full Send",
+      "icon": "🚀",
+      "description": "100% benefits used in a single month",
+      "hint": "Use every single benefit in one month",
+      "tier": "gold"
+    },
+    {
+      "id": "stacked",
+      "name": "Stacked",
+      "icon": "🃏",
+      "description": "Track 5+ active cards",
+      "hint": "Add 5 or more cards to your wallet",
+      "tier": "silver"
+    },
+    {
+      "id": "zero_waste",
+      "name": "Zero Waste",
+      "icon": "♻️",
+      "description": "No expired unused benefits in a month",
+      "hint": "Don't let any benefits expire unused",
+      "tier": "bronze"
+    },
+    {
+      "id": "fee_crusher",
+      "name": "Fee Crusher",
+      "icon": "💀",
+      "description": "All cards grade B or above",
+      "hint": "Make every card earn its annual fee",
+      "tier": "gold"
+    },
+    {
+      "id": "points_hoarder",
+      "name": "Points Hoarder",
+      "icon": "🐉",
+      "description": "500K+ total points across all programs",
+      "hint": "Accumulate 500,000 total points",
+      "tier": "platinum"
+    },
+    {
+      "id": "wallet_elite",
+      "name": "Wallet Elite",
+      "icon": "⚡",
+      "description": "Wallet Score hits 90+",
+      "hint": "Optimize your wallet to reach a 90+ score",
+      "tier": "platinum"
+    },
+    {
+      "id": "roasted",
+      "name": "Roasted",
+      "icon": "🔥",
+      "description": "Get your first AI roast",
+      "hint": "Try the Roast My Wallet feature",
+      "tier": "bronze"
+    },
+    {
+      "id": "challenger",
+      "name": "Challenger",
+      "icon": "✅",
+      "description": "Complete first weekly challenge",
+      "hint": "Complete a weekly challenge",
+      "tier": "bronze"
+    }
+  ]
+}
