@@ -43,12 +43,12 @@ export default function ShareActions({
   return (
     <div className="flex flex-wrap items-center gap-3">
       {/* Aspect ratio toggle */}
-      <div className="flex rounded-lg border-2 border-[#2A3040]">
+      <div className="flex rounded-lg border border-[#E5E7EB]">
         <button
           onClick={() => onAspectRatioChange("portrait")}
           className={`px-3 py-1.5 text-xs font-bold transition-colors ${
             aspectRatio === "portrait"
-              ? "bg-[#2A3040] text-text-primary"
+              ? "bg-[#111] text-white"
               : "text-text-muted hover:text-text-secondary"
           }`}
         >
@@ -58,7 +58,7 @@ export default function ShareActions({
           onClick={() => onAspectRatioChange("square")}
           className={`px-3 py-1.5 text-xs font-bold transition-colors ${
             aspectRatio === "square"
-              ? "bg-[#2A3040] text-text-primary"
+              ? "bg-[#111] text-white"
               : "text-text-muted hover:text-text-secondary"
           }`}
         >
@@ -69,14 +69,14 @@ export default function ShareActions({
       <button
         onClick={() => handleExport("download")}
         disabled={exporting}
-        className="rounded-lg border-3 border-neon-green px-4 py-2 font-display text-xs text-neon-green transition-opacity hover:opacity-80 disabled:opacity-40"
+        className="rounded-full bg-[#111] px-4 py-2 font-display text-xs text-white transition-opacity hover:opacity-80 disabled:opacity-40"
       >
         {exporting ? "EXPORTING..." : "DOWNLOAD PNG"}
       </button>
       <button
         onClick={() => handleExport("copy")}
         disabled={exporting}
-        className="rounded-lg border-3 border-neon-blue px-4 py-2 font-display text-xs text-neon-blue transition-opacity hover:opacity-80 disabled:opacity-40"
+        className="rounded-full border-2 border-[#111] px-4 py-2 font-display text-xs text-[#111] transition-opacity hover:opacity-80 disabled:opacity-40"
       >
         {copied ? "COPIED!" : "COPY TO CLIPBOARD"}
       </button>

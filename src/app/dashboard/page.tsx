@@ -370,7 +370,7 @@ export default function DashboardPage() {
       <div className="flex justify-center">
         <button
           onClick={() => setShowRoastModal(true)}
-          className="rounded-lg border-3 border-neon-red px-8 py-3 font-display text-sm text-neon-red transition-opacity hover:opacity-80"
+          className="rounded-full border-2 border-[#EF4444] px-8 py-3 font-display text-sm text-[#EF4444] transition-opacity hover:opacity-80"
         >
           🔥 ROAST MY WALLET
         </button>

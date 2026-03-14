@@ -130,7 +130,7 @@ export default function YearInReviewPage() {
         <p className="text-text-secondary">{error}</p>
         <Link
           href="/dashboard"
-          className="text-sm text-neon-gold hover:underline"
+          className="text-sm text-text-secondary hover:underline"
         >
           ← Back to Dashboard
         </Link>
@@ -298,7 +298,7 @@ export default function YearInReviewPage() {
               onClick={() => setSelectedYear(y)}
               className={`rounded-lg px-3 py-1.5 font-mono-data text-sm font-bold transition-colors ${
                 y === selectedYear
-                  ? "bg-bg-elevated text-neon-gold"
+                  ? "bg-bg-elevated text-text-secondary"
                   : "text-text-muted hover:text-text-secondary"
               }`}
             >

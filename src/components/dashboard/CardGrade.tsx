@@ -31,7 +31,7 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
 
   if (compact) {
     return (
-      <div className="flex items-center gap-4 rounded-lg border-2 border-[#2A3040] bg-bg-card-neo p-4 transition-colors hover:bg-bg-card-hover-neo">
+      <div className="flex items-center gap-4 rounded-lg border border-[#E5E7EB] bg-white p-4 shadow-card transition-colors hover:bg-[#F9FAFB]">
         <div
           className="animate-grade-bounce flex h-12 w-12 items-center justify-center border-3 font-mono-data text-lg font-bold"
           style={{ borderColor: grade.color, color: grade.color }}
@@ -54,7 +54,7 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
   }
 
   return (
-    <div className="rounded-xl border-3 border-[#2A3040] bg-bg-card-neo p-6">
+    <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-card">
       {/* Header */}
       <div className="flex items-start justify-between">
         <h3 className="text-lg font-bold text-text-primary">{card.cc_card_name}</h3>
@@ -91,7 +91,7 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
             {Math.round(grade.percentage)}%
           </span>
         </div>
-        <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-[#252525]">
+        <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"
             style={{
@@ -107,7 +107,7 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
 
       {/* Renewal warning */}
       {daysUntilRenewal !== null && daysUntilRenewal <= 90 && (
-        <div className="mt-3 flex items-center gap-2 text-sm" style={{ color: daysUntilRenewal <= 30 ? "#FF3131" : "#FFE600" }}>
+        <div className="mt-3 flex items-center gap-2 text-sm" style={{ color: daysUntilRenewal <= 30 ? "#EF4444" : "#F59E0B" }}>
           <span>\u26A0\uFE0F</span>
           <span>Annual fee renews in {daysUntilRenewal} days</span>
         </div>

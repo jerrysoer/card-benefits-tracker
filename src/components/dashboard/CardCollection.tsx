@@ -52,7 +52,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
         <h2 className="font-display text-sm text-text-secondary">YOUR COLLECTION</h2>
         <button
           onClick={() => setShowExport(!showExport)}
-          className="text-xs text-neon-gold transition-opacity hover:opacity-80"
+          className="text-xs text-[#10B981] transition-opacity hover:opacity-80"
         >
           {showExport ? "HIDE EXPORT" : "SHARE COLLECTION"}
         </button>
@@ -66,7 +66,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
         <span className="text-text-muted">&middot;</span>
         <span className="font-mono-data font-bold text-text-primary">{formatCurrency(totalFees)} FEES</span>
         <span className="text-text-muted">&middot;</span>
-        <span className="font-mono-data font-bold text-neon-gold">{formatCurrency(totalCaptured)} CAPTURED</span>
+        <span className="font-mono-data font-bold text-[#10B981]">{formatCurrency(totalCaptured)} CAPTURED</span>
         <span className="text-text-muted">&middot;</span>
         <span className="font-mono-data font-bold text-text-primary">AVG GRADE: {avgGradeLabel}</span>
       </div>
@@ -99,7 +99,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
               <div
                 className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded font-mono-data text-[10px] font-bold"
                 style={{
-                  backgroundColor: "#0A0A0A",
+                  backgroundColor: "#FFFFFF",
                   color: grade.color,
                   border: `1px solid ${grade.color}`,
                 }}
