@@ -165,38 +165,63 @@ export function checkStreak(
 export function getVerdictForDowngrade(
   grade: string,
   card: Card,
-  downgrade?: { name: string; fee: number } | null
+  downgrade?: { name: string; fee: number } | null,
+  totalCaptured?: number
 ): { verdict: string; emoji: string; action: string } {
+  const fee = card.cc_annual_fee;
+  const hasValue = totalCaptured != null;
+  const diff = hasValue ? totalCaptured - fee : 0;
+  const diffLabel = hasValue
+    ? `${formatCurrency(Math.abs(diff))} ${diff >= 0 ? "more" : "less"} than the annual fee`
+    : "";
+  const valuePrefix = hasValue
+    ? `you're getting ${formatCurrency(totalCaptured)} value, ${diffLabel}.`
+    : "";
+
   switch (grade) {
     case "A+":
     case "A":
     case "B":
       return {
-        verdict: `you're getting ${formatCurrency(card.cc_annual_fee)} worth. keep it.`,
+        verdict: hasValue
+          ? `${valuePrefix} keep it.`
+          : `you're getting ${formatCurrency(fee)} worth. keep it.`,
         emoji: "\u2705",
         action: "KEEP",
       };
     case "C":
       return {
-        verdict: downgrade
-          ? `close call. use more benefits or downgrade to ${downgrade.name}.`
-          : "close call. use more benefits before renewal.",
+        verdict: hasValue
+          ? downgrade
+            ? `${valuePrefix} use more benefits or downgrade to ${downgrade.name}.`
+            : `${valuePrefix} use more benefits before renewal.`
+          : downgrade
+            ? `close call. use more benefits or downgrade to ${downgrade.name}.`
+            : "close call. use more benefits before renewal.",
         emoji: "\u{1F914}",
         action: "EVALUATE",
       };
     case "D":
       return {
-        verdict: downgrade
-          ? `downgrade to ${downgrade.name} and save ${formatCurrency(card.cc_annual_fee - downgrade.fee)}/yr.`
-          : "you're not using enough to justify the fee. consider downgrading.",
+        verdict: hasValue
+          ? downgrade
+            ? `${valuePrefix} downgrade to ${downgrade.name} and save ${formatCurrency(fee - downgrade.fee)}/yr.`
+            : `${valuePrefix} consider downgrading.`
+          : downgrade
+            ? `downgrade to ${downgrade.name} and save ${formatCurrency(fee - downgrade.fee)}/yr.`
+            : "you're not using enough to justify the fee. consider downgrading.",
         emoji: "\u26A0\uFE0F",
         action: "DOWNGRADE",
       };
     case "F":
       return {
-        verdict: downgrade
-          ? `cancel or downgrade to ${downgrade.name} before the fee hits.`
-          : "this card is a net loss. cancel before the fee hits.",
+        verdict: hasValue
+          ? downgrade
+            ? `${valuePrefix} cancel or downgrade to ${downgrade.name} before the fee hits.`
+            : `${valuePrefix} cancel before the fee hits.`
+          : downgrade
+            ? `cancel or downgrade to ${downgrade.name} before the fee hits.`
+            : "this card is a net loss. cancel before the fee hits.",
         emoji: "\u274C",
         action: "CANCEL",
       };
