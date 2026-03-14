@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import type { CardROI, BenefitWithCard } from "@/lib/supabase/types";
 import { calculateGrade, getVerdictForDowngrade } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
-import { getCardOpenDates, setCardOpenDate } from "@/lib/local-storage";
+import { getCardOpenDates, setCardOpenDate } from "@/lib/storage";
 
 interface DowngradeCalendarProps {
   cardROIs: CardROI[];
@@ -40,8 +40,10 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setOpenDates(getCardOpenDates());
-    setMounted(true);
+    getCardOpenDates().then((dates) => {
+      setOpenDates(dates);
+      setMounted(true);
+    });
   }, []);
 
   // Only cards with annual fees

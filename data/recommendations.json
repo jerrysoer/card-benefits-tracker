@@ -1,0 +1,84 @@
+{
+  "recommendations": [
+    {
+      "card_slug": "amex-platinum",
+      "best_for": ["travel", "lounge", "hotel", "airline"],
+      "pairs_with": ["amex-gold", "chase-sapphire-reserve"],
+      "first_year_value_estimate": 1800,
+      "key_benefits": ["Airport lounge access via Centurion + Priority Pass", "$200 airline fee credit + $200 hotel credit", "$15/mo Uber Cash + $20/mo digital entertainment"],
+      "fills_gap": "premium travel & lounge access"
+    },
+    {
+      "card_slug": "amex-gold",
+      "best_for": ["dining", "grocery", "food"],
+      "pairs_with": ["amex-platinum", "chase-sapphire-preferred"],
+      "first_year_value_estimate": 800,
+      "key_benefits": ["4x on dining and groceries worldwide", "$10/mo Uber Cash + $10/mo dining credit", "Access to Amex MR transfer partners"],
+      "fills_gap": "dining & grocery rewards"
+    },
+    {
+      "card_slug": "chase-sapphire-reserve",
+      "best_for": ["travel", "dining", "lounge"],
+      "pairs_with": ["chase-freedom-unlimited", "chase-freedom-flex"],
+      "first_year_value_estimate": 1100,
+      "key_benefits": ["Priority Pass lounge access", "3x on travel & dining, 1.5x UR redemption", "$300 annual travel credit"],
+      "fills_gap": "Chase UR ecosystem & travel rewards"
+    },
+    {
+      "card_slug": "chase-sapphire-preferred",
+      "best_for": ["travel", "dining", "streaming"],
+      "pairs_with": ["chase-freedom-unlimited", "chase-freedom-flex"],
+      "first_year_value_estimate": 600,
+      "key_benefits": ["2x on travel & dining", "1.25x UR redemption value", "$50 hotel credit through Chase portal"],
+      "fills_gap": "mid-tier Chase UR entry point"
+    },
+    {
+      "card_slug": "capital-one-venture-x",
+      "best_for": ["travel", "lounge", "hotel"],
+      "pairs_with": ["capital-one-savor-one", "capital-one-venture"],
+      "first_year_value_estimate": 900,
+      "key_benefits": ["Capital One Lounge + Priority Pass", "$300 travel credit + 10K anniversary miles", "2x on everything, 10x on hotels/cars"],
+      "fills_gap": "Capital One ecosystem & universal earn rate"
+    },
+    {
+      "card_slug": "citi-strata-premier",
+      "best_for": ["travel", "dining", "grocery", "gas"],
+      "pairs_with": ["citi-custom-cash", "citi-double-cash"],
+      "first_year_value_estimate": 650,
+      "key_benefits": ["3x on air travel, hotels, restaurants, grocery, gas", "$100 hotel credit annually", "Access to Citi TYP transfer partners"],
+      "fills_gap": "Citi ThankYou Points ecosystem"
+    },
+    {
+      "card_slug": "bilt-mastercard",
+      "best_for": ["rent", "dining", "travel"],
+      "pairs_with": ["amex-platinum", "chase-sapphire-reserve"],
+      "first_year_value_estimate": 500,
+      "key_benefits": ["1x on rent with no fees (up to 100K pts)", "3x on dining, 2x on travel", "Transfer to Hyatt, United, AA and more"],
+      "fills_gap": "rent rewards & Bilt transfer partners"
+    },
+    {
+      "card_slug": "chase-freedom-unlimited",
+      "best_for": ["cashback", "everyday"],
+      "pairs_with": ["chase-sapphire-preferred", "chase-sapphire-reserve"],
+      "first_year_value_estimate": 300,
+      "key_benefits": ["1.5% on everything (or 1.5x UR with Sapphire)", "3% on dining & drugstores", "No annual fee"],
+      "fills_gap": "no-fee everyday earn card"
+    },
+    {
+      "card_slug": "amex-business-platinum",
+      "best_for": ["business", "travel", "lounge"],
+      "pairs_with": ["amex-business-gold", "amex-platinum"],
+      "first_year_value_estimate": 2200,
+      "key_benefits": ["1.5x MR on $5K+ purchases", "$200 airline + $200 Dell + $120 wireless", "Centurion Lounge access"],
+      "fills_gap": "business travel & high-spend optimization"
+    },
+    {
+      "card_slug": "hilton-aspire",
+      "best_for": ["hotel", "hilton", "travel"],
+      "pairs_with": ["amex-platinum", "amex-gold"],
+      "first_year_value_estimate": 1000,
+      "key_benefits": ["Complimentary Diamond status", "Free weekend night certificate", "$250 resort credit + $250 airline credit"],
+      "fills_gap": "Hilton loyalty & hotel benefits"
+    }
+  ]
+}

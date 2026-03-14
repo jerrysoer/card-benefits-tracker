@@ -3,8 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import type { CardROI, BenefitWithCard, PointsProgram } from "@/lib/supabase/types";
 import { loadPointsPrograms, calculatePointsValue, calculateWalletValue, calculateMonthlyDelta, getCurrentMonthKey } from "@/lib/points";
-import { getPointsBalances, setPointsBalances, getCustomValuations, setCustomValuations, getWalletSnapshots, setWalletSnapshot } from "@/lib/local-storage";
+import { getPointsBalances, setPointsBalances, getCustomValuations, setCustomValuations, getWalletSnapshots, setWalletSnapshot } from "@/lib/storage";
 import { formatCurrency } from "@/lib/benefits/roi";
+import { logEvent } from "@/lib/storage/event-log";
 import ProgramBlock, { useCountUp } from "@/components/dashboard/ProgramBlock";
 
 interface PointsPortfolioProps {
@@ -21,20 +22,23 @@ export default function PointsPortfolio({ cardROIs, benefits }: PointsPortfolioP
   useEffect(() => {
     const progs = loadPointsPrograms();
     setPrograms(progs);
-    setBalances(getPointsBalances());
-    setValuations(getCustomValuations());
-    setMounted(true);
+    Promise.all([getPointsBalances(), getCustomValuations()]).then(([b, v]) => {
+      setBalances(b);
+      setValuations(v);
+      setMounted(true);
+    });
   }, []);
 
   // Snapshot on first visit of the month
   useEffect(() => {
     if (!mounted || programs.length === 0) return;
     const monthKey = getCurrentMonthKey();
-    const snapshots = getWalletSnapshots();
-    if (snapshots[monthKey] === undefined) {
-      const value = computeWalletValue();
-      setWalletSnapshot(monthKey, value);
-    }
+    getWalletSnapshots().then((snapshots) => {
+      if (snapshots[monthKey] === undefined) {
+        const value = computeWalletValue();
+        setWalletSnapshot(monthKey, value);
+      }
+    });
     // Only on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, programs]);
@@ -49,14 +53,32 @@ export default function PointsPortfolio({ cardROIs, benefits }: PointsPortfolioP
   }, [balances, valuations, programs, benefits, cardROIs]);
 
   const walletValue = mounted ? computeWalletValue() : 0;
-  const delta = mounted ? calculateMonthlyDelta(walletValue, getWalletSnapshots()) : null;
+  const [delta, setDelta] = useState<number | null>(null);
+  useEffect(() => {
+    if (!mounted) return;
+    getWalletSnapshots().then((snapshots) => {
+      setDelta(calculateMonthlyDelta(walletValue, snapshots));
+    });
+  }, [mounted, walletValue]);
 
   const displayValue = useCountUp(Math.round(walletValue), 800);
 
   const handleProgramUpdate = (code: string, balance: number, cpp: number) => {
+    const oldBalance = balances[code] ?? 0;
     const newBalances = { ...balances, [code]: balance };
     setBalances(newBalances);
     setPointsBalances(newBalances);
+
+    if (oldBalance !== balance) {
+      const program = programs.find((p) => p.code === code);
+      const cppVal = program?.default_cpp ?? 1;
+      logEvent("points_balance_updated", {
+        program: code,
+        old_balance: oldBalance,
+        new_balance: balance,
+        value_change: Math.round(((balance - oldBalance) * cppVal) / 100),
+      });
+    }
 
     const program = programs.find((p) => p.code === code);
     if (program && cpp !== program.default_cpp) {

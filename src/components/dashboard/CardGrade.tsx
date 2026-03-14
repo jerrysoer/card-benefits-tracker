@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import type { CardROI, BenefitWithCard } from "@/lib/supabase/types";
 import { calculateGrade, getStableVerdict } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
-import { getCardOpenDates } from "@/lib/local-storage";
+import { getCardOpenDates } from "@/lib/storage";
 
 interface CardGradeProps {
   cardROI: CardROI;
@@ -16,9 +17,13 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
   const grade = calculateGrade(cardROI.totalCaptured, cardROI.annualFee);
   const verdict = getStableVerdict(grade.grade, card, benefits);
 
-  const cardOpenDates = getCardOpenDates();
-  const openDate = cardOpenDates[card.cc_card_slug];
-  const daysUntilRenewal = openDate ? calculateDaysUntilRenewal(openDate) : null;
+  const [daysUntilRenewal, setDaysUntilRenewal] = useState<number | null>(null);
+  useEffect(() => {
+    getCardOpenDates().then((dates) => {
+      const openDate = dates[card.cc_card_slug];
+      if (openDate) setDaysUntilRenewal(calculateDaysUntilRenewal(openDate));
+    });
+  }, [card.cc_card_slug]);
 
   const progressPercent = cardROI.annualFee > 0
     ? Math.min((cardROI.totalCaptured / cardROI.annualFee) * 100, 200)

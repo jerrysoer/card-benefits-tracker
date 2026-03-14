@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { BenefitWithCard, BenefitUsage } from "@/lib/supabase/types";
-import { getStreak, setStreak } from "@/lib/local-storage";
+import { getStreak, setStreak } from "@/lib/storage";
 import { formatCurrency } from "@/lib/benefits/roi";
 
 interface StreakCounterProps {
@@ -33,51 +33,51 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const now = new Date();
-    const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-    const streak = getStreak();
+    getStreak().then((streak) => {
+      const now = new Date();
+      const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 
-    if (streak.last_checked === currentMonth) {
-      setStreakCount(streak.current);
+      if (streak.last_checked === currentMonth) {
+        setStreakCount(streak.current);
+        setMounted(true);
+        return;
+      }
+
+      // Check previous month
+      const prevDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const prevMonthStart = prevDate.toISOString().split("T")[0];
+      const prevMonthEnd = new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 0)
+        .toISOString()
+        .split("T")[0];
+
+      const monthlyBenefits = benefits.filter(
+        (b) => b.cc_benefit_period === "monthly"
+      );
+
+      if (monthlyBenefits.length === 0) {
+        setStreak({ current: streak.current, last_checked: currentMonth });
+        setStreakCount(streak.current);
+        setMounted(true);
+        return;
+      }
+
+      const usedCount = monthlyBenefits.filter((b) =>
+        usage.some(
+          (u) =>
+            u.cc_benefit_id === b.id &&
+            u.cc_is_fully_used &&
+            u.cc_period_start >= prevMonthStart &&
+            u.cc_period_start <= prevMonthEnd
+        )
+      ).length;
+
+      const ratio = usedCount / monthlyBenefits.length;
+      const newStreak = ratio >= 0.8 ? streak.current + 1 : 0;
+
+      setStreak({ current: newStreak, last_checked: currentMonth });
+      setStreakCount(newStreak);
       setMounted(true);
-      return;
-    }
-
-    // Check previous month
-    const prevDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-    const prevMonth = `${prevDate.getFullYear()}-${String(prevDate.getMonth() + 1).padStart(2, "0")}`;
-    const prevMonthStart = prevDate.toISOString().split("T")[0];
-    const prevMonthEnd = new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 0)
-      .toISOString()
-      .split("T")[0];
-
-    const monthlyBenefits = benefits.filter(
-      (b) => b.cc_benefit_period === "monthly"
-    );
-
-    if (monthlyBenefits.length === 0) {
-      setStreak({ current: streak.current, last_checked: currentMonth });
-      setStreakCount(streak.current);
-      setMounted(true);
-      return;
-    }
-
-    const usedCount = monthlyBenefits.filter((b) =>
-      usage.some(
-        (u) =>
-          u.cc_benefit_id === b.id &&
-          u.cc_is_fully_used &&
-          u.cc_period_start >= prevMonthStart &&
-          u.cc_period_start <= prevMonthEnd
-      )
-    ).length;
-
-    const ratio = usedCount / monthlyBenefits.length;
-    const newStreak = ratio >= 0.8 ? streak.current + 1 : 0;
-
-    setStreak({ current: newStreak, last_checked: currentMonth });
-    setStreakCount(newStreak);
-    setMounted(true);
+    });
   }, [benefits, usage]);
 
   if (!mounted) return null;

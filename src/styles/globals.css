@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0C0F14;
-  --color-bg-card: #141820;
-  --color-bg-elevated: #1C2230;
+  --color-bg-primary: #0A0A0A;
+  --color-bg-card: #1A1A1A;
+  --color-bg-elevated: #252525;
   --color-border: #2A3040;
   --color-text-primary: #E8ECF4;
   --color-text-secondary: #8B95A8;
@@ -159,4 +159,71 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
+}
+
+/* Phase 3: Badge unlock animation */
+@keyframes badge-unlock {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-badge-unlock {
+  animation: badge-unlock 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Phase 3: Challenge pulse */
+@keyframes challenge-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-challenge-pulse {
+  animation: challenge-pulse 2s ease-in-out infinite;
+}
+
+/* Phase 3: Roast reveal */
+@keyframes roast-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-roast-reveal {
+  animation: roast-reveal 0.5s ease-out forwards;
+}
+
+/* Phase 3: Badge tier glow classes */
+.badge-bronze {
+  border-color: #CD7F32;
+  box-shadow: 0 0 8px rgba(205, 127, 50, 0.3);
+}
+
+.badge-silver {
+  border-color: #C0C0C0;
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
+}
+
+.badge-gold {
+  border-color: #FFD700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.badge-platinum {
+  border-color: #39FF14;
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
 }

@@ -11,7 +11,7 @@ import { getUrgencyState } from "@/lib/benefits/urgency";
 import ROIGauge from "@/components/dashboard/ROIGauge";
 import CardGrade from "@/components/dashboard/CardGrade";
 import { getIssuerName, getCategoryLabel } from "@/lib/utils";
-import { getPersistedUsage } from "@/lib/local-storage";
+import { getPersistedUsage } from "@/lib/storage";
 
 export default function CardDetailClient() {
   const params = useParams();
@@ -36,7 +36,7 @@ export default function CardDetailClient() {
           (u) => u.cc_card_id === found.id
         );
         if (uc) {
-          const persistedUsage = getPersistedUsage();
+          getPersistedUsage().then((persistedUsage) => {
           const allUsage = persistedUsage ?? DEMO_USAGE;
           const cardUsage = allUsage.filter(
             (u) => u.cc_user_card_id === uc.id
@@ -60,6 +60,7 @@ export default function CardDetailClient() {
             };
           });
           setEnrichedBenefits(enriched);
+          });
         }
       }
     }

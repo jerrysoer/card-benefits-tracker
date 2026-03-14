@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import type { CardROI } from "@/lib/supabase/types";
+import type { BadgeState } from "@/lib/badges";
 import WalletFlexCard from "@/components/dashboard/WalletFlexCard";
 
 interface FlexCardModalProps {
@@ -11,6 +12,11 @@ interface FlexCardModalProps {
   cardROIs: CardROI[];
   streak: number;
   walletValue: number;
+  // Phase 3 additions
+  badgeState?: BadgeState;
+  runwayMonths?: number | null;
+  challengeStats?: { completed: number; total: number };
+  roastExcerpt?: string | null;
 }
 
 export default function FlexCardModal({
@@ -20,6 +26,10 @@ export default function FlexCardModal({
   cardROIs,
   streak,
   walletValue,
+  badgeState,
+  runwayMonths,
+  challengeStats,
+  roastExcerpt,
 }: FlexCardModalProps) {
   const [aspectRatio, setAspectRatio] = useState<"portrait" | "square">("portrait");
   const [exporting, setExporting] = useState(false);
@@ -29,7 +39,6 @@ export default function FlexCardModal({
     if (!cardRef.current) return null;
     const html2canvas = (await import("html2canvas")).default;
 
-    // Capture the inner card at full resolution
     const innerCard = cardRef.current;
     const canvas = await html2canvas(innerCard, {
       scale: 1,
@@ -70,7 +79,6 @@ export default function FlexCardModal({
             new ClipboardItem({ "image/png": blob }),
           ]);
         } catch {
-          // Fallback: download instead
           const link = document.createElement("a");
           link.download = `cardclock-wallet-score-${Date.now()}.png`;
           link.href = canvas.toDataURL("image/png");
@@ -93,7 +101,6 @@ export default function FlexCardModal({
       }}
     >
       <div className="mx-4 w-full max-w-lg rounded-xl border-2 border-[#2A3040] bg-bg-black p-6">
-        {/* Header */}
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-sm text-text-secondary">
             SHARE YOUR WALLET
@@ -102,11 +109,10 @@ export default function FlexCardModal({
             onClick={onClose}
             className="text-text-muted transition-colors hover:text-text-primary"
           >
-            \u2715
+            ✕
           </button>
         </div>
 
-        {/* Aspect ratio toggle */}
         <div className="mb-4 flex gap-2">
           <button
             onClick={() => setAspectRatio("portrait")}
@@ -130,7 +136,6 @@ export default function FlexCardModal({
           </button>
         </div>
 
-        {/* Card preview */}
         <div className="mb-4 flex justify-center overflow-hidden rounded-lg">
           <WalletFlexCard
             ref={cardRef}
@@ -139,10 +144,13 @@ export default function FlexCardModal({
             streak={streak}
             walletValue={walletValue}
             aspectRatio={aspectRatio}
+            badgeState={badgeState}
+            runwayMonths={runwayMonths}
+            challengeStats={challengeStats}
+            roastExcerpt={roastExcerpt}
           />
         </div>
 
-        {/* Export buttons */}
         <div className="flex gap-3">
           <button
             onClick={handleDownload}
