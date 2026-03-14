@@ -3,12 +3,15 @@
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { isDemoMode, DEMO_CARDS, DEMO_BENEFITS, DEMO_USER_CARDS, DEMO_USAGE } from "@/lib/demo/data";
-import type { Card, Benefit, CardROI } from "@/lib/supabase/types";
+import type { Card, Benefit, CardROI, BenefitWithCard } from "@/lib/supabase/types";
 import { calculateCardROI } from "@/lib/benefits/roi";
 import { formatCurrency, formatCurrencyPrecise } from "@/lib/benefits/roi";
-import { formatPeriodLabel } from "@/lib/benefits/deadline";
+import { formatPeriodLabel, getCurrentPeriod } from "@/lib/benefits/deadline";
+import { getUrgencyState } from "@/lib/benefits/urgency";
 import ROIGauge from "@/components/dashboard/ROIGauge";
+import CardGrade from "@/components/dashboard/CardGrade";
 import { getIssuerName, getCategoryLabel } from "@/lib/utils";
+import { getPersistedUsage } from "@/lib/local-storage";
 
 export default function CardDetailClient() {
   const params = useParams();
@@ -17,6 +20,7 @@ export default function CardDetailClient() {
   const [card, setCard] = useState<Card | null>(null);
   const [benefits, setBenefits] = useState<Benefit[]>([]);
   const [roi, setROI] = useState<CardROI | null>(null);
+  const [enrichedBenefits, setEnrichedBenefits] = useState<BenefitWithCard[]>([]);
 
   useEffect(() => {
     if (isDemoMode()) {
@@ -32,10 +36,30 @@ export default function CardDetailClient() {
           (u) => u.cc_card_id === found.id
         );
         if (uc) {
-          const cardUsage = DEMO_USAGE.filter(
+          const persistedUsage = getPersistedUsage();
+          const allUsage = persistedUsage ?? DEMO_USAGE;
+          const cardUsage = allUsage.filter(
             (u) => u.cc_user_card_id === uc.id
           );
           setROI(calculateCardROI(found, uc, cardBenefits, cardUsage));
+
+          const now = new Date();
+          const openDate = uc.cc_card_open_date ? new Date(uc.cc_card_open_date) : null;
+          const enriched: BenefitWithCard[] = cardBenefits.map((b) => {
+            const period = getCurrentPeriod(b, openDate, now);
+            const usage = allUsage.find(
+              (u) => u.cc_benefit_id === b.id && u.cc_period_start === period.start.toISOString().split("T")[0]
+            );
+            return {
+              ...b,
+              card: found,
+              userCard: uc,
+              usage: usage ?? null,
+              period: { start: period.start, end: period.end, daysRemaining: period.daysRemaining },
+              urgency: getUrgencyState(period.daysRemaining),
+            };
+          });
+          setEnrichedBenefits(enriched);
         }
       }
     }
@@ -69,6 +93,11 @@ export default function CardDetailClient() {
         </div>
         {roi && <ROIGauge roi={roi} />}
       </div>
+
+      {/* Grade */}
+      {roi && (
+        <CardGrade cardROI={roi} benefits={enrichedBenefits} />
+      )}
 
       {/* Summary Stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">

@@ -46,6 +46,12 @@ export default function DashboardLayout({
                 Cards
               </Link>
               <Link
+                href="/dashboard/flex"
+                className="rounded-md px-3 py-1.5 text-sm font-medium text-neon-purple transition-colors hover:bg-bg-elevated hover:opacity-80"
+              >
+                Flex
+              </Link>
+              <Link
                 href="/dashboard/settings"
                 className="rounded-md px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
               >

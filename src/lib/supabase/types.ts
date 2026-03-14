@@ -6,6 +6,7 @@ export interface Card {
   cc_card_slug: string;
   cc_logo_url: string | null;
   cc_is_active: boolean;
+  cc_downgrade_to?: { name: string; fee: number } | null;
   created_at: string;
   updated_at: string;
 }
@@ -110,4 +111,24 @@ export interface PortfolioSummary {
   totalWasted: number;
   netROI: number;
   captureRate: number;
+}
+
+export interface GradeResult {
+  grade: string;
+  percentage: number;
+  color: string;
+}
+
+export interface PointsProgram {
+  code: string;
+  name: string;
+  short_name: string;
+  default_cpp: number;
+  color: string;
+  category: string;
+}
+
+export interface StreakData {
+  current: number;
+  last_checked: string;
 }
