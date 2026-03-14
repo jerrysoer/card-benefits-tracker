@@ -14,6 +14,13 @@ interface BenefitRowProps {
   index?: number;
 }
 
+const urgencyBgColors: Record<string, string> = {
+  green: "bg-[#D1FAE5]",
+  amber: "bg-[#FEF3C7]",
+  red: "bg-[#FEE2E2]",
+  used: "bg-[#F9FAFB]",
+};
+
 export default function BenefitRow({
   benefit,
   onMarkUsed,
@@ -29,18 +36,14 @@ export default function BenefitRow({
   return (
     <div
       className={cn(
-        "animate-slide-up rounded-lg bg-bg-card border border-border px-4 py-3 transition-colors hover:bg-bg-elevated",
+        "animate-slide-up rounded-2xl px-5 py-4 transition-shadow hover:shadow-sm",
+        urgencyBgColors[urgency],
         isUsed && "opacity-60"
       )}
       style={{ animationDelay: `${index * 50}ms` }}
     >
-      {/* Top row: urgency stripe + ring + name + badge + value */}
+      {/* Top row: ring + name + badge + value */}
       <div className="flex items-center gap-3">
-        <div
-          className="w-[3px] self-stretch rounded-full shrink-0"
-          style={{ backgroundColor: getUrgencyColor(urgency) }}
-        />
-
         <div className="hidden sm:block">
           <CountdownRing
             daysRemaining={benefit.period.daysRemaining}
@@ -77,31 +80,31 @@ export default function BenefitRow({
         </div>
       </div>
 
-      {/* Bottom row: days remaining + action (visible on all screens) */}
-      <div className="mt-2 flex items-center justify-between pl-2">
+      {/* Bottom row: days remaining + action */}
+      <div className="mt-2 flex items-center justify-between">
         <span className={cn("text-xs", isUsed ? "text-text-muted" : "text-text-secondary")}>
-          {isUsed ? "Used" : formatDaysRemaining(benefit.period.daysRemaining)}
+          {isUsed ? "Done" : formatDaysRemaining(benefit.period.daysRemaining)}
         </span>
 
         <button
           onClick={() => onMarkUsed(benefit.id)}
           disabled={isUsed}
           className={cn(
-            "shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+            "shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-transform",
             isUsed
-              ? "bg-bg-elevated text-text-muted cursor-not-allowed"
-              : "bg-bg-elevated text-text-secondary hover:bg-[#60A5FA]/15 hover:text-[#60A5FA] border border-border"
+              ? "bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed"
+              : "bg-[#111] text-white active:scale-[0.97]"
           )}
         >
           {isUsed ? (
             <span className="flex items-center gap-1">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
-              Done
+              Nice!
             </span>
           ) : (
-            "Mark Used"
+            "Got it!"
           )}
         </button>
       </div>

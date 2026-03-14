@@ -2,7 +2,7 @@
 
 ## Stack
 - Next.js 16+ (App Router) + TypeScript
-- Tailwind CSS v4 (dark theme via CSS variables)
+- Tailwind CSS v4 (light theme via CSS variables)
 - Supabase (PostgreSQL + Auth + RLS)
 - Deploy: Vercel
 
@@ -16,9 +16,11 @@
 - Use `@/*` path alias for imports
 
 ## Design Tokens
-- Dark mode default (bg: #0C0F14, cards: #141820)
-- Urgency colors: green (#34D399) >14d, amber (#FBBF24) 7-14d, red (#F87171) <7d
-- Fonts: DM Sans (headers/UI), JetBrains Mono (numbers/data)
+- Light mode default (bg: #FAFAFA, cards: #FFFFFF)
+- Urgency colors: green (#10B981) >14d, amber (#F59E0B) 7-14d, red (#EF4444) <7d
+- Urgency bg pastels: green (#D1FAE5), amber (#FEF3C7), red (#FEE2E2)
+- Fonts: Outfit (hero numbers/headlines), Nunito (body/UI), JetBrains Mono (numbers/data)
+- Black pill buttons (#111111) with white text for CTAs and active filters
 - 8px base spacing unit
 
 ## File Structure

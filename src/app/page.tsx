@@ -13,21 +13,25 @@ const STEPS = [
     num: "01",
     title: "Add your cards",
     desc: "Select from 30+ premium cards with pre-loaded benefits. No bank login required.",
+    bg: "bg-pastel-blue",
   },
   {
     num: "02",
     title: "See every benefit as a countdown",
-    desc: "Green when safe, amber when soon, red when urgent. Never miss a deadline.",
+    desc: "Green when chill, amber when soon, red when expiring. Never miss a deadline.",
+    bg: "bg-pastel-purple",
   },
   {
     num: "03",
     title: "Mark credits as you use them",
     desc: "Full or partial tracking. Benefits auto-reset when their cycle rolls over.",
+    bg: "bg-pastel-pink",
   },
   {
     num: "04",
     title: "Know if your card is worth the fee",
     desc: "Per-card ROI gauge shows captured value vs. annual fee, instantly.",
+    bg: "bg-pastel-blue",
   },
 ];
 
@@ -35,17 +39,17 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Nav */}
-      <nav className="border-b border-border">
+      <nav className="border-b border-border-soft bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <ClockIcon />
-            <span className="text-lg font-bold tracking-tight text-text-primary">
+            <span className="font-outfit text-lg font-bold tracking-tight text-[#111]">
               CardClock
             </span>
           </div>
           <Link
             href="/login"
-            className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+            className="rounded-full bg-[#F3F4F6] px-4 py-2 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
           >
             Sign In
           </Link>
@@ -54,52 +58,52 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pb-20 pt-24 text-center">
-        <h1 className="text-5xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">
-          Your benefits are ticking.
+        <h1 className="font-outfit text-5xl font-black leading-tight tracking-tight text-[#111] md:text-6xl">
+          Stop leaving money on the table.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary">
           The average premium cardholder wastes{" "}
-          <span className="font-mono-data font-medium text-gold">$624/year</span>{" "}
+          <span className="font-mono-data font-semibold text-[#111]">$624/year</span>{" "}
           in unused credits. CardClock tracks every deadline so you don&apos;t.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/login"
-            className="rounded-lg bg-accent px-8 py-3 text-base font-semibold text-bg-primary transition-opacity hover:opacity-90"
+            className="rounded-full bg-[#111] px-8 py-4 text-lg font-semibold text-white transition-transform active:scale-[0.97]"
           >
-            Get Started — Free
+            Let&apos;s go
           </Link>
           <a
             href="https://github.com/jerrysoer/cardclock"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-border px-8 py-3 text-base font-medium text-text-secondary transition-colors hover:border-text-muted hover:text-text-primary"
+            className="rounded-full bg-[#F3F4F6] px-8 py-4 text-lg font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
           >
             View on GitHub
           </a>
         </div>
 
         {/* Dashboard Preview */}
-        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-xl border border-border bg-bg-card p-1">
-          <div className="rounded-lg bg-bg-primary p-6">
+        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl bg-white p-1 shadow-card">
+          <div className="rounded-xl bg-[#FAFAFA] p-6">
             <DashboardPreview />
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="border-t border-border bg-bg-card/50">
+      <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-20">
           <h2 className="text-center text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
             How It Works
           </h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step) => (
-              <div key={step.num} className="space-y-3">
+              <div key={step.num} className={`space-y-3 rounded-2xl ${step.bg} p-6`}>
                 <span className="font-mono-data text-sm text-text-muted">
                   {step.num}
                 </span>
-                <h3 className="text-base font-semibold text-text-primary">
+                <h3 className="text-base font-semibold text-[#111]">
                   {step.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-text-secondary">
@@ -112,16 +116,16 @@ export default function LandingPage() {
       </section>
 
       {/* Supported Cards */}
-      <section className="border-t border-border">
+      <section>
         <div className="mx-auto max-w-5xl px-6 py-16 text-center">
           <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
             Supported Cards
           </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             {ISSUERS.map((issuer) => (
               <span
                 key={issuer.slug}
-                className="rounded-lg border border-border bg-bg-card px-5 py-2.5 text-sm font-medium text-text-secondary"
+                className="rounded-full bg-[#F3F4F6] px-5 py-2.5 text-sm font-medium text-[#6B7280]"
               >
                 {issuer.name}
               </span>
@@ -132,7 +136,7 @@ export default function LandingPage() {
       </section>
 
       {/* Deploy Your Own */}
-      <section className="border-t border-border bg-bg-card/50">
+      <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-16 text-center">
           <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
             Deploy Your Own
@@ -146,7 +150,7 @@ export default function LandingPage() {
               href="https://vercel.com/new/clone?repository-url=https://github.com/jerrysoer/cardclock"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-text-primary px-6 py-2.5 text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90"
+              className="rounded-full bg-[#111] px-6 py-2.5 text-sm font-semibold text-white transition-transform active:scale-[0.97]"
             >
               Deploy to Vercel
             </a>
@@ -154,7 +158,7 @@ export default function LandingPage() {
               href="https://github.com/jerrysoer/cardclock"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg border border-border px-6 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+              className="rounded-full bg-[#F3F4F6] px-6 py-2.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
             >
               GitHub
             </a>
@@ -163,7 +167,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border">
+      <footer className="border-t border-border-soft">
         <div className="mx-auto max-w-5xl px-6 py-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-xs text-text-muted">
@@ -190,7 +194,7 @@ function ClockIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-accent"
+      className="text-[#111]"
     >
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
@@ -237,48 +241,52 @@ function DashboardPreview() {
     },
   ];
 
-  const colors = {
-    red: "border-red bg-red-bg",
-    amber: "border-amber bg-amber-bg",
-    green: "border-green bg-green-bg",
+  const bgColors = {
+    red: "bg-[#FEE2E2]",
+    amber: "bg-[#FEF3C7]",
+    green: "bg-[#D1FAE5]",
   };
 
-  const dotColors = {
-    red: "bg-red",
-    amber: "bg-amber",
-    green: "bg-green",
+  const textColors = {
+    red: "text-[#EF4444]",
+    amber: "text-[#F59E0B]",
+    green: "text-[#10B981]",
+  };
+
+  const badgeLabels = {
+    red: "Expiring!",
+    amber: "Soon",
+    green: "Chill",
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {items.map((item) => (
         <div
           key={item.name}
-          className={`flex items-center justify-between rounded-lg border-l-[3px] px-4 py-3 ${colors[item.urgency]}`}
+          className={`flex items-center justify-between rounded-2xl px-5 py-4 ${bgColors[item.urgency]}`}
         >
           <div className="flex items-center gap-3">
-            <div className={`h-2 w-2 rounded-full ${dotColors[item.urgency]}`} />
             <div>
-              <div className="text-sm font-medium text-text-primary">
+              <div className="text-sm font-medium text-[#111]">
                 {item.name}
               </div>
               <div className="text-xs text-text-secondary">{item.card}</div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="font-mono-data text-sm font-medium text-text-primary">
+          <div className="flex items-center gap-3">
+            <span className="font-mono-data text-sm font-semibold text-[#111]">
               {item.value}
             </span>
             <span
-              className={`font-mono-data text-xs ${
-                item.urgency === "red"
-                  ? "text-red"
-                  : item.urgency === "amber"
-                    ? "text-amber"
-                    : "text-green"
-              }`}
+              className={`rounded-full px-2 py-0.5 text-xs font-medium ${bgColors[item.urgency]} ${textColors[item.urgency]}`}
             >
-              {item.days}d left
+              {badgeLabels[item.urgency]}
+            </span>
+            <span
+              className={`font-mono-data text-xs ${textColors[item.urgency]}`}
+            >
+              {item.days}d
             </span>
           </div>
         </div>

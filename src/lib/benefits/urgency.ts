@@ -34,13 +34,13 @@ export function getUrgencyClasses(urgency: UrgencyState | "used"): string {
 export function getUrgencyColor(urgency: UrgencyState | "used"): string {
   switch (urgency) {
     case "green":
-      return "#34D399";
+      return "#10B981";
     case "amber":
-      return "#FBBF24";
+      return "#F59E0B";
     case "red":
-      return "#F87171";
+      return "#EF4444";
     case "used":
-      return "#525C6E";
+      return "#9CA3AF";
   }
 }
 
@@ -50,11 +50,11 @@ export function getUrgencyColor(urgency: UrgencyState | "used"): string {
 export function getUrgencyLabel(urgency: UrgencyState): string {
   switch (urgency) {
     case "green":
-      return "Safe — plenty of time";
+      return "Chill — plenty of time";
     case "amber":
-      return "Warning — use soon";
+      return "Soon — use it soon";
     case "red":
-      return "Urgent — expiring soon";
+      return "Expiring! — use now";
   }
 }
 

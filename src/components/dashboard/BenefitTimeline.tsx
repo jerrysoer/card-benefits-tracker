@@ -14,6 +14,30 @@ interface BenefitTimelineProps {
 type StatusFilter = "all" | "unused" | "used";
 type PeriodFilter = "all" | "monthly" | "quarterly" | "semi_annual" | "annual";
 
+function PillChip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+        active
+          ? "bg-[#111] text-white"
+          : "bg-[#F3F4F6] text-[#6B7280] hover:bg-[#E5E7EB]"
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function BenefitTimeline({
   benefits,
   onMarkUsed,
@@ -75,8 +99,19 @@ export default function BenefitTimeline({
     return counts;
   }, [filtered]);
 
-  const selectClasses =
-    "rounded-md border border-border bg-bg-elevated px-2 py-1 text-xs text-text-secondary outline-none focus:border-[#60A5FA] transition-colors";
+  const periodOptions: { value: PeriodFilter; label: string }[] = [
+    { value: "all", label: "All Periods" },
+    { value: "monthly", label: "Monthly" },
+    { value: "quarterly", label: "Quarterly" },
+    { value: "semi_annual", label: "Semi-Annual" },
+    { value: "annual", label: "Annual" },
+  ];
+
+  const statusOptions: { value: StatusFilter; label: string }[] = [
+    { value: "all", label: "All" },
+    { value: "unused", label: "Unused" },
+    { value: "used", label: "Used" },
+  ];
 
   return (
     <div className="flex flex-col gap-4">
@@ -84,7 +119,7 @@ export default function BenefitTimeline({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-semibold text-text-primary">
-            Benefits Timeline
+            Your Benefits
           </h2>
           <span className="text-sm text-text-secondary">
             {sorted.length} benefit{sorted.length !== 1 ? "s" : ""}
@@ -94,72 +129,72 @@ export default function BenefitTimeline({
         {/* Urgency breakdown */}
         <div className="flex items-center gap-2 text-xs">
           {urgencyCounts.red > 0 && (
-            <span className="text-[#F87171]">
-              {urgencyCounts.red} urgent
+            <span className="text-[#EF4444]">
+              {urgencyCounts.red} expiring
             </span>
           )}
           {urgencyCounts.amber > 0 && (
-            <span className="text-[#FBBF24]">
+            <span className="text-[#F59E0B]">
               {urgencyCounts.amber} soon
             </span>
           )}
           {urgencyCounts.green > 0 && (
-            <span className="text-[#34D399]">
-              {urgencyCounts.green} safe
+            <span className="text-[#10B981]">
+              {urgencyCounts.green} chill
             </span>
           )}
           {urgencyCounts.used > 0 && (
             <span className="text-text-muted">
-              {urgencyCounts.used} used
+              {urgencyCounts.used} done
             </span>
           )}
         </div>
       </div>
 
-      {/* Filter controls */}
-      <div className="flex flex-wrap items-center gap-2">
-        <select
-          value={cardFilter}
-          onChange={(e) => setCardFilter(e.target.value)}
-          className={selectClasses}
-        >
-          <option value="all">All Cards</option>
+      {/* Filter pill chips */}
+      <div className="flex flex-col gap-2">
+        {/* Card filter */}
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          <PillChip active={cardFilter === "all"} onClick={() => setCardFilter("all")}>
+            All Cards
+          </PillChip>
           {cards.map(([id, name]) => (
-            <option key={id} value={id}>
+            <PillChip key={id} active={cardFilter === id} onClick={() => setCardFilter(id)}>
               {name}
-            </option>
+            </PillChip>
           ))}
-        </select>
+        </div>
 
-        <select
-          value={periodFilter}
-          onChange={(e) => setPeriodFilter(e.target.value as PeriodFilter)}
-          className={selectClasses}
-        >
-          <option value="all">All Periods</option>
-          <option value="monthly">Monthly</option>
-          <option value="quarterly">Quarterly</option>
-          <option value="semi_annual">Semi-Annual</option>
-          <option value="annual">Annual</option>
-        </select>
-
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
-          className={selectClasses}
-        >
-          <option value="all">All Status</option>
-          <option value="unused">Unused</option>
-          <option value="used">Used</option>
-        </select>
+        {/* Period + Status filters */}
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {periodOptions.map((opt) => (
+            <PillChip
+              key={opt.value}
+              active={periodFilter === opt.value}
+              onClick={() => setPeriodFilter(opt.value)}
+            >
+              {opt.label}
+            </PillChip>
+          ))}
+          <span className="mx-1 self-center text-[#E5E7EB]">|</span>
+          {statusOptions.map((opt) => (
+            <PillChip
+              key={opt.value}
+              active={statusFilter === opt.value}
+              onClick={() => setStatusFilter(opt.value)}
+            >
+              {opt.label}
+            </PillChip>
+          ))}
+        </div>
       </div>
 
       {/* Benefit rows */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         {sorted.length === 0 ? (
-          <div className="flex items-center justify-center rounded-lg border border-border bg-bg-card px-4 py-8">
+          <div className="flex items-center justify-center rounded-2xl bg-white px-4 py-8 shadow-card">
             <span className="text-sm text-text-muted">
-              No benefits match the current filters.
+              No benefits match your filters.
             </span>
           </div>
         ) : (
