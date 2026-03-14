@@ -173,7 +173,7 @@ export function getVerdictForDowngrade(
     case "B":
       return {
         verdict: `you're getting ${formatCurrency(card.cc_annual_fee)} worth. keep it.`,
-        emoji: "\u2705",
+        emoji: "check",
         action: "KEEP",
       };
     case "C":
@@ -181,7 +181,7 @@ export function getVerdictForDowngrade(
         verdict: downgrade
           ? `close call. use more benefits or downgrade to ${downgrade.name}.`
           : "close call. use more benefits before renewal.",
-        emoji: "\u{1F914}",
+        emoji: "help-circle",
         action: "EVALUATE",
       };
     case "D":
@@ -189,7 +189,7 @@ export function getVerdictForDowngrade(
         verdict: downgrade
           ? `downgrade to ${downgrade.name} and save ${formatCurrency(card.cc_annual_fee - downgrade.fee)}/yr.`
           : "you're not using enough to justify the fee. consider downgrading.",
-        emoji: "\u26A0\uFE0F",
+        emoji: "alert-triangle",
         action: "DOWNGRADE",
       };
     case "F":
@@ -197,10 +197,10 @@ export function getVerdictForDowngrade(
         verdict: downgrade
           ? `cancel or downgrade to ${downgrade.name} before the fee hits.`
           : "this card is a net loss. cancel before the fee hits.",
-        emoji: "\u274C",
+        emoji: "x-circle",
         action: "CANCEL",
       };
     default:
-      return { verdict: "no annual fee to worry about.", emoji: "\u2705", action: "FREE" };
+      return { verdict: "no annual fee to worry about.", emoji: "check", action: "FREE" };
   }
 }

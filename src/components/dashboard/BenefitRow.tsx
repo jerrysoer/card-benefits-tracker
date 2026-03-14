@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import type { BenefitWithCard } from "@/lib/supabase/types";
 import { getUrgencyColor } from "@/lib/benefits/urgency";
 import { formatDaysRemaining, formatPeriodLabel } from "@/lib/benefits/deadline";
@@ -90,14 +91,12 @@ export default function BenefitRow({
             "shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
             isUsed
               ? "bg-bg-elevated text-text-muted cursor-not-allowed"
-              : "bg-bg-elevated text-text-secondary hover:bg-[#60A5FA]/15 hover:text-[#60A5FA] border border-border"
+              : "cursor-pointer bg-bg-elevated text-text-secondary hover:bg-[#60A5FA]/15 hover:text-[#60A5FA] border border-border"
           )}
         >
           {isUsed ? (
             <span className="flex items-center gap-1">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
               Done
             </span>
           ) : (

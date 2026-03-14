@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ClipboardList } from "lucide-react";
 import type { CardROI, BenefitWithCard } from "@/lib/supabase/types";
 import { calculateGrade, getVerdictForDowngrade } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
 import { getCardOpenDates, setCardOpenDate } from "@/lib/storage";
+import BadgeIcon from "@/components/ui/BadgeIcon";
 
 interface DowngradeCalendarProps {
   cardROIs: CardROI[];
@@ -158,8 +160,8 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                       >
                         {grade.grade}
                       </span>
-                      <span className="text-sm">
-                        {verdictInfo.emoji}{" "}
+                      <span className="flex items-center gap-1 text-sm">
+                        <BadgeIcon name={verdictInfo.emoji} className="h-4 w-4" style={{ color: grade.color }} />
                         <span className="font-bold" style={{ color: grade.color }}>
                           {verdictInfo.action}
                         </span>
@@ -176,7 +178,7 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                           setEditingSlug(card.cc_card_slug);
                           setEditDate("");
                         }}
-                        className="mt-2 text-xs text-neon-blue transition-opacity hover:opacity-80"
+                        className="mt-2 cursor-pointer text-xs text-neon-blue transition-opacity hover:opacity-80"
                       >
                         Set card open date
                       </button>
@@ -193,13 +195,13 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                         />
                         <button
                           onClick={() => handleSaveDate(card.cc_card_slug)}
-                          className="rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black"
+                          className="cursor-pointer rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black"
                         >
                           Save
                         </button>
                         <button
                           onClick={() => setEditingSlug(null)}
-                          className="text-xs text-text-muted"
+                          className="cursor-pointer text-xs text-text-muted"
                         >
                           Cancel
                         </button>
@@ -215,8 +217,9 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
 
       {decisionsIn90 > 0 && (
         <div className="mt-4 rounded-lg border-2 border-neon-yellow bg-bg-card-neo px-4 py-3">
-          <span className="font-mono-data text-sm font-bold text-neon-yellow">
-            \uD83D\uDCCD {decisionsIn90} decision{decisionsIn90 !== 1 ? "s" : ""} in the next 90 days
+          <span className="flex items-center gap-1 font-mono-data text-sm font-bold text-neon-yellow">
+            <ClipboardList className="h-4 w-4" />
+            {decisionsIn90} decision{decisionsIn90 !== 1 ? "s" : ""} in the next 90 days
           </span>
         </div>
       )}

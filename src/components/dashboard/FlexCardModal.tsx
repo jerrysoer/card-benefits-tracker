@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { X } from "lucide-react";
 import type { CardROI } from "@/lib/supabase/types";
 import type { BadgeState } from "@/lib/badges";
 import WalletFlexCard from "@/components/dashboard/WalletFlexCard";
@@ -107,16 +108,16 @@ export default function FlexCardModal({
           </h2>
           <button
             onClick={onClose}
-            className="text-text-muted transition-colors hover:text-text-primary"
+            className="cursor-pointer text-text-muted transition-colors hover:text-text-primary"
           >
-            ✕
+            <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="mb-4 flex gap-2">
           <button
             onClick={() => setAspectRatio("portrait")}
-            className={`rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
+            className={`cursor-pointer rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
               aspectRatio === "portrait"
                 ? "border-neon-blue text-neon-blue"
                 : "border-[#2A3040] text-text-muted hover:text-text-primary"
@@ -126,7 +127,7 @@ export default function FlexCardModal({
           </button>
           <button
             onClick={() => setAspectRatio("square")}
-            className={`rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
+            className={`cursor-pointer rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
               aspectRatio === "square"
                 ? "border-neon-blue text-neon-blue"
                 : "border-[#2A3040] text-text-muted hover:text-text-primary"
@@ -155,14 +156,14 @@ export default function FlexCardModal({
           <button
             onClick={handleDownload}
             disabled={exporting}
-            className="flex-1 rounded-lg border-3 border-neon-green bg-transparent py-3 font-display text-xs text-neon-green transition-opacity hover:opacity-80 disabled:opacity-50"
+            className="flex-1 cursor-pointer rounded-lg border-3 border-neon-green bg-transparent py-3 font-display text-xs text-neon-green transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {exporting ? "Exporting..." : "Download PNG"}
           </button>
           <button
             onClick={handleCopy}
             disabled={exporting}
-            className="flex-1 rounded-lg border-3 border-neon-blue bg-transparent py-3 font-display text-xs text-neon-blue transition-opacity hover:opacity-80 disabled:opacity-50"
+            className="flex-1 cursor-pointer rounded-lg border-3 border-neon-blue bg-transparent py-3 font-display text-xs text-neon-blue transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {exporting ? "Exporting..." : "Copy to Clipboard"}
           </button>

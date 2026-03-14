@@ -7,6 +7,7 @@ import {
   type BadgeState,
   type BadgeDefinition,
 } from "@/lib/badges";
+import BadgeIcon from "@/components/ui/BadgeIcon";
 
 interface BadgeShelfProps {
   badgeState: BadgeState;
@@ -38,12 +39,12 @@ export default function BadgeShelf({ badgeState, newlyUnlocked }: BadgeShelfProp
           return (
             <div
               key={badge.id}
-              className="relative flex-shrink-0"
+              className="relative flex-shrink-0 cursor-pointer"
               onMouseEnter={() => setTooltip(badge.id)}
               onMouseLeave={() => setTooltip(null)}
             >
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-lg transition-all ${
+                className={`flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all ${
                   isUnlocked
                     ? isNew
                       ? "animate-badge-unlock"
@@ -59,14 +60,19 @@ export default function BadgeShelf({ badgeState, newlyUnlocked }: BadgeShelfProp
                     : "none",
                 }}
               >
-                {isUnlocked ? badge.icon : "?"}
+                {isUnlocked ? (
+                  <BadgeIcon name={badge.icon} className="h-5 w-5" style={{ color: tierColor.border }} />
+                ) : (
+                  <span className="text-xs text-text-muted">?</span>
+                )}
               </div>
 
               {/* Tooltip */}
               {tooltip === badge.id && (
                 <div className="absolute -top-20 left-1/2 z-50 w-48 -translate-x-1/2 rounded-lg border border-[#2A3040] bg-[#1A1A1A] p-3 shadow-lg">
-                  <div className="text-xs font-bold text-text-primary">
-                    {badge.icon} {badge.name}
+                  <div className="flex items-center gap-1 text-xs font-bold text-text-primary">
+                    <BadgeIcon name={badge.icon} className="h-3.5 w-3.5" />
+                    {badge.name}
                   </div>
                   <p className="mt-1 text-xs text-text-secondary">
                     {isUnlocked ? badge.description : badge.hint}

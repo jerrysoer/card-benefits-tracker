@@ -1,11 +1,13 @@
 "use client";
 
 import { forwardRef } from "react";
+import { Flame } from "lucide-react";
 import type { CardROI } from "@/lib/supabase/types";
 import { calculateGrade, getScoreLabel } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
 import type { BadgeDefinition, BadgeState } from "@/lib/badges";
 import { BADGE_DEFINITIONS, TIER_COLORS, getBadgesByTier } from "@/lib/badges";
+import BadgeIcon from "@/components/ui/BadgeIcon";
 
 interface WalletFlexCardProps {
   walletScore: number;
@@ -244,8 +246,9 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                 </span>
               </span>
               {streak > 0 && (
-                <span>
-                  🔥 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#39FF14" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                  <Flame style={{ width: "16px", height: "16px", color: "#FF3131" }} />
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#39FF14" }}>
                     {streak} mo streak
                   </span>
                 </span>
@@ -253,7 +256,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
               {runwayMonths !== undefined && (
                 <span>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#00D4FF" }}>
-                    {runwayMonths === null ? "∞" : `${runwayMonths}mo`} runway
+                    {runwayMonths === null ? "\u221E" : `${runwayMonths}mo`} runway
                   </span>
                 </span>
               )}
@@ -273,7 +276,6 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                   <span
                     key={badge.id}
                     style={{
-                      fontSize: "24px",
                       display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -283,7 +285,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                       border: `2px solid ${TIER_COLORS[badge.tier].border}`,
                     }}
                   >
-                    {badge.icon}
+                    <BadgeIcon name={badge.icon} style={{ width: "18px", height: "18px", color: TIER_COLORS[badge.tier].border }} />
                   </span>
                 ))}
                 {unlockedCount > 6 && (

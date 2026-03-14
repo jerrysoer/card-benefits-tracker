@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { CheckCircle, Dumbbell } from "lucide-react";
 import type { BenefitWithCard } from "@/lib/supabase/types";
 import {
   generateChallenge,
@@ -97,27 +98,30 @@ export default function WeeklyChallenge({
           {isActive && (
             <button
               onClick={handleComplete}
-              className="mt-3 rounded-lg bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
+              className="mt-3 cursor-pointer rounded-lg bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
             >
               MARK COMPLETE
             </button>
           )}
 
           {justCompleted && (
-            <div className="mt-2 text-xs font-bold text-neon-green">
-              ✅ challenge complete! +2 wallet score boost
+            <div className="mt-2 flex items-center gap-1 text-xs font-bold text-neon-green">
+              <CheckCircle className="h-3.5 w-3.5" />
+              challenge complete! +2 wallet score boost
             </div>
           )}
 
           {isCompleted && !justCompleted && (
-            <div className="mt-2 text-xs text-neon-green">
-              ✅ completed
+            <div className="mt-2 flex items-center gap-1 text-xs text-neon-green">
+              <CheckCircle className="h-3.5 w-3.5" />
+              completed
             </div>
           )}
         </div>
       ) : (
-        <p className="mt-3 text-sm text-text-muted">
-          no urgent challenges. you&apos;re on top of it. 💪
+        <p className="mt-3 flex items-center gap-1 text-sm text-text-muted">
+          no urgent challenges. you&apos;re on top of it.
+          <Dumbbell className="inline h-4 w-4" />
         </p>
       )}
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Check } from "lucide-react";
 import type { CardWithBenefits } from "@/lib/supabase/types";
 import { formatCurrency } from "@/lib/benefits/roi";
 import { cn, getIssuerName } from "@/lib/utils";
@@ -45,7 +46,7 @@ export default function CardPicker({
                   key={card.id}
                   onClick={() => onToggleCard(card.id)}
                   className={cn(
-                    "flex flex-col gap-2 rounded-lg border p-4 text-left transition-all",
+                    "flex cursor-pointer flex-col gap-2 rounded-lg border p-4 text-left transition-all",
                     isActive
                       ? "border-[#60A5FA] bg-[#60A5FA]/5"
                       : "border-border bg-bg-card hover:bg-bg-elevated"
@@ -56,19 +57,7 @@ export default function CardPicker({
                       {card.cc_card_name}
                     </span>
                     {isActive && (
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#60A5FA"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="shrink-0 mt-0.5"
-                      >
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#60A5FA]" strokeWidth={2.5} />
                     )}
                   </div>
                   <div className="flex items-center gap-2 text-xs text-text-secondary">

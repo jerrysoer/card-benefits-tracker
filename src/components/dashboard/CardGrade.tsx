@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { AlertTriangle } from "lucide-react";
 import type { CardROI, BenefitWithCard } from "@/lib/supabase/types";
 import { calculateGrade, getStableVerdict } from "@/lib/scoring";
 import { formatCurrency } from "@/lib/benefits/roi";
@@ -108,7 +109,7 @@ export default function CardGrade({ cardROI, benefits, compact }: CardGradeProps
       {/* Renewal warning */}
       {daysUntilRenewal !== null && daysUntilRenewal <= 90 && (
         <div className="mt-3 flex items-center gap-2 text-sm" style={{ color: daysUntilRenewal <= 30 ? "#FF3131" : "#FFE600" }}>
-          <span>\u26A0\uFE0F</span>
+          <AlertTriangle className="h-4 w-4" />
           <span>Annual fee renews in {daysUntilRenewal} days</span>
         </div>
       )}

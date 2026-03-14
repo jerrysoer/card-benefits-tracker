@@ -93,7 +93,7 @@ export default function MarkUsedDialog({
               setAmount(String(maxValue));
             }}
             className={cn(
-              "flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              "flex-1 cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
               mode === "full"
                 ? "bg-[#60A5FA]/15 text-[#60A5FA]"
                 : "text-text-secondary hover:text-text-primary"
@@ -107,7 +107,7 @@ export default function MarkUsedDialog({
               setAmount("");
             }}
             className={cn(
-              "flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              "flex-1 cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
               mode === "partial"
                 ? "bg-[#60A5FA]/15 text-[#60A5FA]"
                 : "text-text-secondary hover:text-text-primary"
@@ -146,7 +146,7 @@ export default function MarkUsedDialog({
         <div className="mt-6 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
+            className="cursor-pointer rounded-lg border border-border px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
           >
             Cancel
           </button>
@@ -156,7 +156,7 @@ export default function MarkUsedDialog({
             className={cn(
               "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
               isValid
-                ? "bg-[#60A5FA] text-white hover:bg-[#60A5FA]/90"
+                ? "cursor-pointer bg-[#60A5FA] text-white hover:bg-[#60A5FA]/90"
                 : "bg-bg-elevated text-text-muted cursor-not-allowed"
             )}
           >

@@ -344,9 +344,9 @@ export default function DashboardPage() {
       <div className="flex justify-center">
         <button
           onClick={() => setShowRoastModal(true)}
-          className="rounded-lg border-3 border-neon-red px-8 py-3 font-display text-sm text-neon-red transition-opacity hover:opacity-80"
+          className="cursor-pointer rounded-lg border-3 border-neon-red px-8 py-3 font-display text-sm text-neon-red transition-opacity hover:opacity-80"
         >
-          🔥 ROAST MY WALLET
+          ROAST MY WALLET
         </button>
       </div>
 
@@ -354,7 +354,7 @@ export default function DashboardPage() {
       <div className="flex justify-center">
         <button
           onClick={() => setShowFlexModal(true)}
-          className="rounded-lg border-3 border-neon-purple px-8 py-3 font-display text-sm text-neon-purple transition-opacity hover:opacity-80"
+          className="cursor-pointer rounded-lg border-3 border-neon-purple px-8 py-3 font-display text-sm text-neon-purple transition-opacity hover:opacity-80"
         >
           SHARE YOUR WALLET
         </button>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Crown } from "lucide-react";
 import type { CardROI } from "@/lib/supabase/types";
 import { analyzePortfolioGaps, isPortfolioWellRounded, type Recommendation } from "@/lib/recommendations";
 import { formatCurrency } from "@/lib/benefits/roi";
@@ -31,8 +32,8 @@ export default function RecommendationList({ cardROIs }: RecommendationListProps
 
       {wellRounded ? (
         <div className="rounded-lg border-2 border-neon-green bg-[#1A1A1A] px-5 py-4">
-          <span className="text-sm text-text-secondary">
-            your portfolio is well-rounded 👑 — no obvious gaps.
+          <span className="flex items-center gap-1 text-sm text-text-secondary">
+            your portfolio is well-rounded <Crown className="inline h-4 w-4 text-neon-gold" /> — no obvious gaps.
           </span>
         </div>
       ) : (

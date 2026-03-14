@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Flame, Crown } from "lucide-react";
 import type { BenefitWithCard, BenefitUsage } from "@/lib/supabase/types";
 import { getStreak, setStreak } from "@/lib/storage";
 import { formatCurrency } from "@/lib/benefits/roi";
@@ -10,20 +11,20 @@ interface StreakCounterProps {
   usage: BenefitUsage[];
 }
 
-function getFireEmojis(streak: number): string {
-  if (streak >= 6) return "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25";
-  if (streak >= 3) return "\uD83D\uDD25\uD83D\uDD25";
-  if (streak >= 1) return "\uD83D\uDD25";
-  return "";
+function getFlameCount(streak: number): number {
+  if (streak >= 6) return 3;
+  if (streak >= 3) return 2;
+  if (streak >= 1) return 1;
+  return 0;
 }
 
 function getMilestoneMessage(streak: number, savedAmount?: number): string | null {
   if (streak === 1) return "you used your monthly perks. nice start.";
-  if (streak === 3) return "3 months straight. you're building a habit. \uD83D\uDD25";
+  if (streak === 3) return "3 months straight. you're building a habit.";
   if (streak === 6) return "half a year of not wasting money. that's rare.";
   if (streak === 12) {
     const saved = savedAmount ? ` you've saved ${formatCurrency(savedAmount)} by not being lazy.` : "";
-    return `a full year.${saved} \uD83D\uDC51`;
+    return `a full year.${saved}`;
   }
   return null;
 }
@@ -83,7 +84,7 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
   if (!mounted) return null;
 
   const milestone = getMilestoneMessage(streakCount);
-  const fires = getFireEmojis(streakCount);
+  const flameCount = getFlameCount(streakCount);
 
   if (streakCount === 0) {
     return (
@@ -97,7 +98,11 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
 
   return (
     <div className="flex items-center gap-4 rounded-lg border-2 border-[#2A3040] bg-bg-card-neo px-5 py-4">
-      <span className="text-2xl">{fires}</span>
+      <span className="flex gap-0.5 text-neon-red">
+        {Array.from({ length: flameCount }).map((_, i) => (
+          <Flame key={i} className="h-6 w-6" />
+        ))}
+      </span>
       <div>
         <span className="animate-streak-pulse inline-block font-mono-data text-2xl font-bold text-neon-green">
           {streakCount}
@@ -106,7 +111,10 @@ export default function StreakCounter({ benefits, usage }: StreakCounterProps) {
           month{streakCount !== 1 ? "s" : ""} streak
         </span>
         {milestone && (
-          <p className="mt-1 text-sm text-text-secondary">{milestone}</p>
+          <p className="mt-1 flex items-center gap-1 text-sm text-text-secondary">
+            {milestone}
+            {streakCount >= 12 && <Crown className="inline h-4 w-4 text-neon-gold" />}
+          </p>
         )}
       </div>
     </div>

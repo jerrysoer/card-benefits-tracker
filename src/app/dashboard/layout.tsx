@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Clock } from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -14,20 +15,7 @@ export default function DashboardLayout({
               href="/"
               className="flex items-center gap-2"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-accent"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
+              <Clock className="h-5 w-5 text-accent" />
               <span className="text-sm font-bold tracking-tight text-text-primary">
                 CardClock
               </span>

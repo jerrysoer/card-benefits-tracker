@@ -63,7 +63,7 @@ export default function BurnRate() {
               setFormProgram(activePrograms[0].code);
             }
           }}
-          className="text-xs text-neon-blue transition-opacity hover:opacity-80"
+          className="cursor-pointer text-xs text-neon-blue transition-opacity hover:opacity-80"
         >
           {showForm ? "CANCEL" : "LOG REDEMPTION"}
         </button>
@@ -100,7 +100,7 @@ export default function BurnRate() {
             />
             <button
               onClick={handleLogRedemption}
-              className="rounded bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
+              className="cursor-pointer rounded bg-neon-blue px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-80"
             >
               Log
             </button>

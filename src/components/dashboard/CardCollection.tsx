@@ -52,7 +52,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
         <h2 className="font-display text-sm text-text-secondary">YOUR COLLECTION</h2>
         <button
           onClick={() => setShowExport(!showExport)}
-          className="text-xs text-neon-gold transition-opacity hover:opacity-80"
+          className="cursor-pointer text-xs text-neon-gold transition-opacity hover:opacity-80"
         >
           {showExport ? "HIDE EXPORT" : "SHARE COLLECTION"}
         </button>
@@ -80,7 +80,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
           return (
             <div
               key={roi.card.id}
-              className="group relative overflow-hidden rounded-lg transition-transform hover:z-10 hover:scale-105"
+              className="group relative overflow-hidden rounded-lg transition-all hover:z-10 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20"
               style={{
                 width: "100%",
                 aspectRatio: "120/76",

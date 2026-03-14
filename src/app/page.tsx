@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Clock } from "lucide-react";
 
 const ISSUERS = [
   { name: "American Express", slug: "amex" },
@@ -13,21 +14,25 @@ const STEPS = [
     num: "01",
     title: "Add your cards",
     desc: "Select from 30+ premium cards with pre-loaded benefits. No bank login required.",
+    color: "#34D399",
   },
   {
     num: "02",
     title: "See every benefit as a countdown",
     desc: "Green when safe, amber when soon, red when urgent. Never miss a deadline.",
+    color: "#FBBF24",
   },
   {
     num: "03",
     title: "Mark credits as you use them",
     desc: "Full or partial tracking. Benefits auto-reset when their cycle rolls over.",
+    color: "#F87171",
   },
   {
     num: "04",
     title: "Know if your card is worth the fee",
     desc: "Per-card ROI gauge shows captured value vs. annual fee, instantly.",
+    color: "#60A5FA",
   },
 ];
 
@@ -38,7 +43,7 @@ export default function LandingPage() {
       <nav className="border-b border-border">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <ClockIcon />
+            <Clock className="h-6 w-6 text-accent" />
             <span className="text-lg font-bold tracking-tight text-text-primary">
               CardClock
             </span>
@@ -54,6 +59,9 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pb-20 pt-24 text-center">
+        <div className="mb-8 flex justify-center">
+          <HeroCountdownRing />
+        </div>
         <h1 className="text-5xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">
           Your benefits are ticking.
         </h1>
@@ -96,7 +104,10 @@ export default function LandingPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step) => (
               <div key={step.num} className="space-y-3">
-                <span className="font-mono-data text-sm text-text-muted">
+                <span
+                  className="font-mono-data text-sm font-bold"
+                  style={{ color: step.color }}
+                >
                   {step.num}
                 </span>
                 <h3 className="text-base font-semibold text-text-primary">
@@ -179,22 +190,39 @@ export default function LandingPage() {
   );
 }
 
-function ClockIcon() {
+function HeroCountdownRing() {
+  const size = 80;
+  const strokeWidth = 4;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const progress = 0.25;
+  const offset = circumference * (1 - progress);
+
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-accent"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
+    <div className="relative flex items-center justify-center">
+      <svg width={size} height={size} className="-rotate-90">
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="#2A3040"
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="#F87171"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <span className="absolute font-mono-data text-xl font-bold text-red">3d</span>
+    </div>
   );
 }
 

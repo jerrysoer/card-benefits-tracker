@@ -84,13 +84,13 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
         <div className="flex gap-2">
           <button
             onClick={handleSave}
-            className="flex-1 rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black transition-opacity hover:opacity-80"
+            className="flex-1 cursor-pointer rounded bg-neon-blue px-2 py-1 text-xs font-bold text-black transition-opacity hover:opacity-80"
           >
             Save
           </button>
           <button
             onClick={() => setEditing(false)}
-            className="flex-1 rounded border border-[#2A3040] px-2 py-1 text-xs text-text-muted transition-colors hover:text-text-primary"
+            className="flex-1 cursor-pointer rounded border border-[#2A3040] px-2 py-1 text-xs text-text-muted transition-colors hover:text-text-primary"
           >
             Cancel
           </button>
@@ -106,7 +106,7 @@ export default function ProgramBlock({ program, balance, valuation, onUpdate }: 
         setEditCpp(String(valuation));
         setEditing(true);
       }}
-      className={`flex w-36 shrink-0 flex-col rounded-lg border-3 p-4 text-left transition-colors hover:bg-bg-card-hover-neo ${
+      className={`flex w-36 shrink-0 cursor-pointer flex-col rounded-lg border-3 p-4 text-left transition-colors hover:bg-bg-card-hover-neo ${
         isDimmed ? "opacity-40" : ""
       }`}
       style={{ borderColor: program.color, backgroundColor: "#1A1A1A" }}
