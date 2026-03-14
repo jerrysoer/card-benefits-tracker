@@ -117,7 +117,7 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
                 const { roi, grade, daysUntilRenewal, openDate } = entry;
                 const card = roi.card;
                 const downgrade = card.cc_downgrade_to;
-                const verdictInfo = getVerdictForDowngrade(grade.grade, card, downgrade);
+                const verdictInfo = getVerdictForDowngrade(grade.grade, card, downgrade, roi.totalCaptured);
                 const isUrgent = daysUntilRenewal <= 90 && openDate;
 
                 return (
