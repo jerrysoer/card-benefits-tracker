@@ -4,354 +4,112 @@ import type {
   UserCard,
   BenefitUsage,
   CardWithBenefits,
+  BenefitCategory,
 } from "@/lib/supabase/types";
+import cardsJson from "../../../data/cards.json";
 
 // Demo mode: provides sample data when Supabase is not configured
-// This allows the app to be fully functional for local development and review
+// Cards and benefits are loaded from data/cards.json (source of truth)
 
 const DEMO_USER_ID = "demo-user-00000000-0000-0000-0000-000000000000";
 
 const now = new Date().toISOString();
 
-export const DEMO_CARDS: Card[] = [
-  {
-    id: "card-amex-platinum",
-    cc_card_name: "American Express Platinum Card",
-    cc_issuer: "amex",
-    cc_annual_fee: 895,
-    cc_card_slug: "amex-platinum",
-    cc_logo_url: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "card-amex-gold",
-    cc_card_name: "American Express Gold Card",
-    cc_issuer: "amex",
-    cc_annual_fee: 325,
-    cc_card_slug: "amex-gold",
-    cc_logo_url: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "card-chase-sapphire-reserve",
-    cc_card_name: "Chase Sapphire Reserve",
-    cc_issuer: "chase",
-    cc_annual_fee: 550,
-    cc_card_slug: "chase-sapphire-reserve",
-    cc_logo_url: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "card-venture-x",
-    cc_card_name: "Capital One Venture X",
-    cc_issuer: "capital_one",
-    cc_annual_fee: 395,
-    cc_card_slug: "capital-one-venture-x",
-    cc_logo_url: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
+interface RawBenefit {
+  name: string;
+  value: number;
+  period: string;
+  period_count: number;
+  category: string;
+  reset_type: string;
+  merchant_notes?: string;
+  activation_required: boolean;
+  activation_notes?: string;
+}
+
+interface RawCard {
+  slug: string;
+  name: string;
+  issuer: string;
+  annual_fee: number;
+  benefits: RawBenefit[];
+}
+
+function buildCardsAndBenefits(): { cards: Card[]; benefits: Benefit[] } {
+  const cards: Card[] = [];
+  const benefits: Benefit[] = [];
+
+  for (const raw of (cardsJson as { cards: RawCard[] }).cards) {
+    const cardId = `card-${raw.slug}`;
+
+    cards.push({
+      id: cardId,
+      cc_card_name: raw.name,
+      cc_issuer: raw.issuer,
+      cc_annual_fee: raw.annual_fee,
+      cc_card_slug: raw.slug,
+      cc_logo_url: null,
+      cc_is_active: true,
+      created_at: now,
+      updated_at: now,
+    });
+
+    for (let i = 0; i < raw.benefits.length; i++) {
+      const b = raw.benefits[i];
+      benefits.push({
+        id: `ben-${raw.slug}-${i}`,
+        cc_card_id: cardId,
+        cc_benefit_name: b.name,
+        cc_benefit_value: b.value,
+        cc_benefit_period: b.period as Benefit["cc_benefit_period"],
+        cc_period_count: b.period_count,
+        cc_annual_total: b.value * b.period_count,
+        cc_reset_type: b.reset_type as Benefit["cc_reset_type"],
+        cc_category: b.category as BenefitCategory,
+        cc_merchant_notes: b.merchant_notes ?? null,
+        cc_activation_required: b.activation_required,
+        cc_activation_notes: b.activation_notes ?? null,
+        cc_is_active: true,
+        created_at: now,
+        updated_at: now,
+      });
+    }
+  }
+
+  return { cards, benefits };
+}
+
+const { cards: DEMO_CARDS, benefits: DEMO_BENEFITS } = buildCardsAndBenefits();
+
+export { DEMO_CARDS, DEMO_BENEFITS };
+
+// Demo portfolio uses a subset of cards for a realistic preview
+const DEMO_PORTFOLIO_SLUGS = [
+  "amex-platinum",
+  "amex-gold",
+  "chase-sapphire-reserve",
+  "capital-one-venture-x",
 ];
 
-export const DEMO_BENEFITS: Benefit[] = [
-  // Amex Platinum benefits
-  {
-    id: "ben-plat-uber",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Uber Cash",
-    cc_benefit_value: 15,
-    cc_benefit_period: "monthly",
-    cc_period_count: 12,
-    cc_annual_total: 200,
-    cc_reset_type: "calendar",
-    cc_category: "rideshare",
-    cc_merchant_notes: "Up to $15/mo ($35 in Dec). Add card to Uber account.",
-    cc_activation_required: false,
-    cc_activation_notes: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-plat-resy",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Resy Restaurant Credit",
-    cc_benefit_value: 100,
-    cc_benefit_period: "semi_annual",
-    cc_period_count: 2,
-    cc_annual_total: 200,
-    cc_reset_type: "calendar",
-    cc_category: "dining",
-    cc_merchant_notes: "U.S. Resy restaurants. No reservation required.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-plat-saks",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Saks Fifth Avenue Credit",
-    cc_benefit_value: 50,
-    cc_benefit_period: "semi_annual",
-    cc_period_count: 2,
-    cc_annual_total: 100,
-    cc_reset_type: "calendar",
-    cc_category: "shopping",
-    cc_merchant_notes: "Saks.com or in-store. Jan-Jun and Jul-Dec periods.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-plat-airline",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Airline Fee Credit",
-    cc_benefit_value: 200,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 200,
-    cc_reset_type: "calendar",
-    cc_category: "airline",
-    cc_merchant_notes: "Select one qualifying airline. Incidental fees only.",
-    cc_activation_required: true,
-    cc_activation_notes: "Select airline at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-plat-entertainment",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Digital Entertainment Credit",
-    cc_benefit_value: 20,
-    cc_benefit_period: "monthly",
-    cc_period_count: 12,
-    cc_annual_total: 240,
-    cc_reset_type: "calendar",
-    cc_category: "streaming",
-    cc_merchant_notes:
-      "Disney+, Hulu, ESPN+, The New York Times, and Peacock.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-plat-walmart",
-    cc_card_id: "card-amex-platinum",
-    cc_benefit_name: "Walmart+ Membership",
-    cc_benefit_value: 12.95,
-    cc_benefit_period: "monthly",
-    cc_period_count: 12,
-    cc_annual_total: 155.4,
-    cc_reset_type: "calendar",
-    cc_category: "shopping",
-    cc_merchant_notes: "Walmart+ membership credit.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  // Amex Gold benefits
-  {
-    id: "ben-gold-uber",
-    cc_card_id: "card-amex-gold",
-    cc_benefit_name: "Uber Cash",
-    cc_benefit_value: 10,
-    cc_benefit_period: "monthly",
-    cc_period_count: 12,
-    cc_annual_total: 120,
-    cc_reset_type: "calendar",
-    cc_category: "rideshare",
-    cc_merchant_notes: "Up to $10/mo. Uber Eats or Uber rides.",
-    cc_activation_required: false,
-    cc_activation_notes: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-gold-resy",
-    cc_card_id: "card-amex-gold",
-    cc_benefit_name: "Resy Restaurant Credit",
-    cc_benefit_value: 100,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 100,
-    cc_reset_type: "calendar",
-    cc_category: "dining",
-    cc_merchant_notes: "Book and dine through Resy.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-gold-dunkin",
-    cc_card_id: "card-amex-gold",
-    cc_benefit_name: "Dunkin' Credit",
-    cc_benefit_value: 7,
-    cc_benefit_period: "monthly",
-    cc_period_count: 12,
-    cc_annual_total: 84,
-    cc_reset_type: "calendar",
-    cc_category: "dining",
-    cc_merchant_notes: "Dunkin' purchases, statement credit.",
-    cc_activation_required: true,
-    cc_activation_notes: "Enroll at amex.com/benefits",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  // Chase Sapphire Reserve benefits
-  {
-    id: "ben-csr-travel",
-    cc_card_id: "card-chase-sapphire-reserve",
-    cc_benefit_name: "Travel Credit",
-    cc_benefit_value: 300,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 300,
-    cc_reset_type: "cardmember_anniversary",
-    cc_category: "travel",
-    cc_merchant_notes: "Automatic credit for travel purchases.",
-    cc_activation_required: false,
-    cc_activation_notes: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-csr-doordash",
-    cc_card_id: "card-chase-sapphire-reserve",
-    cc_benefit_name: "DoorDash Credits",
-    cc_benefit_value: 60,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 60,
-    cc_reset_type: "calendar",
-    cc_category: "dining",
-    cc_merchant_notes: "DashPass membership + credits.",
-    cc_activation_required: true,
-    cc_activation_notes: "Activate via DoorDash app",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-csr-instacart",
-    cc_card_id: "card-chase-sapphire-reserve",
-    cc_benefit_name: "Instacart+ Membership",
-    cc_benefit_value: 60,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 60,
-    cc_reset_type: "calendar",
-    cc_category: "shopping",
-    cc_merchant_notes: "Instacart+ membership credit.",
-    cc_activation_required: true,
-    cc_activation_notes: "Link card on Instacart",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  // Capital One Venture X benefits
-  {
-    id: "ben-vx-travel",
-    cc_card_id: "card-venture-x",
-    cc_benefit_name: "Travel Credit",
-    cc_benefit_value: 300,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 300,
-    cc_reset_type: "cardmember_anniversary",
-    cc_category: "travel",
-    cc_merchant_notes: "Capital One Travel portal bookings.",
-    cc_activation_required: false,
-    cc_activation_notes: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "ben-vx-anniversary",
-    cc_card_id: "card-venture-x",
-    cc_benefit_name: "Anniversary Bonus Miles",
-    cc_benefit_value: 100,
-    cc_benefit_period: "annual",
-    cc_period_count: 1,
-    cc_annual_total: 100,
-    cc_reset_type: "cardmember_anniversary",
-    cc_category: "travel",
-    cc_merchant_notes: "10,000 bonus miles (~$100 value) on anniversary.",
-    cc_activation_required: false,
-    cc_activation_notes: null,
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-];
-
-export const DEMO_USER_CARDS: UserCard[] = [
-  {
-    id: "uc-plat",
+export const DEMO_USER_CARDS: UserCard[] = DEMO_PORTFOLIO_SLUGS.map(
+  (slug, i) => ({
+    id: `uc-${slug}`,
     user_id: DEMO_USER_ID,
-    cc_card_id: "card-amex-platinum",
-    cc_card_open_date: "2023-03-15",
+    cc_card_id: `card-${slug}`,
+    cc_card_open_date: ["2023-03-15", "2024-01-10", "2022-06-01", "2024-08-20"][i],
     cc_is_active: true,
     created_at: now,
     updated_at: now,
-  },
-  {
-    id: "uc-gold",
-    user_id: DEMO_USER_ID,
-    cc_card_id: "card-amex-gold",
-    cc_card_open_date: "2024-01-10",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "uc-csr",
-    user_id: DEMO_USER_ID,
-    cc_card_id: "card-chase-sapphire-reserve",
-    cc_card_open_date: "2022-06-01",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-  {
-    id: "uc-vx",
-    user_id: DEMO_USER_ID,
-    cc_card_id: "card-venture-x",
-    cc_card_open_date: "2024-08-20",
-    cc_is_active: true,
-    created_at: now,
-    updated_at: now,
-  },
-];
+  })
+);
 
 // Pre-mark some benefits as used for realistic demo
 export const DEMO_USAGE: BenefitUsage[] = [
   {
     id: "usage-1",
     user_id: DEMO_USER_ID,
-    cc_benefit_id: "ben-plat-uber",
-    cc_user_card_id: "uc-plat",
+    cc_benefit_id: findBenefitId("amex-platinum", "Uber Cash"),
+    cc_user_card_id: "uc-amex-platinum",
     cc_period_start: getMonthStart().toISOString().split("T")[0],
     cc_period_end: getMonthEnd().toISOString().split("T")[0],
     cc_amount_used: 15,
@@ -363,8 +121,8 @@ export const DEMO_USAGE: BenefitUsage[] = [
   {
     id: "usage-2",
     user_id: DEMO_USER_ID,
-    cc_benefit_id: "ben-gold-uber",
-    cc_user_card_id: "uc-gold",
+    cc_benefit_id: findBenefitId("amex-gold", "Uber Cash"),
+    cc_user_card_id: "uc-amex-gold",
     cc_period_start: getMonthStart().toISOString().split("T")[0],
     cc_period_end: getMonthEnd().toISOString().split("T")[0],
     cc_amount_used: 10,
@@ -374,6 +132,14 @@ export const DEMO_USAGE: BenefitUsage[] = [
     updated_at: now,
   },
 ];
+
+function findBenefitId(cardSlug: string, benefitName: string): string {
+  const benefit = DEMO_BENEFITS.find(
+    (b) =>
+      b.cc_card_id === `card-${cardSlug}` && b.cc_benefit_name === benefitName
+  );
+  return benefit?.id ?? `ben-${cardSlug}-unknown`;
+}
 
 function getMonthStart(): Date {
   const d = new Date();
