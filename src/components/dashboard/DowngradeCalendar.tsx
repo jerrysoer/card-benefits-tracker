@@ -216,7 +216,7 @@ export default function DowngradeCalendar({ cardROIs, benefits }: DowngradeCalen
       {decisionsIn90 > 0 && (
         <div className="mt-4 rounded-lg border-2 border-neon-yellow bg-bg-card-neo px-4 py-3">
           <span className="font-mono-data text-sm font-bold text-neon-yellow">
-            \uD83D\uDCCD {decisionsIn90} decision{decisionsIn90 !== 1 ? "s" : ""} in the next 90 days
+            📍 {decisionsIn90} decision{decisionsIn90 !== 1 ? "s" : ""} in the next 90 days
           </span>
         </div>
       )}

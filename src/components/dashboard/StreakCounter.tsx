@@ -11,19 +11,19 @@ interface StreakCounterProps {
 }
 
 function getFireEmojis(streak: number): string {
-  if (streak >= 6) return "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25";
-  if (streak >= 3) return "\uD83D\uDD25\uD83D\uDD25";
-  if (streak >= 1) return "\uD83D\uDD25";
+  if (streak >= 6) return "🔥🔥🔥";
+  if (streak >= 3) return "🔥🔥";
+  if (streak >= 1) return "🔥";
   return "";
 }
 
 function getMilestoneMessage(streak: number, savedAmount?: number): string | null {
   if (streak === 1) return "you used your monthly perks. nice start.";
-  if (streak === 3) return "3 months straight. you're building a habit. \uD83D\uDD25";
+  if (streak === 3) return "3 months straight. you're building a habit. 🔥";
   if (streak === 6) return "half a year of not wasting money. that's rare.";
   if (streak === 12) {
     const saved = savedAmount ? ` you've saved ${formatCurrency(savedAmount)} by not being lazy.` : "";
-    return `a full year.${saved} \uD83D\uDC51`;
+    return `a full year.${saved} 👑`;
   }
   return null;
 }
