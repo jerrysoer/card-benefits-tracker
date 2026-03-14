@@ -96,7 +96,7 @@ export default function PointsPortfolio({ cardROIs, benefits }: PointsPortfolioP
   const isPositive = walletValue >= 0;
 
   return (
-    <div className="rounded-xl border-3 border-[#2A3040] bg-bg-black p-6">
+    <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-card">
       {/* Hero value */}
       <div className="mb-6">
         <span className="font-display text-xs text-text-muted">
@@ -105,14 +105,14 @@ export default function PointsPortfolio({ cardROIs, benefits }: PointsPortfolioP
         <div className="mt-1 flex flex-wrap items-baseline gap-3 sm:gap-4">
           <span
             className="font-mono-data text-3xl font-bold sm:text-5xl"
-            style={{ color: isPositive ? "#39FF14" : "#FF3131" }}
+            style={{ color: isPositive ? "#10B981" : "#EF4444" }}
           >
             {isPositive ? "" : "-"}${Math.abs(displayValue).toLocaleString()}
           </span>
           {delta !== null && (
             <span
               className="font-mono-data text-sm font-bold"
-              style={{ color: delta >= 0 ? "#39FF14" : "#FF3131" }}
+              style={{ color: delta >= 0 ? "#10B981" : "#EF4444" }}
             >
               {delta >= 0 ? "\u25B2" : "\u25BC"} {delta >= 0 ? "+" : ""}{formatCurrency(delta)}
               <span className="ml-1 font-sans text-xs font-normal text-text-muted">
