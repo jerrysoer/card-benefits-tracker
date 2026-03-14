@@ -33,6 +33,7 @@ interface RawCard {
   issuer: string;
   annual_fee: number;
   benefits: RawBenefit[];
+  downgrade_to?: { name: string; fee: number };
 }
 
 function buildCardsAndBenefits(): { cards: Card[]; benefits: Benefit[] } {
@@ -50,6 +51,7 @@ function buildCardsAndBenefits(): { cards: Card[]; benefits: Benefit[] } {
       cc_card_slug: raw.slug,
       cc_logo_url: null,
       cc_is_active: true,
+      cc_downgrade_to: raw.downgrade_to ?? null,
       created_at: now,
       updated_at: now,
     });

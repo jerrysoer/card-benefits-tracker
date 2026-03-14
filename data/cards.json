@@ -120,7 +120,11 @@
           "merchant_notes": "$200 Fine Hotels + Resorts or The Hotel Collection prepaid credit on 2+ night stays booked via Amex Travel.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Green",
+        "fee": 150
+      }
     },
     {
       "slug": "amex-gold",
@@ -159,7 +163,11 @@
           "activation_required": true,
           "activation_notes": "Enroll through Amex Offers."
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Green",
+        "fee": 150
+      }
     },
     {
       "slug": "amex-business-platinum",
@@ -220,14 +228,22 @@
           "merchant_notes": "Statement credit covering CLEAR Plus membership ($189/yr). Pay with Business Platinum.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Business Gold",
+        "fee": 375
+      }
     },
     {
       "slug": "amex-business-gold",
       "name": "American Express Business Gold Card",
       "issuer": "amex",
       "annual_fee": 375,
-      "benefits": []
+      "benefits": [],
+      "downgrade_to": {
+        "name": "Amex Blue Business Plus",
+        "fee": 0
+      }
     },
     {
       "slug": "amex-hilton-aspire",
@@ -266,7 +282,11 @@
           "merchant_notes": "One free night reward upon card anniversary (up to 150K Hilton points value, estimated at ~$200).",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Hilton Surpass",
+        "fee": 150
+      }
     },
     {
       "slug": "amex-hilton-surpass",
@@ -284,7 +304,11 @@
           "merchant_notes": "One free night reward upon card anniversary after spending $15K in a calendar year (estimated ~$150 value).",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Hilton Honors",
+        "fee": 0
+      }
     },
     {
       "slug": "amex-marriott-bonvoy-brilliant",
@@ -322,7 +346,11 @@
           "merchant_notes": "Up to $25/mo in statement credits for dining at restaurants worldwide.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Marriott Bonvoy",
+        "fee": 0
+      }
     },
     {
       "slug": "amex-delta-reserve",
@@ -360,7 +388,11 @@
           "merchant_notes": "Up to $10/mo in rideshare credits for Uber and Lyft rides.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Delta Platinum",
+        "fee": 350
+      }
     },
     {
       "slug": "chase-sapphire-reserve",
@@ -421,7 +453,11 @@
           "merchant_notes": "Up to $60/year in Peloton membership statement credits ($5/mo equivalent).",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase Sapphire Preferred",
+        "fee": 95
+      }
     },
     {
       "slug": "chase-sapphire-preferred",
@@ -439,7 +475,11 @@
           "merchant_notes": "$50 annual hotel credit for stays booked through Chase Travel portal.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase Freedom Flex",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-freedom-flex",
@@ -465,7 +505,11 @@
       "name": "Chase Ink Business Preferred",
       "issuer": "chase",
       "annual_fee": 95,
-      "benefits": []
+      "benefits": [],
+      "downgrade_to": {
+        "name": "Chase Ink Business Cash",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-united-club-infinite",
@@ -493,7 +537,11 @@
           "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase United Explorer",
+        "fee": 0
+      }
     },
     {
       "slug": "capital-one-venture-x",
@@ -521,7 +569,11 @@
           "merchant_notes": "10,000 bonus miles on card anniversary (estimated ~$100 value at 1 cpp redemption through Capital One Travel).",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Capital One Venture",
+        "fee": 95
+      }
     },
     {
       "slug": "citi-strata-premier",
@@ -549,7 +601,11 @@
           "merchant_notes": "$100/year credit for eligible lifestyle or entertainment purchases.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Citi Double Cash",
+        "fee": 0
+      }
     },
     {
       "slug": "bilt-mastercard",
@@ -605,7 +661,11 @@
           "merchant_notes": "Up to $100/year in airport lounge access via LoungeBuddy (now AMEX lounge access via app).",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex EveryDay",
+        "fee": 0
+      }
     },
     {
       "slug": "amex-delta-platinum",
@@ -633,7 +693,11 @@
           "merchant_notes": "Up to $10/mo in rideshare credits for Uber and Lyft rides.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Amex Delta Gold",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-ihg-premier",
@@ -661,7 +725,11 @@
           "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase IHG Traveler",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-world-of-hyatt",
@@ -689,7 +757,11 @@
           "merchant_notes": "$50/year statement credit for Hyatt dining and drinking purchases.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase Freedom Flex",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-southwest-priority",
@@ -707,7 +779,11 @@
           "merchant_notes": "$75/year credit for Southwest Airlines purchases.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase Southwest Plus",
+        "fee": 69
+      }
     },
     {
       "slug": "chase-united-quest",
@@ -735,7 +811,11 @@
           "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase United Explorer",
+        "fee": 0
+      }
     },
     {
       "slug": "chase-marriott-bonvoy-boundless",
@@ -753,7 +833,11 @@
           "merchant_notes": "One free night award annually (up to 35K Marriott points, estimated ~$150 value). Awarded on card anniversary.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "Chase Freedom Flex",
+        "fee": 0
+      }
     },
     {
       "slug": "capital-one-savor-one",
@@ -767,14 +851,22 @@
       "name": "JetBlue Plus Card",
       "issuer": "barclays",
       "annual_fee": 99,
-      "benefits": []
+      "benefits": [],
+      "downgrade_to": {
+        "name": "Barclays JetBlue",
+        "fee": 0
+      }
     },
     {
       "slug": "citi-aadvantage-executive",
       "name": "Citi AAdvantage Executive World Elite Mastercard",
       "issuer": "citi",
       "annual_fee": 595,
-      "benefits": []
+      "benefits": [],
+      "downgrade_to": {
+        "name": "Citi AAdvantage Platinum",
+        "fee": 99
+      }
     },
     {
       "slug": "us-bank-altitude-reserve",
@@ -802,7 +894,11 @@
           "merchant_notes": "Up to $100 credit every 4 years for Global Entry or TSA PreCheck. Modeled as annual.",
           "activation_required": false
         }
-      ]
+      ],
+      "downgrade_to": {
+        "name": "US Bank Altitude Go",
+        "fee": 0
+      }
     }
   ]
 }
