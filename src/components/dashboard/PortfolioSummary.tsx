@@ -2,56 +2,32 @@
 
 import type { PortfolioSummary as PortfolioSummaryType } from "@/lib/supabase/types";
 import { formatCurrency } from "@/lib/benefits/roi";
-import { cn } from "@/lib/utils";
 
 interface PortfolioSummaryProps {
   summary: PortfolioSummaryType;
 }
 
-interface StatCardProps {
-  label: string;
-  value: string;
-  colorClass?: string;
-}
-
-function StatCard({ label, value, colorClass }: StatCardProps) {
-  return (
-    <div className="flex flex-col gap-1 px-4 py-3">
-      <span className="text-xs uppercase tracking-wide text-text-secondary">
-        {label}
-      </span>
-      <span
-        className={cn("font-mono-data text-lg font-semibold sm:text-xl", colorClass ?? "text-text-primary")}
-      >
-        {value}
-      </span>
-    </div>
-  );
-}
-
 export default function PortfolioSummary({ summary }: PortfolioSummaryProps) {
-  const roiColor = summary.netROI >= 0 ? "text-[#34D399]" : "text-[#F87171]";
+  const roiColor = summary.netROI >= 0 ? "text-[#10B981]" : "text-[#EF4444]";
 
   return (
-    <div className="grid grid-cols-2 gap-px rounded-lg border border-border bg-border sm:grid-cols-5 sm:gap-0 sm:bg-bg-card sm:divide-x sm:divide-border">
-      <div className="bg-bg-card rounded-tl-lg sm:rounded-none">
-        <StatCard label="Total Cards" value={String(summary.totalCards)} />
+    <div className="rounded-2xl bg-white p-6 shadow-card">
+      <div className="text-center">
+        <span className="font-outfit text-6xl font-black tracking-tight text-[#111] md:text-7xl">
+          {formatCurrency(summary.totalCaptured)}
+        </span>
+        <p className="mt-1 text-sm text-[#9CA3AF]">saved this period</p>
       </div>
-      <div className="bg-bg-card rounded-tr-lg sm:rounded-none">
-        <StatCard label="Annual Fees" value={formatCurrency(summary.totalAnnualFees)} />
-      </div>
-      <div className="bg-bg-card">
-        <StatCard label="Benefits Available" value={formatCurrency(summary.totalBenefitValue)} />
-      </div>
-      <div className="bg-bg-card">
-        <StatCard label="Value Captured" value={formatCurrency(summary.totalCaptured)} />
-      </div>
-      <div className="bg-bg-card col-span-2 rounded-b-lg sm:col-span-1 sm:rounded-none">
-        <StatCard
-          label="Net ROI"
-          value={(summary.netROI >= 0 ? "+" : "") + formatCurrency(summary.netROI)}
-          colorClass={roiColor}
-        />
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+        <span className="rounded-full bg-[#F3F4F6] px-3 py-1 text-xs font-medium text-[#6B7280]">
+          {summary.totalCards} Cards
+        </span>
+        <span className="rounded-full bg-[#F3F4F6] px-3 py-1 text-xs font-medium text-[#6B7280]">
+          {formatCurrency(summary.totalAnnualFees)} Fees
+        </span>
+        <span className={`rounded-full bg-[#F3F4F6] px-3 py-1 text-xs font-medium ${roiColor}`}>
+          {(summary.netROI >= 0 ? "+" : "") + formatCurrency(summary.netROI)} ROI
+        </span>
       </div>
     </div>
   );

@@ -88,7 +88,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-contrast transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {loading ? "Sending link..." : "Send magic link"}
       </button>

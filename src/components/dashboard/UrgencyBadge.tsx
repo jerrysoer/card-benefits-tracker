@@ -7,17 +7,17 @@ interface UrgencyBadgeProps {
 }
 
 const defaultLabels: Record<UrgencyState | "used", string> = {
-  green: "Safe",
+  green: "Chill",
   amber: "Soon",
-  red: "Urgent",
-  used: "Used",
+  red: "Expiring!",
+  used: "Done",
 };
 
 const urgencyStyles: Record<UrgencyState | "used", string> = {
-  green: "bg-[#34D399]/15 text-[#34D399]",
-  amber: "bg-[#FBBF24]/15 text-[#FBBF24]",
-  red: "bg-[#F87171]/15 text-[#F87171]",
-  used: "bg-[#525C6E]/15 text-[#525C6E]",
+  green: "bg-[#D1FAE5] text-[#10B981]",
+  amber: "bg-[#FEF3C7] text-[#F59E0B]",
+  red: "bg-[#FEE2E2] text-[#EF4444]",
+  used: "bg-[#F3F4F6] text-[#6B7280]",
 };
 
 export default function UrgencyBadge({ urgency, label }: UrgencyBadgeProps) {

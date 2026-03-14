@@ -37,7 +37,7 @@ export default function CountdownRing({
         cy={center}
         r={radius}
         fill="none"
-        stroke="#2A3040"
+        stroke="#E5E7EB"
         strokeWidth={strokeWidth}
       />
       {/* Progress ring */}

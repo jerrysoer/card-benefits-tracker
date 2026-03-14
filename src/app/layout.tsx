@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -28,7 +28,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
       </head>

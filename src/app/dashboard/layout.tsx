@@ -7,7 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="min-h-screen bg-bg-primary">
-      <nav className="border-b border-border">
+      <nav className="border-b border-border-soft bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-6">
             <Link
@@ -23,7 +23,7 @@ export default function DashboardLayout({
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-accent"
+                className="text-[#111]"
               >
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
@@ -32,41 +32,40 @@ export default function DashboardLayout({
                 CardClock
               </span>
             </Link>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <Link
                 href="/dashboard"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+                className="rounded-full bg-[#111] px-4 py-1.5 text-sm font-medium text-white transition-colors"
               >
                 Timeline
               </Link>
               <Link
                 href="/dashboard/cards"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
               >
                 Cards
               </Link>
               <Link
                 href="/dashboard/wallet"
-                className="rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-bg-elevated hover:opacity-80"
-                style={{ color: "#39FF14" }}
+                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
               >
                 Full Wallet
               </Link>
               <Link
                 href="/dashboard/flex"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-neon-purple transition-colors hover:bg-bg-elevated hover:opacity-80"
+                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
               >
                 Flex
               </Link>
               <Link
                 href="/dashboard/wrapped"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-neon-purple transition-colors hover:bg-bg-elevated hover:opacity-80"
+                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
               >
                 Wrapped
               </Link>
               <Link
                 href="/dashboard/settings"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
               >
                 Settings
               </Link>
@@ -88,8 +87,8 @@ function DemoBadge() {
   if (!isDemo) return null;
 
   return (
-    <span className="rounded-full bg-amber-bg px-3 py-1 text-xs font-medium text-amber">
-      Demo Mode
+    <span className="rounded-full bg-pastel-purple px-3 py-1 text-xs font-medium text-[#7C3AED]">
+      Playground
     </span>
   );
 }

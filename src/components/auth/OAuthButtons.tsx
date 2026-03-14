@@ -35,7 +35,7 @@ export default function OAuthButtons() {
       type="button"
       onClick={handleGitHub}
       disabled={loading}
-      className="flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm font-medium text-text-primary transition-colors hover:bg-bg-card disabled:opacity-50"
+      className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-bg-elevated px-4 py-3 text-sm font-medium text-text-primary transition-colors hover:bg-bg-card disabled:opacity-50"
     >
       <svg
         className="h-5 w-5"
