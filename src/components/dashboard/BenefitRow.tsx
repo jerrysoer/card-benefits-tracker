@@ -29,86 +29,82 @@ export default function BenefitRow({
   return (
     <div
       className={cn(
-        "animate-slide-up flex items-center gap-3 rounded-lg bg-bg-card border border-border px-4 py-3 transition-colors hover:bg-bg-elevated",
+        "animate-slide-up rounded-lg bg-bg-card border border-border px-4 py-3 transition-colors hover:bg-bg-elevated",
         isUsed && "opacity-60"
       )}
       style={{ animationDelay: `${index * 50}ms` }}
     >
-      {/* Urgency stripe */}
-      <div
-        className="w-[3px] self-stretch rounded-full shrink-0"
-        style={{ backgroundColor: getUrgencyColor(urgency) }}
-      />
+      {/* Top row: urgency stripe + ring + name + badge + value */}
+      <div className="flex items-center gap-3">
+        <div
+          className="w-[3px] self-stretch rounded-full shrink-0"
+          style={{ backgroundColor: getUrgencyColor(urgency) }}
+        />
 
-      {/* Countdown ring */}
-      <CountdownRing
-        daysRemaining={benefit.period.daysRemaining}
-        totalDays={totalDays}
-        urgency={urgency}
-      />
-
-      {/* Benefit info */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          <span className={cn("text-sm font-medium truncate", isUsed ? "text-text-muted line-through" : "text-text-primary")}>
-            {benefit.cc_benefit_name}
-          </span>
-          <UrgencyBadge urgency={urgency} />
+        <div className="hidden sm:block">
+          <CountdownRing
+            daysRemaining={benefit.period.daysRemaining}
+            totalDays={totalDays}
+            urgency={urgency}
+          />
         </div>
-        <div className="flex items-center gap-2 mt-0.5">
-          <span className="text-xs text-text-secondary truncate">
-            {benefit.card.cc_card_name}
-          </span>
-          <span className="text-xs text-text-muted">
-            {getCategoryLabel(benefit.cc_category)}
-          </span>
-          {benefit.cc_merchant_notes && (
-            <span className="text-xs text-text-muted truncate">
-              {benefit.cc_merchant_notes}
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <span className={cn("text-sm font-medium truncate", isUsed ? "text-text-muted line-through" : "text-text-primary")}>
+              {benefit.cc_benefit_name}
             </span>
-          )}
+            <UrgencyBadge urgency={urgency} />
+          </div>
+          <div className="flex items-center gap-1.5 mt-0.5">
+            <span className="text-xs text-text-secondary truncate">
+              {benefit.card.cc_card_name}
+            </span>
+            <span className="text-text-muted">&middot;</span>
+            <span className="text-xs text-text-muted shrink-0">
+              {getCategoryLabel(benefit.cc_category)}
+            </span>
+          </div>
+        </div>
+
+        <div className="text-right shrink-0">
+          <span className={cn("font-mono-data text-sm font-semibold", isUsed ? "text-text-muted" : "text-text-primary")}>
+            {formatCurrency(benefit.cc_benefit_value)}
+          </span>
+          <div className="text-xs text-text-muted">
+            {formatPeriodLabel(benefit.cc_benefit_period)}
+          </div>
         </div>
       </div>
 
-      {/* Value */}
-      <div className="text-right shrink-0">
-        <span className={cn("font-mono-data text-sm font-semibold", isUsed ? "text-text-muted" : "text-text-primary")}>
-          {formatCurrency(benefit.cc_benefit_value)}
-        </span>
-        <div className="text-xs text-text-muted">
-          {formatPeriodLabel(benefit.cc_benefit_period)}
-        </div>
-      </div>
-
-      {/* Days remaining */}
-      <div className="text-right shrink-0 w-24">
+      {/* Bottom row: days remaining + action (visible on all screens) */}
+      <div className="mt-2 flex items-center justify-between pl-2">
         <span className={cn("text-xs", isUsed ? "text-text-muted" : "text-text-secondary")}>
           {isUsed ? "Used" : formatDaysRemaining(benefit.period.daysRemaining)}
         </span>
-      </div>
 
-      {/* Mark Used button */}
-      <button
-        onClick={() => onMarkUsed(benefit.id)}
-        disabled={isUsed}
-        className={cn(
-          "shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
-          isUsed
-            ? "bg-bg-elevated text-text-muted cursor-not-allowed"
-            : "bg-bg-elevated text-text-secondary hover:bg-[#60A5FA]/15 hover:text-[#60A5FA] border border-border"
-        )}
-      >
-        {isUsed ? (
-          <span className="flex items-center gap-1">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            Done
-          </span>
-        ) : (
-          "Mark Used"
-        )}
-      </button>
+        <button
+          onClick={() => onMarkUsed(benefit.id)}
+          disabled={isUsed}
+          className={cn(
+            "shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+            isUsed
+              ? "bg-bg-elevated text-text-muted cursor-not-allowed"
+              : "bg-bg-elevated text-text-secondary hover:bg-[#60A5FA]/15 hover:text-[#60A5FA] border border-border"
+          )}
+        >
+          {isUsed ? (
+            <span className="flex items-center gap-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Done
+            </span>
+          ) : (
+            "Mark Used"
+          )}
+        </button>
+      </div>
     </div>
   );
 }
