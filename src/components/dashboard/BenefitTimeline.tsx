@@ -17,10 +17,10 @@ type PeriodFilter = "all" | "monthly" | "quarterly" | "semi_annual" | "annual";
 type SectionKey = "red" | "amber" | "green" | "used";
 
 const sectionConfig: Record<SectionKey, { label: string; color: string; dotColor: string }> = {
-  red: { label: "Expiring Soon", color: "text-[#EF4444]", dotColor: "bg-[#EF4444]" },
-  amber: { label: "Coming Up", color: "text-[#F59E0B]", dotColor: "bg-[#F59E0B]" },
-  green: { label: "No Rush", color: "text-[#10B981]", dotColor: "bg-[#10B981]" },
-  used: { label: "Completed", color: "text-text-muted", dotColor: "bg-[#9CA3AF]" },
+  red: { label: "Expiring Soon", color: "text-red", dotColor: "bg-red" },
+  amber: { label: "Coming Up", color: "text-amber", dotColor: "bg-amber" },
+  green: { label: "No Rush", color: "text-green", dotColor: "bg-green" },
+  used: { label: "Completed", color: "text-text-muted", dotColor: "bg-text-muted" },
 };
 
 function PillChip({
@@ -38,8 +38,8 @@ function PillChip({
       className={cn(
         "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors",
         active
-          ? "bg-[#111] text-white"
-          : "bg-[#F3F4F6] text-[#6B7280] hover:bg-[#E5E7EB]"
+          ? "bg-teal text-white"
+          : "border border-border bg-bg-card text-text-secondary hover:bg-bg-elevated"
       )}
     >
       {children}
@@ -176,7 +176,7 @@ export default function BenefitTimeline({
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-semibold text-text-primary">
+          <h2 className="font-serif-display text-lg text-text-primary">
             Your Benefits
           </h2>
           <span className="text-sm text-text-secondary">
@@ -187,17 +187,17 @@ export default function BenefitTimeline({
         {/* Urgency breakdown */}
         <div className="flex items-center gap-2 text-xs">
           {urgencyCounts.red > 0 && (
-            <span className="text-[#EF4444]">
+            <span className="text-red">
               {urgencyCounts.red} expiring
             </span>
           )}
           {urgencyCounts.amber > 0 && (
-            <span className="text-[#F59E0B]">
+            <span className="text-amber">
               {urgencyCounts.amber} soon
             </span>
           )}
           {urgencyCounts.green > 0 && (
-            <span className="text-[#10B981]">
+            <span className="text-green">
               {urgencyCounts.green} chill
             </span>
           )}
@@ -234,7 +234,7 @@ export default function BenefitTimeline({
               {opt.label}
             </PillChip>
           ))}
-          <span className="mx-1 self-center text-[#E5E7EB]">|</span>
+          <span className="mx-1 self-center text-border">|</span>
           {statusOptions.map((opt) => (
             <PillChip
               key={opt.value}
@@ -249,7 +249,7 @@ export default function BenefitTimeline({
 
       {/* Benefit sections */}
       {totalCount === 0 ? (
-        <div className="flex items-center justify-center rounded-2xl bg-white px-4 py-8 shadow-card">
+        <div className="flex items-center justify-center rounded-2xl bg-bg-card px-4 py-8 shadow-card">
           <span className="text-sm text-text-muted">
             No benefits match your filters.
           </span>
@@ -269,14 +269,14 @@ export default function BenefitTimeline({
                 {/* Section header */}
                 <button
                   onClick={() => toggleSection(key)}
-                  className="flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-card transition-colors hover:bg-[#F9FAFB]"
+                  className="flex items-center justify-between rounded-xl bg-bg-card px-4 py-3 shadow-card transition-colors hover:bg-bg-elevated"
                 >
                   <div className="flex items-center gap-2.5">
                     <span className={cn("h-2.5 w-2.5 rounded-full", config.dotColor)} />
                     <span className={cn("text-sm font-semibold", config.color)}>
                       {config.label}
                     </span>
-                    <span className="rounded-full bg-[#F3F4F6] px-2 py-0.5 text-xs font-medium text-[#6B7280]">
+                    <span className="rounded-full bg-bg-elevated px-2 py-0.5 text-xs font-medium text-text-secondary">
                       {items.length}
                     </span>
                   </div>

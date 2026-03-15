@@ -47,7 +47,7 @@ export default function CardPicker({
                   className={cn(
                     "flex flex-col gap-2 rounded-lg border p-4 text-left transition-all",
                     isActive
-                      ? "border-[#60A5FA] bg-[#60A5FA]/5"
+                      ? "border-gold bg-gold/5"
                       : "border-border bg-bg-card hover:bg-bg-elevated"
                   )}
                 >
@@ -61,7 +61,7 @@ export default function CardPicker({
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="#60A5FA"
+                        stroke="var(--color-gold)"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"

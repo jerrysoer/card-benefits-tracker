@@ -6,66 +6,52 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-bg-primary">
-      <nav className="border-b border-border-soft bg-white">
+    <div className="min-h-screen bg-bg-primary bg-vignette">
+      <nav className="border-b border-border-soft bg-bg-primary">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-6">
             <Link
               href="/"
               className="flex items-center gap-2"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-[#111]"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span className="text-sm font-bold tracking-tight text-text-primary">
+              <span className="font-playfair text-lg font-bold tracking-tight text-text-primary">
                 CardClock
               </span>
             </Link>
             <div className="flex items-center gap-2">
               <Link
                 href="/dashboard"
-                className="rounded-full bg-[#111] px-4 py-1.5 text-sm font-medium text-white transition-colors"
+                className="rounded-full bg-teal px-4 py-1.5 text-sm font-medium text-white transition-colors"
               >
                 Timeline
               </Link>
               <Link
                 href="/dashboard/cards"
-                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                className="rounded-full border border-border bg-bg-card px-4 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
               >
                 Cards
               </Link>
               <Link
                 href="/dashboard/wallet"
-                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                className="rounded-full border border-border bg-bg-card px-4 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
               >
                 Full Wallet
               </Link>
               <Link
                 href="/dashboard/flex"
-                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                className="rounded-full border border-border bg-bg-card px-4 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
               >
                 Flex
               </Link>
               <Link
                 href="/dashboard/wrapped"
-                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                className="rounded-full border border-border bg-bg-card px-4 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
               >
                 Wrapped
               </Link>
               <Link
                 href="/dashboard/settings"
-                className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                className="rounded-full border border-border bg-bg-card px-4 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
               >
                 Settings
               </Link>
@@ -87,7 +73,7 @@ function DemoBadge() {
   if (!isDemo) return null;
 
   return (
-    <span className="rounded-full bg-pastel-purple px-3 py-1 text-xs font-medium text-[#7C3AED]">
+    <span className="rounded-full bg-bg-elevated px-3 py-1 text-xs font-medium text-teal">
       Playground
     </span>
   );
