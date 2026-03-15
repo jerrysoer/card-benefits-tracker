@@ -35,7 +35,7 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
     });
 
     const walletScoreColor =
-      walletScore >= 75 ? "#39FF14" : walletScore >= 50 ? "#FFE600" : "#FF3131";
+      walletScore >= 75 ? "#6B8F71" : walletScore >= 50 ? "#C8963E" : "#C4717A";
 
     return (
       <div
@@ -52,14 +52,14 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
             height: `${height}px`,
             transform: `scale(${scale})`,
             transformOrigin: "top left",
-            backgroundColor: "#0A0A0A",
-            border: "4px solid #39FF14",
+            backgroundColor: "#2C2620",
+            border: "4px solid #2A7C6F",
             borderRadius: "24px",
             padding: "60px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Playfair Display', serif",
           }}
         >
           {/* Header */}
@@ -69,13 +69,13 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
                 fontSize: "28px",
                 fontWeight: 700,
                 letterSpacing: "0.15em",
-                color: "#39FF14",
+                color: "#2A7C6F",
                 marginBottom: "8px",
               }}
             >
               CARDCLOCK FULL WALLET
             </div>
-            <div style={{ fontSize: "18px", color: "#8B95A8" }}>
+            <div style={{ fontSize: "18px", color: "#A89C8E" }}>
               {monthLabel}
             </div>
           </div>
@@ -104,7 +104,7 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
                 style={{
                   fontSize: "16px",
                   letterSpacing: "0.1em",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   marginTop: "8px",
                 }}
               >
@@ -126,7 +126,7 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
                 style={{
                   fontSize: "16px",
                   letterSpacing: "0.1em",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   marginTop: "8px",
                 }}
               >
@@ -160,20 +160,20 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
             {netWorth !== null && (
               <div
                 style={{
-                  backgroundColor: "#141414",
+                  backgroundColor: "#3D352D",
                   borderRadius: "16px",
                   padding: "24px",
-                  border: "1px solid #2A3040",
+                  border: "1px solid #4A3F35",
                 }}
               >
-                <div style={{ fontSize: "14px", color: "#8B95A8", marginBottom: "8px" }}>
+                <div style={{ fontSize: "14px", color: "#A89C8E", marginBottom: "8px" }}>
                   NET WORTH
                 </div>
                 <div
                   style={{
                     fontSize: "36px",
                     fontWeight: 700,
-                    color: netWorth >= 0 ? "#34D399" : "#F87171",
+                    color: netWorth >= 0 ? "#6B8F71" : "#C4717A",
                   }}
                 >
                   {netWorth < 0 ? "-" : ""}$
@@ -184,16 +184,16 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
             {subscriptionBurn > 0 && (
               <div
                 style={{
-                  backgroundColor: "#141414",
+                  backgroundColor: "#3D352D",
                   borderRadius: "16px",
                   padding: "24px",
-                  border: "1px solid #2A3040",
+                  border: "1px solid #4A3F35",
                 }}
               >
-                <div style={{ fontSize: "14px", color: "#8B95A8", marginBottom: "8px" }}>
+                <div style={{ fontSize: "14px", color: "#A89C8E", marginBottom: "8px" }}>
                   SUBSCRIPTIONS
                 </div>
-                <div style={{ fontSize: "36px", fontWeight: 700, color: "#FBBF24" }}>
+                <div style={{ fontSize: "36px", fontWeight: 700, color: "#C8963E" }}>
                   ${subscriptionBurn.toFixed(0)}/mo
                 </div>
               </div>
@@ -201,17 +201,17 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
             {savingsRate > 0 && (
               <div
                 style={{
-                  backgroundColor: "#141414",
+                  backgroundColor: "#3D352D",
                   borderRadius: "16px",
                   padding: "24px",
-                  border: "1px solid #2A3040",
+                  border: "1px solid #4A3F35",
                   gridColumn: netWorth !== null && subscriptionBurn > 0 ? "1 / -1" : undefined,
                 }}
               >
-                <div style={{ fontSize: "14px", color: "#8B95A8", marginBottom: "8px" }}>
+                <div style={{ fontSize: "14px", color: "#A89C8E", marginBottom: "8px" }}>
                   SAVINGS RATE
                 </div>
-                <div style={{ fontSize: "36px", fontWeight: 700, color: "#34D399" }}>
+                <div style={{ fontSize: "36px", fontWeight: 700, color: "#6B8F71" }}>
                   ${Math.round(savingsRate).toLocaleString()}/mo
                 </div>
               </div>
@@ -223,7 +223,7 @@ const FullWalletFlexCard = forwardRef<HTMLDivElement, FullWalletFlexCardProps>(
             style={{
               textAlign: "center",
               fontSize: "14px",
-              color: "#525C6E",
+              color: "#7A6E60",
               marginTop: "auto",
               paddingTop: "40px",
               letterSpacing: "0.1em",

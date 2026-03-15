@@ -134,11 +134,11 @@ export default function WrappedHistoryPage() {
               <Link
                 key={monthKey}
                 href={`/dashboard/wrapped/${monthKey}`}
-                className="flex items-center justify-between rounded-lg border border-border bg-bg-card p-4 transition-colors hover:border-neon-purple hover:bg-bg-elevated"
+                className="flex items-center justify-between rounded-lg border border-border bg-bg-card p-4 transition-colors hover:border-[#7A3B42] hover:bg-bg-elevated"
               >
                 <div className="flex items-center gap-3">
                   {isNew && (
-                    <span className="rounded-full bg-neon-purple px-2 py-0.5 text-[10px] font-bold text-white">
+                    <span className="rounded-full bg-[#7A3B42] px-2 py-0.5 text-[10px] font-bold text-white">
                       NEW
                     </span>
                   )}

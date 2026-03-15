@@ -39,17 +39,16 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Nav */}
-      <nav className="border-b border-border-soft bg-white">
+      <nav className="border-b border-border-soft bg-bg-primary">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <ClockIcon />
-            <span className="font-outfit text-lg font-bold tracking-tight text-[#111]">
+            <span className="font-playfair text-lg font-bold tracking-tight text-text-primary">
               CardClock
             </span>
           </div>
           <Link
             href="/login"
-            className="rounded-full bg-[#F3F4F6] px-4 py-2 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+            className="rounded-full border border-border bg-bg-card px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
           >
             Sign In
           </Link>
@@ -58,18 +57,18 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pb-20 pt-24 text-center">
-        <h1 className="font-outfit text-5xl font-black leading-tight tracking-tight text-[#111] md:text-6xl">
+        <h1 className="font-playfair text-5xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">
           Stop leaving money on the table.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary">
           The average premium cardholder wastes{" "}
-          <span className="font-mono-data font-semibold text-[#111]">$624/year</span>{" "}
+          <span className="font-mono-data font-semibold text-text-primary">$624/year</span>{" "}
           in unused credits. CardClock tracks every deadline so you don&apos;t.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/login"
-            className="rounded-full bg-[#111] px-8 py-4 text-lg font-semibold text-white transition-transform active:scale-[0.97]"
+            className="rounded-full bg-teal px-8 py-4 text-lg font-semibold text-white transition-transform active:scale-[0.97]"
           >
             Let&apos;s go
           </Link>
@@ -77,24 +76,24 @@ export default function LandingPage() {
             href="https://github.com/jerrysoer/cardclock"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-[#F3F4F6] px-8 py-4 text-lg font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+            className="rounded-full border border-border bg-bg-card px-8 py-4 text-lg font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
           >
             View on GitHub
           </a>
         </div>
 
         {/* Dashboard Preview */}
-        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl bg-white p-1 shadow-card">
-          <div className="rounded-xl bg-[#FAFAFA] p-6">
+        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl bg-bg-card p-1 shadow-card">
+          <div className="rounded-xl bg-bg-primary p-6">
             <DashboardPreview />
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="bg-white">
+      <section className="bg-bg-card">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 className="text-center text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
+          <h2 className="text-center font-display text-xs text-text-secondary">
             How It Works
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -103,7 +102,7 @@ export default function LandingPage() {
                 <span className="font-mono-data text-sm text-text-muted">
                   {step.num}
                 </span>
-                <h3 className="text-base font-semibold text-[#111]">
+                <h3 className="text-base font-semibold text-text-primary">
                   {step.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-text-secondary">
@@ -118,14 +117,14 @@ export default function LandingPage() {
       {/* Supported Cards */}
       <section>
         <div className="mx-auto max-w-5xl px-6 py-16 text-center">
-          <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
+          <h2 className="font-display text-xs text-text-secondary">
             Supported Cards
           </h2>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             {ISSUERS.map((issuer) => (
               <span
                 key={issuer.slug}
-                className="rounded-full bg-[#F3F4F6] px-5 py-2.5 text-sm font-medium text-[#6B7280]"
+                className="rounded-full border border-border bg-bg-card px-5 py-2.5 text-sm font-medium text-text-secondary"
               >
                 {issuer.name}
               </span>
@@ -136,9 +135,9 @@ export default function LandingPage() {
       </section>
 
       {/* Deploy Your Own */}
-      <section className="bg-white">
+      <section className="bg-bg-card">
         <div className="mx-auto max-w-5xl px-6 py-16 text-center">
-          <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
+          <h2 className="font-display text-xs text-text-secondary">
             Deploy Your Own
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-text-secondary">
@@ -150,7 +149,7 @@ export default function LandingPage() {
               href="https://vercel.com/new/clone?repository-url=https://github.com/jerrysoer/cardclock"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#111] px-6 py-2.5 text-sm font-semibold text-white transition-transform active:scale-[0.97]"
+              className="rounded-full bg-teal px-6 py-2.5 text-sm font-semibold text-white transition-transform active:scale-[0.97]"
             >
               Deploy to Vercel
             </a>
@@ -158,7 +157,7 @@ export default function LandingPage() {
               href="https://github.com/jerrysoer/cardclock"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#F3F4F6] px-6 py-2.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+              className="rounded-full border border-border bg-bg-card px-6 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-elevated"
             >
               GitHub
             </a>
@@ -180,25 +179,6 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-[#111]"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
   );
 }
 
@@ -242,15 +222,15 @@ function DashboardPreview() {
   ];
 
   const bgColors = {
-    red: "bg-[#FEE2E2]",
-    amber: "bg-[#FEF3C7]",
-    green: "bg-[#D1FAE5]",
+    red: "bg-red-bg",
+    amber: "bg-amber-bg",
+    green: "bg-green-bg",
   };
 
   const textColors = {
-    red: "text-[#EF4444]",
-    amber: "text-[#F59E0B]",
-    green: "text-[#10B981]",
+    red: "text-red",
+    amber: "text-amber",
+    green: "text-green",
   };
 
   const badgeLabels = {
@@ -268,14 +248,14 @@ function DashboardPreview() {
         >
           <div className="flex items-center gap-3">
             <div>
-              <div className="text-sm font-medium text-[#111]">
+              <div className="text-sm font-medium text-text-primary">
                 {item.name}
               </div>
               <div className="text-xs text-text-secondary">{item.card}</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-mono-data text-sm font-semibold text-[#111]">
+            <span className="font-mono-data text-sm font-semibold text-text-primary">
               {item.value}
             </span>
             <span

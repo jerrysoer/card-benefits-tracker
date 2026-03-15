@@ -22,7 +22,7 @@ import {
   type YearInReviewData,
 } from "@/lib/wrapped/queries";
 
-const ACCENT_COLOR = "#FFD700";
+const ACCENT_COLOR = "#C8963E";
 
 export default function YearInReviewPage() {
   const [data, setData] = useState<YearInReviewData | null>(null);

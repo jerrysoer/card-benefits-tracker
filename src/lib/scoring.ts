@@ -1,10 +1,10 @@
 import type { Card, BenefitWithCard, BenefitUsage, GradeResult } from "@/lib/supabase/types";
 import { formatCurrency } from "@/lib/benefits/roi";
 
-const NEON_GREEN = "#39FF14";
-const NEON_YELLOW = "#FFE600";
-const NEON_RED = "#FF3131";
-const NEON_BLUE = "#00D4FF";
+const NEON_GREEN = "#6B8F71";
+const NEON_YELLOW = "#C8963E";
+const NEON_RED = "#C4717A";
+const NEON_BLUE = "#2A7C6F";
 
 export function calculateGrade(totalCaptured: number, annualFee: number): GradeResult {
   if (annualFee === 0) {

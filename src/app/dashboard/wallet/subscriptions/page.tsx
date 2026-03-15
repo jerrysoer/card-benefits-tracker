@@ -125,8 +125,8 @@ export default function SubscriptionsPage() {
 
       {/* Unused Callout */}
       {stats.unusedSubs.length > 0 && (
-        <div className="rounded-lg border border-[#F87171]/30 bg-[#F87171]/5 px-4 py-3">
-          <div className="mb-1 font-display text-xs tracking-wide text-[#F87171]">
+        <div className="rounded-lg border border-[#C4717A]/30 bg-[#C4717A]/5 px-4 py-3">
+          <div className="mb-1 font-display text-xs tracking-wide text-[#C4717A]">
             UNUSED THIS MONTH
           </div>
           <div className="mb-2 space-y-1">

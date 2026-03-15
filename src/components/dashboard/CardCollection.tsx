@@ -52,7 +52,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
         <h2 className="font-display text-sm text-text-secondary">YOUR COLLECTION</h2>
         <button
           onClick={() => setShowExport(!showExport)}
-          className="text-xs text-[#10B981] transition-opacity hover:opacity-80"
+          className="text-xs text-gold transition-opacity hover:opacity-80"
         >
           {showExport ? "HIDE EXPORT" : "SHARE COLLECTION"}
         </button>
@@ -66,7 +66,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
         <span className="text-text-muted">&middot;</span>
         <span className="font-mono-data font-bold text-text-primary">{formatCurrency(totalFees)} FEES</span>
         <span className="text-text-muted">&middot;</span>
-        <span className="font-mono-data font-bold text-[#10B981]">{formatCurrency(totalCaptured)} CAPTURED</span>
+        <span className="font-mono-data font-bold text-gold">{formatCurrency(totalCaptured)} CAPTURED</span>
         <span className="text-text-muted">&middot;</span>
         <span className="font-mono-data font-bold text-text-primary">AVG GRADE: {avgGradeLabel}</span>
       </div>
@@ -102,6 +102,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
                   backgroundColor: "#FFFFFF",
                   color: grade.color,
                   border: `1px solid ${grade.color}`,
+                  transform: "rotate(-2deg)",
                 }}
               >
                 {grade.grade}
@@ -136,7 +137,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
                   fontSize: "28px",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: "#666666",
+                  color: "#8A7E70",
                 }}
               >
                 CARDCLOCK
@@ -149,7 +150,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
                     fontSize: "20px",
                     letterSpacing: "0.05em",
                     textTransform: "uppercase",
-                    color: "#666666",
+                    color: "#8A7E70",
                     marginBottom: "24px",
                   }}
                 >
@@ -194,7 +195,7 @@ export default function CardCollection({ cardROIs }: CardCollectionProps) {
                   })}
                 </div>
               </div>
-              <div style={{ textAlign: "center", fontSize: "14px", color: "#888" }}>
+              <div style={{ textAlign: "center", fontSize: "14px", color: "#8A7E70" }}>
                 {cardROIs.length} CARDS &middot; {issuers.size} ISSUERS &middot; {formatCurrency(totalFees)} FEES &middot; {formatCurrency(totalCaptured)} CAPTURED &middot; AVG: {avgGradeLabel}
               </div>
             </ShareableCard>

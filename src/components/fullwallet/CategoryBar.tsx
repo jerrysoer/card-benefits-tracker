@@ -1,14 +1,14 @@
 "use client";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  streaming: "#BF5AF2",
-  fitness: "#FF6B6B",
-  food: "#FBBF24",
-  software: "#60A5FA",
-  news: "#34D399",
-  shopping: "#FF9F43",
-  finance: "#39FF14",
-  other: "#8B95A8",
+  streaming: "#7A3B42",
+  fitness: "#C4717A",
+  food: "#C8963E",
+  software: "#2A7C6F",
+  news: "#6B8F71",
+  shopping: "#D4983B",
+  finance: "#2A7C6F",
+  other: "#A89C8E",
 };
 
 interface CategoryBarProps {

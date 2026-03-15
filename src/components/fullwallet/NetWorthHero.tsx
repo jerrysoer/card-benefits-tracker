@@ -25,7 +25,7 @@ export default function NetWorthHero({
 }: NetWorthHeroProps) {
   const displayValue = useCountUp(Math.abs(netWorth), true, 800);
   const isNegative = netWorth < 0;
-  const color = isNegative ? "#F87171" : "#34D399";
+  const color = isNegative ? "#C4717A" : "#6B8F71";
 
   return (
     <div className="text-center">
@@ -40,7 +40,7 @@ export default function NetWorthHero({
       </div>
       {delta !== null && lastUpdateDate && (
         <div className="mt-1 text-sm text-text-secondary">
-          <span style={{ color: delta >= 0 ? "#34D399" : "#F87171" }}>
+          <span style={{ color: delta >= 0 ? "#6B8F71" : "#C4717A" }}>
             {delta >= 0 ? "▲" : "▼"} {formatDelta(delta)}
           </span>{" "}
           <span className="text-text-muted">

@@ -46,13 +46,13 @@ export default function SubscriptionSlide({
       >
         <div className="flex items-center justify-center gap-6">
           <div>
-            <p className="font-mono-data text-xl font-bold text-[#34D399]">
+            <p className="font-mono-data text-xl font-bold text-[#6B8F71]">
               {usedCount}
             </p>
             <p className="text-xs text-text-muted">Used</p>
           </div>
           <div>
-            <p className="font-mono-data text-xl font-bold text-[#F87171]">
+            <p className="font-mono-data text-xl font-bold text-[#C4717A]">
               {unusedCount}
             </p>
             <p className="text-xs text-text-muted">Unused</p>
@@ -62,10 +62,10 @@ export default function SubscriptionSlide({
 
       {data.topUnusedSub && (
         <div
-          className="animate-wrapped-enter rounded-lg bg-[#F87171]/10 px-4 py-3"
+          className="animate-wrapped-enter rounded-lg bg-[#C4717A]/10 px-4 py-3"
           style={{ animationDelay: "300ms" }}
         >
-          <p className="text-sm text-[#F87171]">
+          <p className="text-sm text-[#C4717A]">
             {data.topUnusedSub.name}: ${data.topUnusedSub.cost}/mo unused
           </p>
         </div>

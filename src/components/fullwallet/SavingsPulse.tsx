@@ -105,14 +105,13 @@ export default function SavingsPulse() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0"
-              className="w-full rounded-md border border-border bg-bg-elevated py-2 pl-7 pr-3 font-mono-data text-sm text-text-primary placeholder:text-text-muted focus:border-[#60A5FA] focus:outline-none"
+              className="w-full rounded-md border border-border bg-bg-elevated py-2 pl-7 pr-3 font-mono-data text-sm text-text-primary placeholder:text-text-muted focus:border-teal focus:outline-none"
             />
           </div>
         </div>
         <button
           onClick={handleSave}
-          className="rounded-md px-4 py-2 text-sm font-medium"
-          style={{ backgroundColor: "#39FF14", color: "#0C0F14" }}
+          className="rounded-md bg-teal px-4 py-2 text-sm font-medium text-white"
         >
           Save
         </button>
@@ -122,7 +121,7 @@ export default function SavingsPulse() {
       {nwSnapshots.length >= 2 && (
         <button
           onClick={handleCalculateFromNW}
-          className="text-xs text-[#60A5FA] hover:underline"
+          className="text-xs text-teal hover:underline"
         >
           Calculate from net worth changes
         </button>
@@ -153,7 +152,7 @@ export default function SavingsPulse() {
         <Sparkline
           data={sparkData}
           labels={sparkLabels}
-          color="#34D399"
+          color="#6B8F71"
           width={400}
           height={80}
           highlightMax

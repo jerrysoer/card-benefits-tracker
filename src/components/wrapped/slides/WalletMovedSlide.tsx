@@ -15,7 +15,7 @@ export default function WalletMovedSlide({
   animate,
 }: WalletMovedSlideProps) {
   const endValue = useCountUp(data.walletValueEnd, animate);
-  const deltaColor = data.walletDelta >= 0 ? "#34D399" : "#F87171";
+  const deltaColor = data.walletDelta >= 0 ? "#6B8F71" : "#C4717A";
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-8 text-center">

@@ -20,7 +20,7 @@ import {
   type MonthlyWrappedData,
 } from "@/lib/wrapped/queries";
 
-const ACCENT_COLOR = "#BF5AF2";
+const ACCENT_COLOR = "#7A3B42";
 
 interface WrappedClientProps {
   month: string;
@@ -97,7 +97,7 @@ export default function WrappedClient({ month }: WrappedClientProps) {
         <p className="text-text-secondary">{error}</p>
         <Link
           href="/dashboard/wrapped"
-          className="text-sm text-neon-purple hover:underline"
+          className="text-sm text-[#7A3B42] hover:underline"
         >
           ← Back to Wrapped history
         </Link>

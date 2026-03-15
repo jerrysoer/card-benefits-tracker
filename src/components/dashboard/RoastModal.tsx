@@ -41,7 +41,7 @@ export default function RoastModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="relative mx-4 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-lg">
+      <div className="relative mx-4 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-border bg-bg-card p-6 shadow-lg">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-text-muted hover:text-text-primary"
@@ -51,7 +51,7 @@ export default function RoastModal({
 
         <h2
           className="mb-6 text-center font-display text-lg"
-          style={{ color: "#EF4444" }}
+          style={{ color: "#7A3B42" }}
         >
           🔥 ROAST MY WALLET 🔥
         </h2>
@@ -63,7 +63,7 @@ export default function RoastModal({
             </p>
             <button
               onClick={handleRoast}
-              className="rounded-lg border-3 border-[#EF4444] px-6 py-3 font-display text-sm text-[#EF4444] transition-opacity hover:opacity-80"
+              className="rounded-lg border-3 border-[#7A3B42] px-6 py-3 font-display text-sm text-[#7A3B42] transition-opacity hover:opacity-80"
             >
               ROAST ME
             </button>
@@ -82,7 +82,7 @@ export default function RoastModal({
         {roastText && (
           <div className="animate-roast-reveal space-y-4">
             {/* Roast text display */}
-            <div className="rounded-lg border border-[#EF4444] bg-[#FEE2E2] p-4">
+            <div className="rounded-lg border border-[#C4717A] bg-[#F5E1E4] p-4">
               <p className="text-sm italic text-text-primary">&ldquo;{roastText}&rdquo;</p>
             </div>
 
@@ -91,7 +91,7 @@ export default function RoastModal({
               <button
                 onClick={handleRoast}
                 disabled={limited}
-                className="rounded-lg border-3 border-[#EF4444] px-4 py-2 font-display text-xs text-[#EF4444] transition-opacity hover:opacity-80 disabled:opacity-40"
+                className="rounded-lg border-3 border-[#7A3B42] px-4 py-2 font-display text-xs text-[#7A3B42] transition-opacity hover:opacity-80 disabled:opacity-40"
               >
                 {limited ? "LIMIT REACHED" : "ROAST AGAIN"}
               </button>
@@ -104,7 +104,7 @@ export default function RoastModal({
             )}
 
             {/* Shareable card */}
-            <div className="border-t border-[#E5E7EB] pt-4">
+            <div className="border-t border-border pt-4">
               <h3 className="mb-3 font-display text-xs text-text-secondary">SHARE YOUR ROAST</h3>
               <ShareActions
                 cardRef={cardRef}
@@ -121,7 +121,7 @@ export default function RoastModal({
                       fontSize: "28px",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "#FF3131",
+                      color: "#C4717A",
                       textAlign: "center",
                     }}
                   >
@@ -134,7 +134,7 @@ export default function RoastModal({
                         fontStyle: "italic",
                         fontSize: "18px",
                         fontWeight: 400,
-                        color: "#FAFAFA",
+                        color: "#F5EDE0",
                         textAlign: "center",
                         lineHeight: 1.6,
                       }}
@@ -148,12 +148,12 @@ export default function RoastModal({
                         fontFamily: "'JetBrains Mono', monospace",
                         fontWeight: 700,
                         fontSize: "48px",
-                        color: walletScore >= 80 ? "#39FF14" : walletScore >= 50 ? "#FFE600" : "#FF3131",
+                        color: walletScore >= 80 ? "#6B8F71" : walletScore >= 50 ? "#C8963E" : "#C4717A",
                       }}
                     >
                       {walletScore}
                     </span>
-                    <div style={{ fontSize: "14px", color: "#666", marginTop: "4px" }}>
+                    <div style={{ fontSize: "14px", color: "#8A7E70", marginTop: "4px" }}>
                       WALLET SCORE
                     </div>
                   </div>

@@ -41,7 +41,7 @@ export default function BestCardSlide({
       >
         <div
           className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl border-2"
-          style={{ borderColor: "#34D399" }}
+          style={{ borderColor: "#6B8F71" }}
         >
           <span className="font-mono-data text-2xl font-bold text-green">
             {data.bestCard.grade}

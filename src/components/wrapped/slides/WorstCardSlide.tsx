@@ -39,7 +39,7 @@ export default function WorstCardSlide({
       >
         <div
           className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl border-2"
-          style={{ borderColor: "#F87171" }}
+          style={{ borderColor: "#C4717A" }}
         >
           <span className="font-mono-data text-2xl font-bold text-red">
             {data.worstCard.grade}

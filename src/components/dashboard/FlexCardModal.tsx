@@ -42,7 +42,7 @@ export default function FlexCardModal({
     const innerCard = cardRef.current;
     const canvas = await html2canvas(innerCard, {
       scale: 1,
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "#2C2620",
       width: 1080,
       height: aspectRatio === "portrait" ? 1350 : 1080,
       windowWidth: 1080,
@@ -100,7 +100,7 @@ export default function FlexCardModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="mx-4 w-full max-w-lg rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-lg">
+      <div className="mx-4 w-full max-w-lg rounded-xl border border-border bg-bg-card p-6 shadow-lg">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-sm text-text-secondary">
             SHARE YOUR WALLET
@@ -118,8 +118,8 @@ export default function FlexCardModal({
             onClick={() => setAspectRatio("portrait")}
             className={`rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
               aspectRatio === "portrait"
-                ? "border-[#111] text-[#111]"
-                : "border-[#E5E7EB] text-text-muted hover:text-text-primary"
+                ? "border-[#2A7C6F] text-[#2A7C6F]"
+                : "border-border text-text-muted hover:text-text-primary"
             }`}
           >
             Portrait
@@ -128,8 +128,8 @@ export default function FlexCardModal({
             onClick={() => setAspectRatio("square")}
             className={`rounded border-2 px-3 py-1 text-xs font-bold transition-colors ${
               aspectRatio === "square"
-                ? "border-[#111] text-[#111]"
-                : "border-[#E5E7EB] text-text-muted hover:text-text-primary"
+                ? "border-[#2A7C6F] text-[#2A7C6F]"
+                : "border-border text-text-muted hover:text-text-primary"
             }`}
           >
             Square
@@ -155,14 +155,14 @@ export default function FlexCardModal({
           <button
             onClick={handleDownload}
             disabled={exporting}
-            className="flex-1 rounded-full border-2 border-[#111] bg-[#111] py-3 font-display text-xs text-white transition-opacity hover:opacity-80 disabled:opacity-50"
+            className="flex-1 rounded-full border-2 border-[#2A7C6F] bg-teal py-3 font-display text-xs text-white transition-opacity hover:opacity-80 disabled:opacity-50"
           >
             {exporting ? "Exporting..." : "Download PNG"}
           </button>
           <button
             onClick={handleCopy}
             disabled={exporting}
-            className="flex-1 rounded-full border-2 border-[#111] bg-transparent py-3 font-display text-xs text-[#111] transition-opacity hover:opacity-80 disabled:opacity-50"
+            className="flex-1 rounded-full border-2 border-[#2A7C6F] bg-transparent py-3 font-display text-xs text-[#2A7C6F] transition-opacity hover:opacity-80 disabled:opacity-50"
           >
             {exporting ? "Exporting..." : "Copy to Clipboard"}
           </button>

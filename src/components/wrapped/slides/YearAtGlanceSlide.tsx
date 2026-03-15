@@ -79,7 +79,7 @@ export default function YearAtGlanceSlide({
       >
         <p
           className="font-mono-data text-2xl font-bold"
-          style={{ color: netPositive ? "#34D399" : "#F87171" }}
+          style={{ color: netPositive ? "#6B8F71" : "#C4717A" }}
         >
           NET: {netPositive ? "+" : ""}${netRoi.toLocaleString()}
         </p>

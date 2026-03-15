@@ -47,8 +47,8 @@ export function getBadgesByTier(badges: BadgeDefinition[]): BadgeDefinition[] {
 export const TIER_COLORS: Record<string, { border: string; bg: string }> = {
   bronze: { border: "#CD7F32", bg: "rgba(205,127,50,0.1)" },
   silver: { border: "#C0C0C0", bg: "rgba(192,192,192,0.1)" },
-  gold: { border: "#FFD700", bg: "rgba(255,215,0,0.1)" },
-  platinum: { border: "#39FF14", bg: "rgba(57,255,20,0.1)" },
+  gold: { border: "#C8963E", bg: "rgba(200,150,62,0.1)" },
+  platinum: { border: "#2A7C6F", bg: "rgba(42,124,111,0.1)" },
 };
 
 function checkCondition(badge: BadgeDefinition, ctx: BadgeContext): boolean {

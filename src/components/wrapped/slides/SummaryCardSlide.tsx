@@ -28,7 +28,7 @@ export default function SummaryCardSlide({
           <div>
             <p
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Playfair Display', serif",
                 fontSize: "16px",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -39,11 +39,11 @@ export default function SummaryCardSlide({
             </p>
             <p
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Playfair Display', serif",
                 fontSize: "24px",
                 fontWeight: 700,
                 letterSpacing: "0.05em",
-                color: "#FAFAFA",
+                color: "#F5EDE0",
                 marginTop: "4px",
               }}
             >
@@ -65,12 +65,12 @@ export default function SummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "40px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 ${data.benefitsCapturedValue.toLocaleString()}
               </p>
-              <p style={{ fontSize: "14px", color: "#8B95A8" }}>CAPTURED</p>
+              <p style={{ fontSize: "14px", color: "#A89C8E" }}>CAPTURED</p>
             </div>
             <div style={{ textAlign: "right" }}>
               <p
@@ -78,12 +78,12 @@ export default function SummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "40px",
                   fontWeight: 700,
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                 }}
               >
                 ${data.benefitsWastedValue.toLocaleString()}
               </p>
-              <p style={{ fontSize: "14px", color: "#8B95A8" }}>WASTED</p>
+              <p style={{ fontSize: "14px", color: "#A89C8E" }}>WASTED</p>
             </div>
           </div>
 
@@ -94,7 +94,7 @@ export default function SummaryCardSlide({
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "28px",
                 fontWeight: 700,
-                color: data.captureRateDelta >= 0 ? "#34D399" : "#F87171",
+                color: data.captureRateDelta >= 0 ? "#6B8F71" : "#C4717A",
               }}
             >
               {Math.round(data.captureRate)}% CAPTURE RATE
@@ -121,13 +121,13 @@ export default function SummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "20px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 WALLET: ${data.walletValueEnd.toLocaleString()}
               </p>
               {!data.isFirstMonth && (
-                <p style={{ fontSize: "14px", color: "#8B95A8" }}>
+                <p style={{ fontSize: "14px", color: "#A89C8E" }}>
                   ({data.walletDelta >= 0 ? "▲ +" : "▼ "}$
                   {Math.abs(data.walletDelta).toLocaleString()})
                 </p>
@@ -139,7 +139,7 @@ export default function SummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "20px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 SCORE: {data.walletScore}/100
@@ -162,7 +162,7 @@ export default function SummaryCardSlide({
               <p
                 style={{
                   fontSize: "12px",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -170,10 +170,10 @@ export default function SummaryCardSlide({
               </p>
               <p
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Playfair Display', serif",
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                   marginTop: "4px",
                 }}
               >
@@ -183,7 +183,7 @@ export default function SummaryCardSlide({
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "14px",
-                  color: "#34D399",
+                  color: "#6B8F71",
                 }}
               >
                 {data.bestCard.grade}{" "}
@@ -194,7 +194,7 @@ export default function SummaryCardSlide({
               <p
                 style={{
                   fontSize: "12px",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -202,10 +202,10 @@ export default function SummaryCardSlide({
               </p>
               <p
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Playfair Display', serif",
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                   marginTop: "4px",
                 }}
               >
@@ -215,7 +215,7 @@ export default function SummaryCardSlide({
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "14px",
-                  color: "#F87171",
+                  color: "#C4717A",
                 }}
               >
                 {data.worstCard.grade} →
@@ -237,7 +237,7 @@ export default function SummaryCardSlide({
                   style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "14px",
-                    color: "#FAFAFA",
+                    color: "#F5EDE0",
                   }}
                 >
                   {"🔥"} {data.streakCount}mo streak
@@ -248,7 +248,7 @@ export default function SummaryCardSlide({
                   style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "14px",
-                    color: "#FAFAFA",
+                    color: "#F5EDE0",
                   }}
                 >
                   {data.badgesUnlocked.map((b) => b.icon).join("")} +

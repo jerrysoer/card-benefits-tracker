@@ -20,12 +20,12 @@ interface ShareableCardProps {
 }
 
 const VARIANT_BORDER: Record<ShareableVariant, string> = {
-  default: "#FAFAFA",
-  roast: "#FF3131",
-  wrapped: "#BF5AF2",
-  yearinreview: "#FFD700",
-  collection: "#FFD700",
-  fullwallet: "#39FF14",
+  default: "#C8963E",
+  roast: "#C8963E",
+  wrapped: "#2A7C6F",
+  yearinreview: "#C8963E",
+  collection: "#C8963E",
+  fullwallet: "#2A7C6F",
 };
 
 const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
@@ -66,12 +66,12 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
             height: `${height}px`,
             transform: `scale(${scale})`,
             transformOrigin: "top left",
-            backgroundColor: "#0A0A0A",
+            backgroundColor: "#2C2620",
             padding: "48px",
             display: "flex",
             flexDirection: "column",
             fontFamily: "'DM Sans', sans-serif",
-            color: "#FAFAFA",
+            color: "#F5EDE0",
           }}
         >
           <div
@@ -90,12 +90,12 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
             {showWatermark && (
               <div
                 style={{
-                  borderTop: "1px solid #333",
+                  borderTop: "1px solid #4A3F35",
                   paddingTop: "16px",
                   display: "flex",
                   justifyContent: "space-between",
                   fontSize: "14px",
-                  color: "#666666",
+                  color: "#8A7E70",
                 }}
               >
                 <span

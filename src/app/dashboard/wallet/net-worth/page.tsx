@@ -197,7 +197,7 @@ export default function NetWorthPage() {
               Points Portfolio{" "}
               <span className="text-[10px] text-text-muted">(auto)</span>
             </label>
-            <div className="flex h-[38px] items-center rounded-md border border-border bg-bg-elevated px-3 font-mono-data text-sm text-[#22D3EE]">
+            <div className="flex h-[38px] items-center rounded-md border border-border bg-bg-elevated px-3 font-mono-data text-sm text-[#2A7C6F]">
               ${pointsValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function NetWorthPage() {
         <button
           onClick={handleUpdate}
           className="mt-3 w-full rounded-md py-2 text-sm font-medium transition-colors"
-          style={{ backgroundColor: "#39FF14", color: "#0C0F14" }}
+          style={{ backgroundColor: "#6B8F71", color: "#FAF6F0" }}
         >
           Update Net Worth
         </button>
@@ -248,7 +248,7 @@ export default function NetWorthPage() {
           <Sparkline
             data={sparkData.slice(-12)}
             labels={sparkLabels}
-            color="#34D399"
+            color="#6B8F71"
             width={500}
             height={100}
             highlightMax
@@ -269,7 +269,7 @@ export default function NetWorthPage() {
                   ({projection.monthsToTarget} months)
                 </>
               ) : projection.monthsToTarget === 0 ? (
-                <span className="text-[#34D399]">Already reached $100K!</span>
+                <span className="text-[#6B8F71]">Already reached $100K!</span>
               ) : (
                 <span className="font-mono-data text-text-primary">
                   +${Math.round(projection.projectedMonthlyGrowth).toLocaleString()}/mo avg growth

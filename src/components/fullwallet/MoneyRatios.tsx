@@ -46,15 +46,15 @@ function RatioCard({
 function getColor(type: string, pct: number): string {
   switch (type) {
     case "fees":
-      return pct < 1 ? "#34D399" : pct <= 3 ? "#FBBF24" : "#F87171";
+      return pct < 1 ? "#6B8F71" : pct <= 3 ? "#C8963E" : "#C4717A";
     case "captured":
-      return pct > 3 ? "#34D399" : pct > 1 ? "#FBBF24" : "#F87171";
+      return pct > 3 ? "#6B8F71" : pct > 1 ? "#C8963E" : "#C4717A";
     case "subscriptions":
-      return pct < 3 ? "#34D399" : pct <= 5 ? "#FBBF24" : "#F87171";
+      return pct < 3 ? "#6B8F71" : pct <= 5 ? "#C8963E" : "#C4717A";
     case "savings":
-      return pct >= 20 ? "#34D399" : pct >= 10 ? "#FBBF24" : "#F87171";
+      return pct >= 20 ? "#6B8F71" : pct >= 10 ? "#C8963E" : "#C4717A";
     default:
-      return "#8B95A8";
+      return "#A89C8E";
   }
 }
 

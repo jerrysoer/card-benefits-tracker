@@ -150,7 +150,7 @@ export default function FlexPage() {
               ? "bg-bg-elevated"
               : "text-text-muted hover:text-text-secondary"
           }`}
-          style={variant === "fullwallet" ? { color: "#39FF14" } : undefined}
+          style={variant === "fullwallet" ? { color: "#2A7C6F" } : undefined}
         >
           Full Wallet
         </button>

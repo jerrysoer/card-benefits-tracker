@@ -36,7 +36,7 @@ export default function YearSummaryCardSlide({
           <div>
             <p
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Playfair Display', serif",
                 fontSize: "16px",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -47,11 +47,11 @@ export default function YearSummaryCardSlide({
             </p>
             <p
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Playfair Display', serif",
                 fontSize: "22px",
                 fontWeight: 700,
                 letterSpacing: "0.05em",
-                color: "#FAFAFA",
+                color: "#F5EDE0",
                 marginTop: "4px",
               }}
             >
@@ -66,13 +66,13 @@ export default function YearSummaryCardSlide({
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "56px",
                 fontWeight: 700,
-                color: "#FAFAFA",
+                color: "#F5EDE0",
                 lineHeight: 1,
               }}
             >
               ${data.totalSaved.toLocaleString()}
             </p>
-            <p style={{ fontSize: "14px", color: "#8B95A8", marginTop: "4px" }}>
+            <p style={{ fontSize: "14px", color: "#A89C8E", marginTop: "4px" }}>
               TOTAL VALUE CAPTURED
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function YearSummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 {data.cardRankings.length} CARDS
@@ -103,7 +103,7 @@ export default function YearSummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 ${data.totalFeePaid.toLocaleString()} FEES
@@ -135,7 +135,7 @@ export default function YearSummaryCardSlide({
               <p
                 style={{
                   fontSize: "12px",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -143,10 +143,10 @@ export default function YearSummaryCardSlide({
               </p>
               <p
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Playfair Display', serif",
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                   marginTop: "4px",
                 }}
               >
@@ -157,7 +157,7 @@ export default function YearSummaryCardSlide({
               <p
                 style={{
                   fontSize: "12px",
-                  color: "#8B95A8",
+                  color: "#A89C8E",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -168,7 +168,7 @@ export default function YearSummaryCardSlide({
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "28px",
                   fontWeight: 700,
-                  color: "#34D399",
+                  color: "#6B8F71",
                   marginTop: "4px",
                 }}
               >
@@ -190,7 +190,7 @@ export default function YearSummaryCardSlide({
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "13px",
-                color: "#FAFAFA",
+                color: "#F5EDE0",
               }}
             >
               ${data.currentPointsValue.toLocaleString()} IN POINTS
@@ -199,7 +199,7 @@ export default function YearSummaryCardSlide({
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "13px",
-                color: "#FAFAFA",
+                color: "#F5EDE0",
               }}
             >
               {data.averageCaptureRate}% CAPTURE
@@ -217,7 +217,7 @@ export default function YearSummaryCardSlide({
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "13px",
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 {data.longestStreak}mo BEST STREAK
@@ -228,7 +228,7 @@ export default function YearSummaryCardSlide({
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "13px",
-                  color: "#FAFAFA",
+                  color: "#F5EDE0",
                 }}
               >
                 {data.badgesUnlocked.length} BADGES
@@ -240,7 +240,7 @@ export default function YearSummaryCardSlide({
           <p
             style={{
               fontSize: "14px",
-              color: "#8B95A8",
+              color: "#A89C8E",
               fontStyle: "italic",
               lineHeight: 1.5,
             }}

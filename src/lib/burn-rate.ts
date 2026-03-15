@@ -68,10 +68,10 @@ export function calculateRunway(
 }
 
 export function getRunwayColor(months: number | null): string {
-  if (months === null) return "#39FF14"; // Hoarder = green infinity
-  if (months > 12) return "#39FF14";
-  if (months >= 6) return "#FFE600";
-  return "#FF3131";
+  if (months === null) return "#6B8F71"; // Hoarder = sage infinity
+  if (months > 12) return "#6B8F71";
+  if (months >= 6) return "#C8963E";
+  return "#C4717A";
 }
 
 export function getHoarderNudge(programName: string, dollarValue: number): string {
