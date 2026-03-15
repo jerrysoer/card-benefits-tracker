@@ -14,10 +14,10 @@ const defaultLabels: Record<UrgencyState | "used", string> = {
 };
 
 const urgencyStyles: Record<UrgencyState | "used", string> = {
-  green: "bg-[#D1FAE5] text-[#10B981]",
-  amber: "bg-[#FEF3C7] text-[#F59E0B]",
-  red: "bg-[#FEE2E2] text-[#EF4444]",
-  used: "bg-[#F3F4F6] text-[#6B7280]",
+  green: "bg-green-bg text-green",
+  amber: "bg-amber-bg text-amber",
+  red: "bg-red-bg text-red",
+  used: "bg-bg-elevated text-text-muted",
 };
 
 export default function UrgencyBadge({ urgency, label }: UrgencyBadgeProps) {

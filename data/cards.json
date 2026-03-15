@@ -5,6 +5,7 @@
       "name": "American Express Platinum Card",
       "issuer": "amex",
       "annual_fee": 895,
+      "card_art_path": "/illustrations/card-art/amex-platinum.png",
       "benefits": [
         {
           "name": "Uber Cash",
@@ -130,6 +131,7 @@
       "slug": "amex-gold",
       "name": "American Express Gold Card",
       "issuer": "amex",
+      "card_art_path": "/illustrations/card-art/amex-gold.png",
       "annual_fee": 325,
       "benefits": [
         {
@@ -249,6 +251,7 @@
       "slug": "amex-hilton-aspire",
       "name": "Hilton Honors American Express Aspire Card",
       "issuer": "amex",
+      "card_art_path": "/illustrations/card-art/hilton-aspire.png",
       "annual_fee": 550,
       "benefits": [
         {
@@ -398,6 +401,7 @@
       "slug": "chase-sapphire-reserve",
       "name": "Chase Sapphire Reserve",
       "issuer": "chase",
+      "card_art_path": "/illustrations/card-art/chase-sapphire-reserve.png",
       "annual_fee": 550,
       "benefits": [
         {
@@ -463,6 +467,7 @@
       "slug": "chase-sapphire-preferred",
       "name": "Chase Sapphire Preferred",
       "issuer": "chase",
+      "card_art_path": "/illustrations/card-art/chase-sapphire-preferred.png",
       "annual_fee": 95,
       "benefits": [
         {
@@ -547,6 +552,7 @@
       "slug": "capital-one-venture-x",
       "name": "Capital One Venture X Rewards Credit Card",
       "issuer": "capital_one",
+      "card_art_path": "/illustrations/card-art/venture-x.png",
       "annual_fee": 395,
       "benefits": [
         {
@@ -579,6 +585,7 @@
       "slug": "citi-strata-premier",
       "name": "Citi Strata Premier Card",
       "issuer": "citi",
+      "card_art_path": "/illustrations/card-art/citi-strata.png",
       "annual_fee": 295,
       "benefits": [
         {
@@ -611,6 +618,7 @@
       "slug": "bilt-mastercard",
       "name": "Bilt Mastercard",
       "issuer": "bilt",
+      "card_art_path": "/illustrations/card-art/bilt.png",
       "annual_fee": 0,
       "benefits": [
         {

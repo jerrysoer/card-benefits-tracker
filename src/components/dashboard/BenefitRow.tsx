@@ -15,10 +15,10 @@ interface BenefitRowProps {
 }
 
 const urgencyBgColors: Record<string, string> = {
-  green: "bg-[#D1FAE5]",
-  amber: "bg-[#FEF3C7]",
-  red: "bg-[#FEE2E2]",
-  used: "bg-[#F9FAFB]",
+  green: "bg-green-bg",
+  amber: "bg-amber-bg",
+  red: "bg-red-bg",
+  used: "bg-used-bg",
 };
 
 export default function BenefitRow({
@@ -92,13 +92,13 @@ export default function BenefitRow({
           className={cn(
             "shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-transform",
             isUsed
-              ? "bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed"
-              : "bg-[#111] text-white active:scale-[0.97]"
+              ? "bg-border text-text-muted cursor-not-allowed"
+              : "bg-gold text-white active:scale-[0.97]"
           )}
         >
           {isUsed ? (
             <span className="flex items-center gap-1">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
               Nice!

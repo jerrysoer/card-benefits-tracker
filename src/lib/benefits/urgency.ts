@@ -34,13 +34,13 @@ export function getUrgencyClasses(urgency: UrgencyState | "used"): string {
 export function getUrgencyColor(urgency: UrgencyState | "used"): string {
   switch (urgency) {
     case "green":
-      return "#10B981";
+      return "#6B8F71";
     case "amber":
-      return "#F59E0B";
+      return "#D4983B";
     case "red":
-      return "#EF4444";
+      return "#C4717A";
     case "used":
-      return "#9CA3AF";
+      return "#A89C8E";
   }
 }
 

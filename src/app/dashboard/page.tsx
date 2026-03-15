@@ -370,7 +370,7 @@ export default function DashboardPage() {
       <div className="flex justify-center">
         <button
           onClick={() => setShowRoastModal(true)}
-          className="rounded-full border-2 border-[#EF4444] px-8 py-3 font-display text-sm text-[#EF4444] transition-opacity hover:opacity-80"
+          className="rounded-full border-2 border-burgundy px-8 py-3 font-serif-display text-sm text-burgundy transition-opacity hover:opacity-80"
         >
           🔥 ROAST MY WALLET
         </button>
@@ -380,7 +380,7 @@ export default function DashboardPage() {
       <div className="flex justify-center">
         <button
           onClick={() => setShowFlexModal(true)}
-          className="rounded-lg border-3 border-neon-purple px-8 py-3 font-display text-sm text-neon-purple transition-opacity hover:opacity-80"
+          className="rounded-lg border-2 border-teal px-8 py-3 font-display text-sm text-teal transition-opacity hover:opacity-80"
         >
           SHARE YOUR WALLET
         </button>
