@@ -32,7 +32,7 @@ export default function SavingsSlide({
       >
         <p
           className="font-mono-data text-5xl font-bold"
-          style={{ color: savings >= 0 ? "#34D399" : "#F87171" }}
+          style={{ color: savings >= 0 ? "#6B8F71" : "#C4717A" }}
         >
           {savings < 0 ? "-" : ""}${displaySavings.toLocaleString()}
         </p>

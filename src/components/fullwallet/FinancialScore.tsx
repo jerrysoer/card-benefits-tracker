@@ -36,7 +36,7 @@ export default function FinancialScore({ score }: FinancialScoreProps) {
               cy={size / 2}
               r={radius}
               fill="none"
-              stroke="#E5E7EB"
+              stroke="#D4C9B8"
               strokeWidth={strokeWidth}
             />
             {/* Progress ring */}
@@ -98,7 +98,7 @@ export default function FinancialScore({ score }: FinancialScoreProps) {
                   {Math.round(comp.raw)}/100
                 </span>
               </div>
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-bg-elevated">
                 <div
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{

@@ -36,13 +36,13 @@ export default function MoneyRatiosSlide({
         </p>
         <p
           className="font-mono-data text-5xl font-bold"
-          style={{ color: data.financialScoreColor ?? "#39FF14" }}
+          style={{ color: data.financialScoreColor ?? "#6B8F71" }}
         >
           {score}
         </p>
         <p
           className="font-display text-xs tracking-widest"
-          style={{ color: data.financialScoreColor ?? "#39FF14" }}
+          style={{ color: data.financialScoreColor ?? "#6B8F71" }}
         >
           {data.financialScoreLabel ?? ""}
         </p>

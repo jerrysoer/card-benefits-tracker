@@ -21,7 +21,7 @@ export default function SlideIndicator({
           style={{
             width: i === current ? 24 : 6,
             height: 6,
-            backgroundColor: i === current ? accentColor : "#525C6E",
+            backgroundColor: i === current ? accentColor : "#7A6E60",
           }}
         />
       ))}

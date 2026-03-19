@@ -8,10 +8,10 @@ interface BucketBreakdownProps {
 }
 
 const BUCKETS = [
-  { key: "cash", label: "Cash & Savings", color: "#34D399" },
-  { key: "investments", label: "Investments", color: "#60A5FA" },
-  { key: "pointsValue", label: "Points Portfolio", color: "#22D3EE" },
-  { key: "debt", label: "Debt", color: "#F87171" },
+  { key: "cash", label: "Cash & Savings", color: "#6B8F71" },
+  { key: "investments", label: "Investments", color: "#2A7C6F" },
+  { key: "pointsValue", label: "Points Portfolio", color: "#2A7C6F" },
+  { key: "debt", label: "Debt", color: "#C4717A" },
 ] as const;
 
 export default function BucketBreakdown({
@@ -54,7 +54,7 @@ export default function BucketBreakdown({
                 {val.toLocaleString()}
               </span>
             </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
+            <div className="h-3 w-full overflow-hidden rounded-full bg-bg-elevated">
               <div
                 className="h-full rounded-full transition-all duration-700 ease-out"
                 style={{

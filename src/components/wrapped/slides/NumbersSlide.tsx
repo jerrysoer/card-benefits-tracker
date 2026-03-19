@@ -19,7 +19,7 @@ export default function NumbersSlide({
   const rate = useCountUp(data.captureRate, animate);
 
   const rateImproved = data.captureRateDelta >= 0;
-  const rateColor = rateImproved ? "#34D399" : "#F87171";
+  const rateColor = rateImproved ? "#6B8F71" : "#C4717A";
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-8 text-center">

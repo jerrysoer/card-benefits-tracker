@@ -19,7 +19,7 @@ export default function YearNetWorthSlide({
   const delta = data.netWorthDelta ?? 0;
   const displayEnd = useCountUp(Math.abs(end), animate);
   const isNegative = end < 0;
-  const deltaColor = delta >= 0 ? "#34D399" : "#F87171";
+  const deltaColor = delta >= 0 ? "#6B8F71" : "#C4717A";
   const pctChange = start !== 0 ? Math.round((delta / Math.abs(start)) * 100) : 0;
 
   return (
@@ -46,7 +46,7 @@ export default function YearNetWorthSlide({
         <p className="text-sm text-text-muted">DEC</p>
         <p
           className="font-mono-data text-4xl font-bold"
-          style={{ color: isNegative ? "#F87171" : "#34D399" }}
+          style={{ color: isNegative ? "#C4717A" : "#6B8F71" }}
         >
           {isNegative ? "-" : ""}${displayEnd.toLocaleString()}
         </p>

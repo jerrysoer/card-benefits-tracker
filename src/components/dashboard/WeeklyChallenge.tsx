@@ -60,11 +60,11 @@ export default function WeeklyChallenge({
       className="rounded-lg p-4 shadow-card"
       style={{
         border: isActive
-          ? "2px solid #10B981"
+          ? "2px solid #6B8F71"
           : isCompleted
-            ? "2px solid #10B981"
-            : "1px solid #E5E7EB",
-        backgroundColor: "#FFFFFF",
+            ? "2px solid #6B8F71"
+            : "1px solid var(--border)",
+        backgroundColor: "var(--bg-card)",
       }}
     >
       <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ export default function WeeklyChallenge({
             WEEKLY CHALLENGE
           </h3>
           {isActive && (
-            <div className="animate-challenge-pulse h-2 w-2 rounded-full bg-[#10B981]" />
+            <div className="animate-challenge-pulse h-2 w-2 rounded-full bg-green" />
           )}
         </div>
         {totalThisMonth > 0 && (
@@ -97,20 +97,20 @@ export default function WeeklyChallenge({
           {isActive && (
             <button
               onClick={handleComplete}
-              className="mt-3 rounded-full bg-[#111] px-4 py-2 text-xs font-bold text-white transition-opacity hover:opacity-80"
+              className="mt-3 rounded-full bg-accent px-4 py-2 text-xs font-bold text-white transition-opacity hover:opacity-80"
             >
               MARK COMPLETE
             </button>
           )}
 
           {justCompleted && (
-            <div className="mt-2 text-xs font-bold text-[#10B981]">
+            <div className="mt-2 text-xs font-bold text-green">
               ✅ challenge complete! +2 wallet score boost
             </div>
           )}
 
           {isCompleted && !justCompleted && (
-            <div className="mt-2 text-xs text-[#10B981]">
+            <div className="mt-2 text-xs text-green">
               ✅ completed
             </div>
           )}

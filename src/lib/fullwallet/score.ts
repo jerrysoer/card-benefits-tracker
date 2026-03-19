@@ -80,7 +80,7 @@ function getScoreLabel(score: number): { label: string; color: string } {
       return { label: tier.label, color: tier.color };
     }
   }
-  return { label: "GETTING STARTED", color: "#FF3131" };
+  return { label: "GETTING STARTED", color: "#C4717A" };
 }
 
 export function computeFinancialScore(

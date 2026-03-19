@@ -79,7 +79,7 @@ export default function MoneySavedSlide({
         <p className="text-xs uppercase text-text-muted">NET</p>
         <p
           className="mt-1 font-mono-data text-4xl font-bold"
-          style={{ color: netPositive ? "#34D399" : "#F87171" }}
+          style={{ color: netPositive ? "#6B8F71" : "#C4717A" }}
         >
           {netPositive ? "+" : "-"}${netValue.toLocaleString()}
         </p>

@@ -84,7 +84,7 @@ export default function AddSubscriptionModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Netflix, Gym, Spotify..."
-              className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:border-[#60A5FA] focus:outline-none"
+              className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:border-teal focus:outline-none"
               autoFocus
             />
           </div>
@@ -101,7 +101,7 @@ export default function AddSubscriptionModal({
                   onClick={() => setBillingCycle(cycle)}
                   className={`rounded-md px-4 py-2 text-xs font-medium transition-colors ${
                     billingCycle === cycle
-                      ? "bg-[#60A5FA]/15 text-[#60A5FA]"
+                      ? "bg-teal/15 text-teal"
                       : "bg-bg-elevated text-text-muted hover:text-text-secondary"
                   }`}
                 >
@@ -126,7 +126,7 @@ export default function AddSubscriptionModal({
                 value={cost}
                 onChange={(e) => setCost(e.target.value)}
                 placeholder="0.00"
-                className="w-full rounded-md border border-border bg-bg-elevated py-2 pl-7 pr-3 font-mono-data text-sm text-text-primary placeholder:text-text-muted focus:border-[#60A5FA] focus:outline-none"
+                className="w-full rounded-md border border-border bg-bg-elevated py-2 pl-7 pr-3 font-mono-data text-sm text-text-primary placeholder:text-text-muted focus:border-teal focus:outline-none"
               />
             </div>
             {costNum > 0 && (
@@ -147,7 +147,7 @@ export default function AddSubscriptionModal({
               onChange={(e) =>
                 setCategory(e.target.value as SubscriptionCategory)
               }
-              className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary focus:border-[#60A5FA] focus:outline-none"
+              className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary focus:border-teal focus:outline-none"
             >
               {SUBSCRIPTION_CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>
@@ -170,8 +170,8 @@ export default function AddSubscriptionModal({
               disabled={!isValid}
               className="rounded-md px-4 py-2 text-sm font-medium transition-colors disabled:opacity-40"
               style={{
-                backgroundColor: isValid ? "#39FF14" : undefined,
-                color: isValid ? "#0C0F14" : undefined,
+                backgroundColor: isValid ? "#2A7C6F" : undefined,
+                color: isValid ? "#F5EDE0" : undefined,
               }}
             >
               {editingSub ? "Save" : "Add"}

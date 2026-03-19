@@ -9,15 +9,15 @@ interface GradeStorySlideProps {
 }
 
 const GRADE_COLORS: Record<string, string> = {
-  "A+": "#34D399",
-  A: "#34D399",
-  "B+": "#FBBF24",
-  B: "#FBBF24",
-  "C+": "#FBBF24",
-  C: "#FBBF24",
-  D: "#F87171",
-  F: "#F87171",
-  FREE: "#00D4FF",
+  "A+": "#6B8F71",
+  A: "#6B8F71",
+  "B+": "#C8963E",
+  B: "#C8963E",
+  "C+": "#C8963E",
+  C: "#C8963E",
+  D: "#C4717A",
+  F: "#C4717A",
+  FREE: "#2A7C6F",
 };
 
 const MONTH_ABBREV = [
@@ -67,7 +67,7 @@ export default function GradeStorySlide({
               <div key={i} className="flex flex-col items-center gap-1">
                 <span
                   className="font-mono-data text-xs font-bold"
-                  style={{ color: GRADE_COLORS[grade] || "#8B95A8" }}
+                  style={{ color: GRADE_COLORS[grade] || "#A89C8E" }}
                 >
                   {grade}
                 </span>
@@ -83,7 +83,7 @@ export default function GradeStorySlide({
             <span className="text-text-muted">Started:</span>
             <span
               className="font-mono-data font-bold"
-              style={{ color: GRADE_COLORS[story.startGrade] || "#8B95A8" }}
+              style={{ color: GRADE_COLORS[story.startGrade] || "#A89C8E" }}
             >
               {story.startGrade}
             </span>
@@ -91,7 +91,7 @@ export default function GradeStorySlide({
             <span className="text-text-muted">Ended:</span>
             <span
               className="font-mono-data font-bold"
-              style={{ color: GRADE_COLORS[story.endGrade] || "#8B95A8" }}
+              style={{ color: GRADE_COLORS[story.endGrade] || "#A89C8E" }}
             >
               {story.endGrade}
             </span>

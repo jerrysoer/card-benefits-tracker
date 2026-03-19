@@ -48,7 +48,7 @@ export default function WrappedBanner() {
   const monthName = MONTH_NAMES[monthIndex];
 
   return (
-    <div className="rounded-lg border-2 border-neon-purple bg-bg-card p-4">
+    <div className="rounded-lg border-2 border-[#7A3B42] bg-bg-card p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-2xl">✨</span>
@@ -64,7 +64,7 @@ export default function WrappedBanner() {
         <div className="flex items-center gap-2">
           <Link
             href={`/dashboard/wrapped/${unviewedMonth}`}
-            className="rounded-lg border-2 border-neon-purple px-4 py-1.5 font-display text-xs text-neon-purple transition-opacity hover:opacity-80"
+            className="rounded-lg border-2 border-[#7A3B42] px-4 py-1.5 font-display text-xs text-[#7A3B42] transition-opacity hover:opacity-80"
           >
             VIEW →
           </Link>

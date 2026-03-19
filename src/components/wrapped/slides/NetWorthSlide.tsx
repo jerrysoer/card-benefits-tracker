@@ -18,8 +18,8 @@ export default function NetWorthSlide({
   const delta = data.netWorthDelta ?? 0;
   const displayNW = useCountUp(Math.abs(nw), animate);
   const isNegative = nw < 0;
-  const color = isNegative ? "#F87171" : "#34D399";
-  const deltaColor = delta >= 0 ? "#34D399" : "#F87171";
+  const color = isNegative ? "#C4717A" : "#6B8F71";
+  const deltaColor = delta >= 0 ? "#6B8F71" : "#C4717A";
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-8 text-center">

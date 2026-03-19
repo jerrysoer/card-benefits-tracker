@@ -11,14 +11,14 @@ interface SubscriptionRowProps {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  streaming: "#BF5AF2",
-  fitness: "#FF6B6B",
-  food: "#FBBF24",
-  software: "#60A5FA",
-  news: "#34D399",
-  shopping: "#FF9F43",
-  finance: "#39FF14",
-  other: "#8B95A8",
+  streaming: "#7A3B42",
+  fitness: "#C4717A",
+  food: "#C8963E",
+  software: "#2A7C6F",
+  news: "#6B8F71",
+  shopping: "#D4983B",
+  finance: "#2A7C6F",
+  other: "#A89C8E",
 };
 
 export default function SubscriptionRow({
@@ -36,7 +36,7 @@ export default function SubscriptionRow({
     <div
       className="animate-slide-up flex items-center gap-4 rounded-lg border bg-bg-card px-4 py-3 transition-colors"
       style={{
-        borderColor: usedThisMonth ? "var(--color-border)" : "#F87171",
+        borderColor: usedThisMonth ? "var(--color-border)" : "#C4717A",
         borderLeftWidth: usedThisMonth ? "1px" : "3px",
         animationDelay: `${index * 50}ms`,
       }}
@@ -46,17 +46,17 @@ export default function SubscriptionRow({
         onClick={() => onToggleUsed(id)}
         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
         style={{
-          borderColor: usedThisMonth ? "#34D399" : "#F87171",
-          backgroundColor: usedThisMonth ? "#34D399/15" : "transparent",
+          borderColor: usedThisMonth ? "#6B8F71" : "#C4717A",
+          backgroundColor: usedThisMonth ? "#6B8F71/15" : "transparent",
         }}
         title={usedThisMonth ? "Used this month" : "Not used this month"}
       >
         {usedThisMonth ? (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B8F71" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
           </svg>
         ) : (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4717A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
@@ -106,7 +106,7 @@ export default function SubscriptionRow({
         </button>
         <button
           onClick={() => onDelete(id)}
-          className="rounded p-1 text-text-muted transition-colors hover:text-[#F87171]"
+          className="rounded p-1 text-text-muted transition-colors hover:text-[#C4717A]"
           title="Delete"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

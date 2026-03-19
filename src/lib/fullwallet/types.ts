@@ -88,9 +88,9 @@ export interface MilestoneProjections {
 }
 
 export const FINANCIAL_SCORE_TIERS = [
-  { min: 90, label: "THRIVING", color: "#39FF14" },
-  { min: 75, label: "STRONG", color: "#39FF14" },
-  { min: 60, label: "BUILDING", color: "#FFE600" },
-  { min: 40, label: "WORK IN PROGRESS", color: "#FFE600" },
-  { min: 0, label: "GETTING STARTED", color: "#FF3131" },
+  { min: 90, label: "THRIVING", color: "#6B8F71" },
+  { min: 75, label: "STRONG", color: "#6B8F71" },
+  { min: 60, label: "BUILDING", color: "#C8963E" },
+  { min: 40, label: "WORK IN PROGRESS", color: "#C8963E" },
+  { min: 0, label: "GETTING STARTED", color: "#C4717A" },
 ] as const;

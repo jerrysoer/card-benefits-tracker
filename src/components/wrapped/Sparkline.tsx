@@ -78,7 +78,7 @@ export default function Sparkline({
           cx={p.x}
           cy={p.y}
           r={highlightMax && i === maxIndex ? 5 : 3}
-          fill={highlightMax && i === maxIndex ? color : "#FFFFFF"}
+          fill={highlightMax && i === maxIndex ? color : "#F5EDE0"}
           stroke={color}
           strokeWidth={highlightMax && i === maxIndex ? 2 : 1.5}
         />
@@ -92,7 +92,7 @@ export default function Sparkline({
             x={p.x}
             y={height - 4}
             textAnchor="middle"
-            fill="#8B95A8"
+            fill="#A89C8E"
             fontSize={10}
             fontFamily="'JetBrains Mono', monospace"
           >

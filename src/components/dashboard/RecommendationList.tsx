@@ -30,7 +30,7 @@ export default function RecommendationList({ cardROIs }: RecommendationListProps
       </h2>
 
       {wellRounded ? (
-        <div className="rounded-lg border border-[#10B981] bg-[#D1FAE5] px-5 py-4">
+        <div className="rounded-lg border border-green bg-green-bg px-5 py-4">
           <span className="text-sm text-text-secondary">
             your portfolio is well-rounded 👑 — no obvious gaps.
           </span>
@@ -53,7 +53,7 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
   const bgColor = ISSUER_COLORS[rec.issuer] ?? "#333";
 
   return (
-    <div className="rounded-lg border border-[#E5E7EB] bg-white p-4 shadow-card">
+    <div className="rounded-lg border border-border bg-bg-card p-4 shadow-card">
       <div className="flex items-start gap-3">
         {/* Issuer color block */}
         <div
@@ -82,13 +82,13 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
 
           {/* Gap filled */}
           <div className="mt-2 flex items-center gap-2">
-            <span className="rounded bg-[#F3F4F6] px-2 py-0.5 text-xs text-text-muted">
+            <span className="rounded bg-bg-elevated px-2 py-0.5 text-xs text-text-muted">
               fills: {rec.gapFilled}
             </span>
             <span
               className="font-mono-data text-xs font-bold"
               style={{
-                color: rec.firstYearNetValue >= 0 ? "#10B981" : "#EF4444",
+                color: rec.firstYearNetValue >= 0 ? "#6B8F71" : "#C4717A",
               }}
             >
               {rec.firstYearNetValue >= 0 ? "+" : ""}

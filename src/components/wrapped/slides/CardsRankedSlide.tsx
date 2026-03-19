@@ -9,15 +9,15 @@ interface CardsRankedSlideProps {
 }
 
 const GRADE_COLORS: Record<string, string> = {
-  "A+": "#34D399",
-  A: "#34D399",
-  B: "#FBBF24",
-  "B+": "#FBBF24",
-  C: "#FBBF24",
-  "C+": "#FBBF24",
-  D: "#F87171",
-  F: "#F87171",
-  FREE: "#00D4FF",
+  "A+": "#6B8F71",
+  A: "#6B8F71",
+  B: "#C8963E",
+  "B+": "#C8963E",
+  C: "#C8963E",
+  "C+": "#C8963E",
+  D: "#C4717A",
+  F: "#C4717A",
+  FREE: "#2A7C6F",
 };
 
 export default function CardsRankedSlide({
@@ -58,12 +58,12 @@ export default function CardsRankedSlide({
                 </p>
               )}
               {card.grade === "FREE" && (
-                <p className="text-xs text-neon-blue">(FREE)</p>
+                <p className="text-xs text-[#2A7C6F]">(FREE)</p>
               )}
             </div>
             <span
               className="font-mono-data text-sm font-bold"
-              style={{ color: GRADE_COLORS[card.grade] || "#8B95A8" }}
+              style={{ color: GRADE_COLORS[card.grade] || "#A89C8E" }}
             >
               {card.grade}
             </span>
@@ -84,7 +84,7 @@ export default function CardsRankedSlide({
         <p
           className="mt-1 font-mono-data text-3xl font-bold"
           style={{
-            color: GRADE_COLORS[data.portfolioAverageGrade] || "#8B95A8",
+            color: GRADE_COLORS[data.portfolioAverageGrade] || "#A89C8E",
           }}
         >
           {data.portfolioAverageGrade}

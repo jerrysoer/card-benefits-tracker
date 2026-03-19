@@ -21,7 +21,7 @@ export default function ROIGauge({ roi }: ROIGaugeProps) {
   const center = size / 2;
 
   const isProfitable = roi.totalCaptured >= roi.annualFee;
-  const color = isProfitable ? "#F59E0B" : "#60A5FA";
+  const color = isProfitable ? "#C8963E" : "#2A7C6F";
 
   return (
     <div className="flex flex-col items-center gap-1">
@@ -37,7 +37,7 @@ export default function ROIGauge({ roi }: ROIGaugeProps) {
           cy={center}
           r={radius}
           fill="none"
-          stroke="#E5E7EB"
+          stroke="var(--color-border)"
           strokeWidth={strokeWidth}
         />
         {/* Progress ring */}
@@ -60,7 +60,7 @@ export default function ROIGauge({ roi }: ROIGaugeProps) {
           y={center}
           textAnchor="middle"
           dominantBaseline="central"
-          fill="#111111"
+          fill="var(--color-text-primary)"
           fontSize={20}
           fontFamily="JetBrains Mono, monospace"
           fontWeight={700}

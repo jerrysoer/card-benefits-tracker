@@ -67,17 +67,17 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             height: `${height}px`,
             transform: `scale(${scale})`,
             transformOrigin: "top left",
-            backgroundColor: "#0A0A0A",
+            backgroundColor: "#2C2620",
             padding: "48px",
             display: "flex",
             flexDirection: "column",
             fontFamily: "'DM Sans', sans-serif",
-            color: "#FAFAFA",
+            color: "#F5EDE0",
           }}
         >
           <div
             style={{
-              border: "4px solid #FAFAFA",
+              border: "4px solid #F5EDE0",
               borderRadius: "16px",
               padding: "48px",
               flex: 1,
@@ -89,12 +89,12 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             {/* Header */}
             <div
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "28px",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase" as const,
-                color: "#666666",
+                color: "#8A7E70",
               }}
             >
               CARDCLOCK
@@ -104,12 +104,12 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             <div style={{ textAlign: "center", margin: "24px 0" }}>
               <div
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "20px",
                   letterSpacing: "0.05em",
                   textTransform: "uppercase" as const,
-                  color: "#666666",
+                  color: "#8A7E70",
                   marginBottom: "16px",
                 }}
               >
@@ -126,12 +126,12 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
               >
                 {walletScore}
               </div>
-              <div style={{ fontSize: "18px", color: "#666666", marginTop: "8px" }}>
+              <div style={{ fontSize: "18px", color: "#8A7E70", marginTop: "8px" }}>
                 out of 100
               </div>
               <div
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "16px",
                   color: scoreInfo.color,
@@ -168,7 +168,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      backgroundColor: "#1A1A1A",
+                      backgroundColor: "#3D352D",
                     }}
                   >
                     <div
@@ -176,7 +176,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                         fontFamily: "'Space Mono', monospace",
                         fontWeight: 700,
                         fontSize: "10px",
-                        color: "#666666",
+                        color: "#8A7E70",
                         textTransform: "uppercase" as const,
                         letterSpacing: "0.05em",
                       }}
@@ -208,22 +208,22 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
               }}
             >
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FAFAFA" }}>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#F5EDE0" }}>
                   {cardROIs.length}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>CARDS</div>
+                <div style={{ fontSize: "12px", color: "#8A7E70", textTransform: "uppercase" as const }}>CARDS</div>
               </div>
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FAFAFA" }}>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#F5EDE0" }}>
                   {formatCurrency(totalFees)}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>FEES PAID</div>
+                <div style={{ fontSize: "12px", color: "#8A7E70", textTransform: "uppercase" as const }}>FEES PAID</div>
               </div>
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#FFD700" }}>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "28px", color: "#C8963E" }}>
                   {formatCurrency(totalCaptured)}
                 </div>
-                <div style={{ fontSize: "12px", color: "#666666", textTransform: "uppercase" as const }}>CAPTURED</div>
+                <div style={{ fontSize: "12px", color: "#8A7E70", textTransform: "uppercase" as const }}>CAPTURED</div>
               </div>
             </div>
 
@@ -239,27 +239,27 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
               }}
             >
               <span>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: roi >= 100 ? "#39FF14" : "#FF3131" }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: roi >= 100 ? "#6B8F71" : "#C4717A" }}>
                   {roi}% ROI
                 </span>
               </span>
               {streak > 0 && (
                 <span>
-                  🔥 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#39FF14" }}>
+                  🔥 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#6B8F71" }}>
                     {streak} mo streak
                   </span>
                 </span>
               )}
               {runwayMonths !== undefined && (
                 <span>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#00D4FF" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#2A7C6F" }}>
                     {runwayMonths === null ? "∞" : `${runwayMonths}mo`} runway
                   </span>
                 </span>
               )}
               {challengeStats && challengeStats.total > 0 && (
                 <span>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#FFE600" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color: "#C8963E" }}>
                     {challengeStats.completed}/{challengeStats.total} challenges
                   </span>
                 </span>
@@ -287,11 +287,11 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
                   </span>
                 ))}
                 {unlockedCount > 6 && (
-                  <span style={{ fontSize: "14px", color: "#888", fontFamily: "'JetBrains Mono', monospace" }}>
+                  <span style={{ fontSize: "14px", color: "#A89C8E", fontFamily: "'JetBrains Mono', monospace" }}>
                     +{unlockedCount - 6}
                   </span>
                 )}
-                <span style={{ fontSize: "12px", color: "#666", marginLeft: "8px" }}>
+                <span style={{ fontSize: "12px", color: "#8A7E70", marginLeft: "8px" }}>
                   {unlockedCount}/{BADGE_DEFINITIONS.length} unlocked
                 </span>
               </div>
@@ -300,7 +300,7 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             {/* Roast excerpt */}
             {roastExcerpt && (
               <div style={{ textAlign: "center", margin: "8px 0", padding: "0 24px" }}>
-                <p style={{ fontSize: "13px", fontStyle: "italic", color: "#888", lineHeight: 1.4 }}>
+                <p style={{ fontSize: "13px", fontStyle: "italic", color: "#A89C8E", lineHeight: 1.4 }}>
                   &ldquo;{roastExcerpt.split(".")[0]}.&rdquo;
                 </p>
               </div>
@@ -309,12 +309,12 @@ const WalletFlexCard = forwardRef<HTMLDivElement, WalletFlexCardProps>(
             {/* Watermark */}
             <div
               style={{
-                borderTop: "1px solid #333",
+                borderTop: "1px solid #4A3F35",
                 paddingTop: "16px",
                 display: "flex",
                 justifyContent: "space-between",
                 fontSize: "14px",
-                color: "#666666",
+                color: "#8A7E70",
               }}
             >
               <span style={{ fontFamily: "'Space Mono', monospace", fontWeight: 700, letterSpacing: "0.05em" }}>

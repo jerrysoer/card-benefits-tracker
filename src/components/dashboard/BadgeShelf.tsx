@@ -51,7 +51,7 @@ export default function BadgeShelf({ badgeState, newlyUnlocked }: BadgeShelfProp
                     : "grayscale opacity-40"
                 }`}
                 style={{
-                  borderColor: isUnlocked ? tierColor.border : "#525C6E",
+                  borderColor: isUnlocked ? tierColor.border : "#A89C8E",
                   borderStyle: isUnlocked ? "solid" : "dashed",
                   backgroundColor: isUnlocked ? tierColor.bg : "transparent",
                   boxShadow: isUnlocked
@@ -64,7 +64,7 @@ export default function BadgeShelf({ badgeState, newlyUnlocked }: BadgeShelfProp
 
               {/* Tooltip */}
               {tooltip === badge.id && (
-                <div className="absolute -top-20 left-1/2 z-50 w-48 -translate-x-1/2 rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-lg">
+                <div className="absolute -top-20 left-1/2 z-50 w-48 -translate-x-1/2 rounded-lg border border-border bg-bg-card p-3 shadow-lg">
                   <div className="text-xs font-bold text-text-primary">
                     {badge.icon} {badge.name}
                   </div>
